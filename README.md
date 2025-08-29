@@ -1,13 +1,18 @@
+![Logo do Projeto](./assets/logo.jpg)
+
 # Gestão Viva
+
+---
 
 ### 🎯 Descrição do projeto:
 **Gestão Viva** é uma plataforma voltada à gestão da experiência do visitante ao parque de esculturas Francisco Brennand.
 Nosso objetivo é ser a ponte digital oficial entre o parque e o público visitante, organizando o fluxo de visitação e coletando dados paa aprimorar a organização e experiência.  
 
-A ferramanta é, acima de tudo, sobre **gestão, comunicação e inteligência**.
+**A ferramanta é, acima de tudo, sobre gestão, comunicação e inteligência**.
+
+---
 
 ### 👥 Nossa Equipe:
-
 | Nome             | Funções | Hobby                                                                 | Contato |
 |------------------|---------|-----------------------------------------------------------------------|---------|
 | André Ferraz     | Scrum Master| Surfar, ir à academia, jogar basquete e acompanhar outros esportes.  |afg@cesar.school     |
