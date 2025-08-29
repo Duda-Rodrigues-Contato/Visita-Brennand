@@ -1,6 +1,6 @@
 ![Logo do Projeto](./assets/logo.jpg)
 
-# Gestão Viva
+# ⛯ Gestão Viva
 
 ---
 
