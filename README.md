@@ -27,4 +27,4 @@ Nosso objetivo é ser a ponte digital oficial entre o parque e o público visita
 
 ### Informações Gerais:
 
-Link para o <<!nav>>**Google Sites**<<!/nav>>. (https://sites.google.com/cesar.school/recentro/p%C3%A1gina-inicial)
+<a href=“https://sites.google.com/cesar.school/recentro/p%C3%A1gina-inicial“>Link para o **Google Sites**</a>
