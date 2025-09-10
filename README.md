@@ -22,3 +22,9 @@ Nosso objetivo é ser a ponte digital oficial entre o parque e o público visita
 | Maria Eduarda    |Desenvolverdor Front End| Escutar música, jogar videogame, pintar e desenhar.                  | merm@cesar.school    |
 | Maria Júlia      |Desenvolverdor Front End| Desenhar (papel e digital, ainda aprendendo), ler e assistir sitcom. | mjmr@cesar.school     |
 | Matheus Melquiades |Desenvolverdor Front End| Jogar videogame, ler quadrinhos e ir ao cinema.                      | mmn3@cesar.school     |
+
+---
+
+### Informações Gerais:
+
+Link para o <<!nav>>**Google Sites**<<!/nav>>. (https://sites.google.com/cesar.school/recentro/p%C3%A1gina-inicial)
