@@ -47,7 +47,7 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 **Protótipo e ScreenCast:**
 
 
-### História 3 - Notificações de Mudanças Pelo Clima:
+#### História 3 - Notificações de Mudanças Pelo Clima:
 [Documento](https://docs.google.com/document/d/1Bg07OvdYBB-QY06ng9sI0KQ6aVSMsELCKXf1Mgg0r5w/edit?usp=sharing).
 
 **Protótipo e ScreenCast:**
@@ -59,13 +59,13 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 **Protótipo e ScreenCast:**
 
 
-#### História 5 - DeshBoard de Visualização:
+#### História 5 - DashBoard de Visualização:
 [Documento](https://docs.google.com/document/d/1OJyBRyiua2FPd069q5BTnX6WAjHapRpxr8jQKkxNM3A/edit?usp=sharing).
 
 **Protótipo e ScreenCast:**
 
 
-##### História 6 - Busca por Visitantes Pré-Cadastrados:
+#### História 6 - Busca por Visitantes Pré-Cadastrados:
 [Documento](https://docs.google.com/document/d/1HQafALj0o4WjCAEuzkAeYNgiezR8xqphJeWFZoc57xI/edit?usp=sharing).
 
 **Protótipo e ScreenCast:**
