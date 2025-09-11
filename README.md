@@ -64,6 +64,8 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 **Protótipo e ScreenCast:**
 
+![Wireframe DashBoard](/img/wireframe%20-%20dashboard.png)
+
 
 ### História 6 - Busca por Visitantes Pré-Cadastrados:
 [Documento](https://docs.google.com/document/d/1HQafALj0o4WjCAEuzkAeYNgiezR8xqphJeWFZoc57xI/edit?usp=sharing).
