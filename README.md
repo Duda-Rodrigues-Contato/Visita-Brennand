@@ -40,11 +40,15 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 **Protótipo e ScreenCast:**
 
+![Wireframe Pré-Cadastramento de Grupos Maiores](/img/Pré-Cadastramento%20de%20Grupos%20Maiores.png)
+
 
 ### História 2 - Pesquisa de Satisfação:
 [Documento](https://docs.google.com/document/d/1-XJaAeeuDCQdH_Fsa_rVDQV3C8qHujb6l_nacyLILQA/edit?usp=sharing).
 
 **Protótipo e ScreenCast:**
+
+![Wireframe Pesquisa de Satisfação](/img/Pesquisa%20de%20Satisfação.png)
 
 
 ### História 3 - Notificações de Mudanças Pelo Clima:
@@ -57,6 +61,8 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 [Documento](https://docs.google.com/document/d/1Z_QucY-Nkrokc6nyTHMMWR_MUT6pEuJd4XxVFVaHzQ4/edit?usp=sharing).
 
 **Protótipo e ScreenCast:**
+
+![Wireframe Mostrar Visitantes Cadastrados](/img/Dashboard%20de%20Visualização%20(1).png)
 
 
 ### História 5 - DashBoard de Visualização:
@@ -72,6 +78,7 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 **Protótipo e ScreenCast:**
 
+![Wireframe Busca por Visitantes Pré-Cadastrados](/img/Busca%20de%20Visitantes%20Pré-Cadastrados.png)
 
 ### História 7 - Acessibilidade no Parque das Esculturas:
 [Documento](https://docs.google.com/document/d/1f5ztoESUGCJT14r35-CQPm30vOouCAfoKymkx7YnDwo/edit?usp=sharing).
