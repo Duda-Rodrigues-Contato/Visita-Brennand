@@ -40,6 +40,8 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 **Protótipo e ScreenCast:**
 
+Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
+
 ![Wireframe Pré-Cadastramento de Grupos Maiores](/img/Pré-Cadastramento%20de%20Grupos%20Maiores.png)
 
 
@@ -56,15 +58,19 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 **Protótipo e ScreenCast:**
 
+Link para o [Screencast](https://www.youtube.com/watch?v=dLB7TWmaRHs).
+
 ![Wireframe Mostrar Visitantes Cadastrados](/img/Dashboard%20de%20Visualização%20(1).png)
 
 
-### História 4 - Busca por Visitantes Pré-Cadastrados:
+### História 4 - Controle de Entrada dos Visitantes:
 [Documento](https://docs.google.com/document/d/1HQafALj0o4WjCAEuzkAeYNgiezR8xqphJeWFZoc57xI/edit?usp=sharing).
 
 **Protótipo e ScreenCast:**
 
-![Wireframe Busca por Visitantes Pré-Cadastrados](/img/Busca%20de%20Visitantes%20Pré-Cadastrados.png)
+Link para o [Screencast](https://www.youtube.com/watch?v=xna3af7nVCw).
+
+![Wireframe Controle de Entrada dos Visitantes](/img/Busca%20de%20Visitantes%20Pré-Cadastrados.png)
 
 
 ### História 5 - Pesquisa de Satisfação:
@@ -72,11 +78,19 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 **Protótipo e ScreenCast:**
 
+Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
+
 ![Wireframe Pesquisa de Satisfação](/img/Pesquisa%20de%20Satisfação.png)
 
 
 ### História 6 - Notificações de Mudanças Pelo Clima:
 [Documento](https://docs.google.com/document/d/1Bg07OvdYBB-QY06ng9sI0KQ6aVSMsELCKXf1Mgg0r5w/edit?usp=sharing).
+
+**Protótipo e ScreenCast:**
+
+Link para o [Screencast] (https://www.youtube.com/watch?v=zK_en4-oZKM)
+
+![Wireframe Notificações de Mudanças Pelo Clima](/img/Mudança%20Climática.png)
 
 
 ### História 7 - Acessibilidade no Parque das Esculturas:
