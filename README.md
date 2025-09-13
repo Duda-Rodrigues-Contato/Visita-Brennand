@@ -88,7 +88,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
 
 **Protótipo e ScreenCast:**
 
-!Link para o [Screencast] (https://www.youtube.com/watch?v=zK_en4-oZKM)
+Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 
 ![Wireframe Notificações de Mudanças Pelo Clima](/img/Mudança%20Climática.png)
 
