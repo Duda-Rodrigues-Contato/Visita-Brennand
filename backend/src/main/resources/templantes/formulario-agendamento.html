@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento de Visita</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Pré-Cadastramento de Grupos</h1>
+        <form th:action="@{/agendamento}" th:object="${visitaDTO}" method="post" id="formAgendamento">
+
+            <fieldset>
+                <legend>1. Informações da Instituição</legend>
+                <label for="nomeInstituicao">Nome da Instituição *</label>
+                <input type="text" id="nomeInstituicao" th:field="*{nomeInstituicao}" placeholder="Ex: Colégio Exemplo" required>
+
+                <label for="cnpj">CNPJ (Opcional)</label>
+                <input type="text" id="cnpj" th:field="*{cnpj}" placeholder="00.000.000/0000-00">
+
+                <label for="tipoInstituicao">Tipo de Instituição *</label>
+                <select id="tipoInstituicao" th:field="*{tipoInstituicao}" required>
+                    <option value="" disabled selected>Selecione o tipo</option>
+                    <option value="ESCOLA_PUBLICA">Escola Pública</option>
+                    <option value="ESCOLA_PRIVADA">Escola Privada</option>
+                    <option value="UNIVERSIDADE">Universidade</option>
+                    <option value="EMPRESA">Empresa</option>
+                    <option value="OUTRO">Outro</option>
+                </select>
+            </fieldset>
+
+            <fieldset>
+                <legend>2. Informações do Responsável pelo Grupo</legend>
+                <label for="nomeResponsavel">Nome Completo do Responsável *</label>
+                <input type="text" id="nomeResponsavel" th:field="*{nomeResponsavel}" placeholder="Ex: Maria da Silva" required>
+
+                <label for="emailResponsavel">E-mail de Contato *</label>
+                <input type="email" id="emailResponsavel" th:field="*{emailResponsavel}" placeholder="Ex: contato@colegioexemplo.com" required>
+
+                <label for="telefoneResponsavel">Telefone de Contato (WhatsApp) *</label>
+                <input type="tel" id="telefoneResponsavel" th:field="*{telefoneResponsavel}" placeholder="000 00000-0000" required>
+            </fieldset>
+
+            <fieldset>
+                <legend>3. Adicionar Membros do Grupo</legend>
+                <label for="nomeMembro">Adicione os nomes dos membros do grupo (alunos, funcionários, etc.)</label>
+                <div class="membro-input-group">
+                    <input type="text" id="nomeMembro" placeholder="Ex: João da Silva">
+                    <button type="button" id="btnAddMembro">Adicionar Membro</button>
+                </div>
+                <div id="listaMembrosContainer">
+                    <h4>Membros Adicionados:</h4>
+                    <ul id="listaMembros">
+                        </ul>
+                </div>
+                 <div id="membrosHiddenContainer"></div>
+            </fieldset>
+
+            <fieldset>
+                <legend>4. Detalhes da Visita</legend>
+                <label for="dataVisita">Data da Visita *</label>
+                <input type="date" id="dataVisita" th:field="*{dataVisita}" required>
+
+                <label for="horarioChegada">Horário de Chegada Previsto *</label>
+                <select id="horarioChegada" th:field="*{horarioChegada}" required>
+                    <option value="" disabled selected>Selecione o horário</option>
+                    <option value="09:00">09:00</option>
+                    <option value="10:00">10:00</option>
+                    <option value="11:00">11:00</option>
+                    <option value="14:00">14:00</option>
+                    <option value="15:00">15:00</option>
+                    <option value="16:00">16:00</option>
+                </select>
+
+                <label for="numeroVisitantes">Número de Visitantes *</label>
+                <input type="number" id="numeroVisitantes" th:field="*{numeroVisitantes}" placeholder="Ex: 35" required>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="incluiPcd" th:field="*{incluiPcd}">
+                    <label for="incluiPcd">O grupo inclui pessoas com deficiência (PCD) ou mobilidade reduzida.</label>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="button" class="cancel-btn">Cancelar</button>
+                <button type="submit" class="submit-btn">AGENDAR VISITA</button>
+            </div>
+        </form>
+    </div>
+
+    <script th:src="@{/js/script.js}"></script>
+</body>
+</html>

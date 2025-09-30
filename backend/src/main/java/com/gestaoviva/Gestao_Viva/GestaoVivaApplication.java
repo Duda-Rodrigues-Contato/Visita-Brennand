@@ -1,4 +1,4 @@
-package com.gestaoviva.Gestao_Viva;
+package com.gestaoviva.gestao_viva;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
