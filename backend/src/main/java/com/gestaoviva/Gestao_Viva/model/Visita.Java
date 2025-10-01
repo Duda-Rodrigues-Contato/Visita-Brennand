@@ -4,20 +4,27 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+enum StatusVisita {
+    AGENDADO,
+    CONFIRMADO,
+    CANCELADO,
+    REALIZADO
+}
+
 @Entity
 @Table(name = "visitas")
 public class Visita {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Informações da Instituição
     @Column(nullable = false)
     private String nomeInstituicao;
     private String cnpj;
     @Column(nullable = false)
     private String tipoInstituicao;
+
     @Column(nullable = false)
     private String nomeResponsavel;
     @Column(nullable = false)
@@ -25,7 +32,6 @@ public class Visita {
     @Column(nullable = false)
     private String telefoneResponsavel;
 
-    // Detalhes da Visita
     @Column(nullable = false)
     private LocalDate dataVisita;
     @Column(nullable = false)
@@ -34,13 +40,21 @@ public class Visita {
     private Integer numeroVisitantes;
     private boolean incluiPcd;
 
-    // Membros do Grupo
-    @ElementCollection // Ideal para listas simples de strings
+    @ElementCollection
     @CollectionTable(name = "visita_membros", joinColumns = @JoinColumn(name = "visita_id"))
     @Column(name = "nome_membro")
     private List<String> membros;
 
-    // Getters e Setters
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private StatusVisita status;
+
+    @PrePersist
+    public void prePersist() {
+        if (status == null) {
+            status = StatusVisita.AGENDADO;
+        }
+    }
 
     public Long getId() {
         return id;
@@ -136,5 +150,13 @@ public class Visita {
 
     public void setMembros(List<String> membros) {
         this.membros = membros;
+    }
+
+    public StatusVisita getStatus() {
+        return status;
+    }
+
+    public void setStatus(StatusVisita status) {
+        this.status = status;
     }
 }

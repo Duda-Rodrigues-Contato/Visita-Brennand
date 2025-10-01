@@ -1,0 +1,91 @@
+/* Adicione este CSS para estilizar o dashboard */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5;
+    margin: 0;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid #ddd;
+}
+.logo { font-weight: bold; }
+.user-info { font-size: 0.9rem; }
+
+.container {
+    padding: 2rem;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.filters-and-metrics {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.filters input, .filters button {
+    padding: 0.5rem 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-left: 0.5rem;
+}
+.filters button { cursor: pointer; background-color: #e9e9e9; }
+
+.metric-card {
+    background-color: #eaf6ff;
+    border: 1px solid #bde0fe;
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    min-width: 250px;
+}
+.metric-title { display: block; font-size: 1rem; color: #555; }
+.metric-value { display: block; font-size: 3rem; font-weight: bold; color: #007bff; margin: 0.5rem 0; }
+.metric-date { display: block; font-size: 0.9rem; color: #777; }
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+    margin-bottom: 2rem;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+th { font-weight: 600; color: #555; }
+.empty-message { text-align: center; color: #888; padding: 3rem; }
+
+.status {
+    padding: 0.25rem 0.5rem;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    color: #fff;
+}
+.status.agendado { background-color: #ffc107; }
+.status.confirmado { background-color: #28a745; }
+.status.cancelado { background-color: #dc3545; }
+
+.action-btn {
+    background: none;
+    border: 1px solid #007bff;
+    color: #007bff;
+    padding: 0.3rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+}

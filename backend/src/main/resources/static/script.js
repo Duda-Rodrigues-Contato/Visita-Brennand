@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', function() {
     btnAddMembro.addEventListener('click', function() {
         const nome = nomeMembroInput.value.trim();
         if (nome) {
-            // Adiciona na lista visual
+            
             const li = document.createElement('li');
             li.textContent = nome;
-            li.dataset.nome = nome; // guarda o nome para facilitar a remoção
+            li.dataset.nome = nome; 
             
             const removeBtn = document.createElement('button');
             removeBtn.textContent = 'x';
@@ -27,10 +27,10 @@ document.addEventListener('DOMContentLoaded', function() {
             li.appendChild(removeBtn);
             listaMembrosUI.appendChild(li);
 
-            // Adiciona no array de dados
+            
             membros.push(nome);
             
-            // Limpa o input
+            
             nomeMembroInput.value = '';
             nomeMembroInput.focus();
         }
@@ -39,18 +39,18 @@ document.addEventListener('DOMContentLoaded', function() {
     function removerMembro(listItem) {
         const nomeParaRemover = listItem.dataset.nome;
         
-        // Remove do array
+       
         membros = membros.filter(m => m !== nomeParaRemover);
         
-        // Remove da lista visual
+       
         listItem.remove();
     }
 
     form.addEventListener('submit', function(event) {
-        // Limpa inputs hidden antigos para não duplicar
+        
         membrosHiddenContainer.innerHTML = '';
 
-        // Cria inputs hidden para cada membro no array
+        
         membros.forEach((nome, index) => {
             const hiddenInput = document.createElement('input');
             hiddenInput.type = 'hidden';

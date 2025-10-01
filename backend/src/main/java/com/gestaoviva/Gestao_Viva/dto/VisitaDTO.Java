@@ -1,4 +1,4 @@
-package com.gestaoviva.Gestao_Viva.dto; // 
+package com.gestaoviva.Gestao_Viva.dto; 
 
 import java.util.List;
 
