@@ -96,4 +96,13 @@ Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 ### História 7 - Acessibilidade no Parque das Esculturas:
 [Documento](https://docs.google.com/document/d/1f5ztoESUGCJT14r35-CQPm30vOouCAfoKymkx7YnDwo/edit?usp=sharing).
 
+
+## 1️⃣ Entrega 2 (30/09/2025):
+
+**Ambiente de Versionamento de código atualizado semanalmente:**
+**Protótipo de Histórias:**
+**BugTracker no Jira:**
+<img width="1590" height="543" alt="image" src="https://github.com/user-attachments/assets/e3d5cddb-ec7c-46b8-a2b1-855a6098634d" />
+
+
 ---
