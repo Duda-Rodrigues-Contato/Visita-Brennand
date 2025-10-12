@@ -2,13 +2,18 @@ package com.example.Gestao_Viva.service;
 
 import com.example.Gestao_Viva.dto.VisitaDTO;
 import com.example.Gestao_Viva.model.Visita;
+import com.example.Gestao_Viva.model.enums.StatusVisita;
 import com.example.Gestao_Viva.repository.VisitaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import com.example.Gestao_Viva.dto.VisitaDiariaDTO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
 
 @Service
 public class VisitaService {
@@ -16,6 +21,7 @@ public class VisitaService {
     @Autowired
     private VisitaRepository visitaRepository;
 
+    
     public Visita agendar(VisitaDTO visitaDTO) {
         Visita novaVisita = new Visita();
 
@@ -36,15 +42,22 @@ public class VisitaService {
         return visitaRepository.save(novaVisita);
     }
 
-    public List<Visita> buscarVisitasPorData(LocalDate data) {
-        return visitaRepository.findByDataVisitaOrderByHorarioChegada(data);
+
+
+    public Page<Visita> buscarVisitasPorPeriodo(LocalDate dataInicio, LocalDate dataFim, Pageable pageable) {
+        return visitaRepository.findByDataVisitaBetween(dataInicio, dataFim, pageable);
     }
 
-    public List<Visita> buscarVisitasPorPeriodo(LocalDate dataInicio, LocalDate dataFim) {
-        return visitaRepository.findByDataVisitaBetweenOrderByDataVisitaAscHorarioChegadaAsc(dataInicio, dataFim);
+    public long contarTotalDeVisitasNoPeriodo(LocalDate dataInicio, LocalDate dataFim) {
+        return visitaRepository.countByDataVisitaBetween(dataInicio, dataFim);
     }
 
-    public Integer calcularTotalVisitantesPorData(LocalDate data) {
-        return visitaRepository.sumNumeroVisitantesByDataVisita(data);
+    public long contarVisitasConcluidasNoPeriodo(LocalDate dataInicio, LocalDate dataFim) {
+        
+        return visitaRepository.countByDataVisitaBetweenAndStatus(dataInicio, dataFim, StatusVisita.REALIZADO);
+    }
+
+    public List<VisitaDiariaDTO> getDadosGrafico(LocalDate dataInicio, LocalDate dataFim) {
+        return visitaRepository.findTotalVisitantesPorDia(dataInicio, dataFim);
     }
 }

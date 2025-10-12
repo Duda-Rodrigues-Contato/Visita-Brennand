@@ -1,8 +1,7 @@
 spring:
-    #application:
-        #name: Gestao-Viva
     datasource: 
-        url: jdbc:h2:mem:visitabrennanddb
+       
+        url: jdbc:h2:file:./visitabrennanddb
         driver-class-name: org.h2.Driver
         username: teste
         password: 
@@ -11,10 +10,9 @@ spring:
             enabled: true
     jpa:
         database-platform: org.hibernate.dialect.H2Dialect
-        hibernate: #update
+        hibernate:
             ddl-auto: update
         show-sql: true
+        defer-datasource-initialization: true 
     thymeleaf:
         cache: false
-    flyway:
-        enabled: true

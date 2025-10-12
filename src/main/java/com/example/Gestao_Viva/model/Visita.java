@@ -1,15 +1,9 @@
 package com.example.Gestao_Viva.model;
 
+import com.example.Gestao_Viva.model.enums.StatusVisita; 
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
-
-enum StatusVisita {
-    AGENDADO,
-    CONFIRMADO,
-    CANCELADO,
-    REALIZADO
-}
 
 @Entity
 @Table(name = "visitas")
@@ -55,6 +49,8 @@ public class Visita {
             status = StatusVisita.AGENDADO;
         }
     }
+
+
 
     public Long getId() {
         return id;

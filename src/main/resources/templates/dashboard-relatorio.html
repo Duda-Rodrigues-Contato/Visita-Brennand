@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Viva - Relatório</title>
+    <link rel="stylesheet" th:href="@{/css/dashboard-relatorio.css}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="main-container">
+        <header class="header">
+            <h1>Gestão Viva</h1>
+            <a href="#" class="back-link">← Voltar ao Início</a>
+        </header>
+
+        <main>
+            <section class="card filter-card">
+                <h2>Relatório por Período</h2>
+                <form th:action="@{/dashboard}" method="get" class="filter-form">
+                    <div class="date-inputs">
+                        <div class="form-group">
+                            <label for="dataInicio">Data de Início</label>
+                            <input type="date" id="dataInicio" name="dataInicio" th:value="${#temporals.format(dataInicio, 'yyyy-MM-dd')}">
+                        </div>
+                        <div class="form-group">
+                            <label for="dataFim">Data de Fim</label>
+                            <input type="date" id="dataFim" name="dataFim" th:value="${#temporals.format(dataFim, 'yyyy-MM-dd')}">
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
+                        <a th:href="@{/dashboard}" class="btn btn-secondary">Limpar Filtros</a>
+                    </div>
+                </form>
+            </section>
+
+            <section class="metrics-grid">
+                 <div class="card metric-card">
+                    <h3>Total de Visitas no Período</h3>
+                    <p class="metric-value" th:text="${totalVisitas}">1125</p>
+                </div>
+                <div class="card metric-card">
+                    <h3>Visitas Concluídas</h3>
+                    <p class="metric-value" th:text="${visitasConcluidas}">1000</p>
+                </div>
+                 <div class="card metric-card">
+                    <h3>Média Diária de Visitantes</h3>
+                    <p class="metric-value">30</p>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Gráfico de Visitantes por Período</h2>
+                <div class="chart-container">
+                    <canvas id="visitantesChart"></canvas>
+                </div>
+            </section>
+
+            <section class="card">
+                <h2>Detalhes dos Agendamentos no Período</h2>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Data da Visita</th>
+                                <th>Nome do Grupo/Instituição</th>
+                                <th>Responsável</th>
+                                <th>Nº de Visitantes</th>
+                                <th>Status</th>
+                                <th>Acessibilidade</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="visita : ${paginaDeVisitas.content}">
+                                <td th:text="${#temporals.format(visita.dataVisita, 'dd/MM/yyyy')}">dd/mm/aaaa</td>
+                                <td th:text="${visita.nomeInstituicao}">Escola Municipal ...</td>
+                                <td th:text="${visita.nomeResponsavel}">Maria Soares</td>
+                                <td th:text="${visita.numeroVisitantes}">45</td>
+                                <td th:text="${visita.status}">Concluído</td>
+                                <td th:text="${visita.incluiPcd ? 'Sim' : 'Não'}">Sim</td>
+                            </tr>
+                            <tr th:if="${paginaDeVisitas.empty}">
+                                <td colspan="6" class="empty-message">Nenhum agendamento encontrado para o período selecionado.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="pagination" th:if="${paginaDeVisitas.totalPages > 1}">
+                    <a th:if="${!paginaDeVisitas.first}"
+                       th:href="@{/dashboard(dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, page=${paginaDeVisitas.number - 1})}"
+                       class="btn">Anterior</a>
+                    <span class="page-info">
+                        Página <span th:text="${paginaDeVisitas.number + 1}">1</span> de <span th:text="${paginaDeVisitas.totalPages}">3</span>
+                    </span>
+                    <a th:if="${!paginaDeVisitas.last}"
+                       th:href="@{/dashboard(dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, page=${paginaDeVisitas.number + 1})}"
+                       class="btn">Próximo</a>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script th:src="@{/js/dashboard-chart.js}"></script>
+     <script th:src="@{/js/dashboard-chart.js}"></script>
+</body>
+</html>
