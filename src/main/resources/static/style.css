@@ -147,3 +147,26 @@ select {
     margin-bottom: 10px;
     display: block;
 }
+
+.form-tabs {
+    display: flex;
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+.tab-link {
+    padding: 10px 20px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+    color: #555;
+    border-bottom: 3px solid transparent;
+}
+.tab-link.active {
+    color: #000;
+    font-weight: bold;
+    border-bottom: 3px solid #000;
+}
+.form-section.hidden {
+    display: none;
+}

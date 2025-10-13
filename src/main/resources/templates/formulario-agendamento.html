@@ -5,99 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Agendamento de Visita</title>
     <link rel="stylesheet" th:href="@{/style.css}">
-     <script src="https://unpkg.com/imask"></script>
+    <script src="https://unpkg.com/imask"></script>
 </head>
 <body>
     <div class="container">
-        <h1>Pré-Cadastramento de Grupos</h1>
+        <h1>Pré-Cadastramento de Visita</h1>
+
+        <div class="form-tabs">
+            <button type="button" class="tab-link active" data-tab="grupo">Agendamento em Grupo</button>
+            <button type="button" class="tab-link" data-tab="individual">Agendamento Individual</button>
+        </div>
+
         <form th:action="@{/agendamento}" th:object="${visitaDTO}" method="post" id="formAgendamento">
 
+            <div id="grupo-form-section" class="form-section">
+                <fieldset>
+                    <legend>1. Informações da Instituição</legend>
+                    <label for="nomeInstituicao">Nome da Instituição *</label>
+                    <input type="text" th:field="*{nomeInstituicao}" placeholder="Ex: Colégio Exemplo">
+                    <label for="cnpj">CNPJ (Opcional)</label>
+                    <input type="text" id="cnpj" th:field="*{cnpj}" placeholder="00.000.000/0000-00">
+                    <label for="tipoInstituicao">Tipo de Instituição *</label>
+                    <select th:field="*{tipoInstituicao}">
+                        <option value="" disabled selected>Selecione o tipo</option>
+                        <option value="ESCOLA_PUBLICA">Escola Pública</option>
+                        <option value="ESCOLA_PRIVADA">Escola Privada</option>
+                        <option value="UNIVERSIDADE">Universidade</option>
+                        <option value="EMPRESA">Empresa</option>
+                        <option value="OUTRO">Outro</option>
+                    </select>
+                </fieldset>
+                <fieldset>
+                    <legend>2. Informações do Responsável pelo Grupo</legend>
+                    <label for="nomeResponsavel">Nome Completo do Responsável *</label>
+                    <input type="text" th:field="*{nomeResponsavel}" placeholder="Ex: Maria da Silva">
+                    <label for="emailResponsavel">E-mail de Contato *</label>
+                    <input type="email" th:field="*{emailResponsavel}" placeholder="Ex: contato@colegioexemplo.com">
+                    <label for="telefoneResponsavel">Telefone de Contato (WhatsApp) *</label>
+                    <input type="tel" id="telefoneResponsavel" th:field="*{telefoneResponsavel}" placeholder="00 00000-0000">
+                </fieldset>
+                <fieldset>
+                    <legend>3. Adicionar Membros do Grupo</legend>
+                    <label for="nomeMembro">Adicione os nomes dos membros do grupo</label>
+                    <div class="membro-input-group">
+                        <input type="text" id="nomeMembro" placeholder="Ex: João da Silva">
+                        <button type="button" id="btnAddMembro">Adicionar Membro</button>
+                    </div>
+                    <div id="listaMembrosContainer">
+                        <h4>Membros Adicionados:</h4>
+                        <ul id="listaMembros"></ul>
+                    </div>
+                    <div id="membrosHiddenContainer"></div>
+                </fieldset>
+            </div>
+
+            <div id="individual-form-section" class="form-section hidden">
+                <fieldset>
+                    <legend>1. Suas Informações</legend>
+                    <label for="nomeResponsavelInd">Nome Completo *</label>
+                    <input type="text" id="nomeResponsavelInd" th:field="*{nomeResponsavel}" placeholder="Ex: João da Silva">
+                    <label for="cnpjInd">CPF (Opcional)</label>
+                    <input type="text" id="cnpjInd" th:field="*{cnpj}" placeholder="000.000.000-00">
+                    <label for="emailResponsavelInd">E-mail de Contato *</label>
+                    <input type="email" id="emailResponsavelInd" th:field="*{emailResponsavel}" placeholder="Ex: joao.silva@email.com">
+                    <label for="telefoneResponsavelInd">Telefone de Contato (WhatsApp) *</label>
+                    <input type="tel" id="telefoneResponsavelInd" th:field="*{telefoneResponsavel}" placeholder="00 00000-0000">
+                    <label for="dataNascimento">Data de Nascimento</label>
+                    <input type="date" th:field="*{dataNascimento}">
+                    <label for="sexo">Gênero</label>
+                    <select th:field="*{sexo}">
+                        <option value="PREFIRO_NAO_INFORMAR">Prefiro não informar</option>
+                        <option value="FEMININO">Feminino</option>
+                        <option value="MASCULINO">Masculino</option>
+                        <option value="NAO_BINARIO">Não-binário</option>
+                        <option value="OUTRO">Outro</option>
+                    </select>
+                </fieldset>
+            </div>
+            
             <fieldset>
-                <legend>1. Informações da Instituição</legend>
-                <label for="nomeInstituicao">Nome da Instituição *</label>
-                <input type="text" id="nomeInstituicao" th:field="*{nomeInstituicao}" placeholder="Ex: Colégio Exemplo" required>
-                <small class="error-message" th:if="${#fields.hasErrors('nomeInstituicao')}" th:errors="*{nomeInstituicao}"></small>
-
-                <label for="cnpj">CNPJ *</label>
-                <input type="text" id="cnpj" th:field="*{cnpj}" placeholder="00.000.000/0000-00">
-
-                <label for="tipoInstituicao">Tipo de Instituição *</label>
-                <select id="tipoInstituicao" th:field="*{tipoInstituicao}" required>
-                    <option value="" disabled selected>Selecione o tipo</option>
-                    <option value="ESCOLA_PUBLICA">Escola Pública</option>
-                    <option value="ESCOLA_PRIVADA">Escola Privada</option>
-                    <option value="UNIVERSIDADE">Universidade</option>
-                    <option value="EMPRESA">Empresa</option>
-                    <option value="OUTRO">Outro</option>
-                </select>
-                <small class="error-message" th:if="${#fields.hasErrors('tipoInstituicao')}" th:errors="*{tipoInstituicao}"></small>
-            </fieldset>
-
-            <fieldset>
-                <legend>2. Informações do Responsável pelo Grupo</legend>
-                <label for="nomeResponsavel">Nome Completo do Responsável *</label>
-                <input type="text" id="nomeResponsavel" th:field="*{nomeResponsavel}" placeholder="Ex: Maria da Silva" required>
-                <small class="error-message" th:if="${#fields.hasErrors('nomeResponsavel')}" th:errors="*{nomeResponsavel}"></small>
-
-                <label for="emailResponsavel">E-mail de Contato *</label>
-                <input type="email" id="emailResponsavel" th:field="*{emailResponsavel}" placeholder="Ex: contato@colegioexemplo.com" required>
-                <small class="error-message" th:if="${#fields.hasErrors('emailResponsavel')}" th:errors="*{emailResponsavel}"></small>
-
-                <label for="telefoneResponsavel">Telefone de Contato (WhatsApp) *</label>
-                <input type="tel" id="telefoneResponsavel" th:field="*{telefoneResponsavel}" placeholder="00 00000-0000" required>
-                <small class="error-message" th:if="${#fields.hasErrors('telefoneResponsavel')}" th:errors="*{telefoneResponsavel}"></small>
-            </fieldset>
-
-            <fieldset>
-                <legend>3. Adicionar Membros do Grupo</legend>
-                <label for="nomeMembro">Adicione os nomes dos membros do grupo (alunos, funcionários, etc.)</label>
-                <div class="membro-input-group">
-                    <input type="text" id="nomeMembro" placeholder="Ex: João da Silva">
-                    <button type="button" id="btnAddMembro">Adicionar Membro</button>
-                </div>
-                <div id="listaMembrosContainer">
-                    <h4>Membros Adicionados:</h4>
-                    <ul id="listaMembros">
-                    </ul>
-                </div>
-                 <div id="membrosHiddenContainer"></div>
-            </fieldset>
-
-            <fieldset>
-                <legend>4. Detalhes da Visita</legend>
+                <legend id="detalhes-legend">4. Detalhes da Visita</legend>
+                <label for="origemVisitante">De onde você é? (Cidade/Estado) *</label>
+                <input type="text" th:field="*{origemVisitante}" required>
+                <small class="error-message" th:if="${#fields.hasErrors('origemVisitante')}" th:errors="*{origemVisitante}"></small>
+                
                 <label for="dataVisita">Data da Visita *</label>
                 <input type="date" id="dataVisita" th:field="*{dataVisita}" required>
                 <small class="error-message" th:if="${#fields.hasErrors('dataVisita')}" th:errors="*{dataVisita}"></small>
-
-                <label for="horarioChegada">Horário de Chegada Previsto *</label>
+                <small id="date-error" class="error-message"></small> <label for="horarioChegada">Horário de Chegada Previsto *</label>
                 <select id="horarioChegada" th:field="*{horarioChegada}" required>
-                    <option value="" disabled selected>Selecione o horário</option>
-                    <option value="09:00">09:00</option>
-                    <option value="10:00">10:00</option>
-                    <option value="11:00">11:00</option>
-                    <option value="14:00">14:00</option>
-                    <option value="15:00">15:00</option>
-                    <option value="16:00">16:00</option>
+                    <option value="" disabled selected>Selecione primeiro a data</option>
                 </select>
                 <small class="error-message" th:if="${#fields.hasErrors('horarioChegada')}" th:errors="*{horarioChegada}"></small>
 
-                <label for="numeroVisitantes">Número de Visitantes *</label>
-                <input type="number" id="numeroVisitantes" th:field="*{numeroVisitantes}" placeholder="Ex: 35" required>
-                <small class="error-message" th:if="${#fields.hasErrors('numeroVisitantes')}" th:errors="*{numeroVisitantes}"></small>
-
-                <div class="checkbox-group">
+                <div class="checkbox-group" id="pcd-group-section">
                     <input type="checkbox" id="incluiPcd" th:field="*{incluiPcd}">
-                    <label for="incluiPcd">O grupo inclui pessoas com deficiência (PCD) ou mobilidade reduzida.</label>
+                    <label for="incluiPcd">A visita inclui pessoas com deficiência (PCD) ou mobilidade reduzida.</label>
                 </div>
             </fieldset>
 
+            <input type="hidden" th:field="*{numeroVisitantes}">
+            <input type="hidden" th:field="*{nomeInstituicao}">
+            <input type="hidden" th:field="*{tipoInstituicao}">
+
             <div class="form-actions">
-                <button type="button" class="cancel-btn">Cancelar</button>
                 <button type="submit" class="submit-btn">AGENDAR VISITA</button>
             </div>
         </form>
     </div>
-
     <script th:src="@{/script.js}"></script>
 </body>
 </html>
