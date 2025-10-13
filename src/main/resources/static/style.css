@@ -139,3 +139,11 @@ select {
     background-color: #888;
     color: white;
 }
+
+.error-message {
+    color: #d9534f;
+    font-size: 0.8em;
+    margin-top: -10px;
+    margin-bottom: 10px;
+    display: block;
+}
