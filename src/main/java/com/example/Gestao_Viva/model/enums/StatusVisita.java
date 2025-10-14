@@ -6,3 +6,4 @@ public enum StatusVisita {
     CANCELADO,
     REALIZADO
 }
+
