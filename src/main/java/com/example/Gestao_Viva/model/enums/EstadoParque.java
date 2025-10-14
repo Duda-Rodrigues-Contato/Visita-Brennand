@@ -1,9 +1,8 @@
 package com.example.Gestao_Viva.model.enums;
 
-public enum StatusParque {
+public enum EstadoParque {
     ABERTO,
     FECHADO,
-    PARCIALMENTE_ABERTO,
     MANUTENCAO,
 }
 

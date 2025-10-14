@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Status do Parque e Avisos</title>
   <link rel="stylesheet" th:href="@{/css/status-parque.css}" />
-
 </head>
 <body>
   <header class="topbar">
@@ -16,107 +15,35 @@
         <div class="brand-strong">Gestão Viva</div>
       </div>
     </div>
-
     <h1 class="page-title">Status do Parque e Avisos</h1>
-
     <nav class="topbar__nav">
-      <a href="#" class="nav-link">Início</a>
-      <a href="http://localhost:8080/agendamento" class="nav-link">Agendamento</a>
-      <a href="http://localhost:8080/dashboard" class="nav-link">Dashboard</a>
+      <a href="/status-parque" class="nav-link">Início</a>
+      <a href="/agendamento" class="nav-link">Agendamento</a>
+      <a href="/dashboard" class="nav-link">Dashboard</a>
       <a href="#" class="nav-link">Contato</a>
     </nav>
   </header>
 
   <main class="main-container">
     <div class="layout">
-      <!-- Coluna esquerda: status -->
       <section class="card status-card">
         <h2 class="section-title">Situação Atual do Parque</h2>
-
         <div class="status-card__panel">
-          <div class="status-pill status-pill--aberto">PARQUE ABERTO</div>
-          <div class="status-updated">Última atualização: 15/12/2024 09:30</div>
-
-          <p class="status-text">
-            O Parque de Esculturas Francisco Brennand está funcionando normalmente. Esperamos sua visita!
-          </p>
-
-          <a class="btn btn-primary" href="#">Agende sua Visita</a>
+          <div id="status-pill" class="status-pill">CARREGANDO...</div>
+          <div id="status-updated" class="status-updated"></div>
+          <p id="status-text" class="status-text"></p>
+          <a class="btn btn-primary" href="/agendamento">Agende sua Visita</a>
         </div>
       </section>
 
-      <!-- Coluna direita: mural -->
       <aside class="card mural-card">
-        <h2 class="section-title">Mural de Avisos Importantes</h2>
-
-        <ul class="notice-list">
-          <li class="notice-item">
-            <h3 class="notice-title">Exposição Temporária “Mares de Plástico”</h3>
-            <p class="notice-text">
-              Venha conferir nossa nova exposição sobre conscientização ambiental. Uma reflexão artística
-              sobre os impactos do plástico nos oceanos através das obras de artistas locais.
-            </p>
-            <div class="notice-meta">Publicado em 10/12/2024</div>
-          </li>
-
-          <li class="notice-item">
-            <h3 class="notice-title">Horário de Feriado</h3>
-            <p class="notice-text">
-              No feriado de Natal, o parque funcionará em horário especial das 8h às 14h.
-              Planeje sua visita com antecedência para aproveitar ao máximo.
-            </p>
-            <div class="notice-meta">Publicado em 08/12/2024</div>
-          </li>
-
-          <li class="notice-item">
-            <h3 class="notice-title">Nova Área de Acessibilidade</h3>
-            <p class="notice-text">
-              Inauguramos uma nova área com rampas e sinalização tátil para garantir que todos
-              possam desfrutar das esculturas de Francisco Brennand.
-            </p>
-            <div class="notice-meta">Publicado em 05/12/2024</div>
-          </li>
-        </ul>
-
-        <a class="btn btn-secondary btn-full" href="#">Ver Todos os Avisos</a>
-      </aside>
+        </aside>
     </div>
   </main>
 
   <footer class="site-footer">
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Informações de Contato do Parque</h4>
-        <ul class="footer-list">
-          <li>Propriedade Ricardo Brennand</li>
-          <li>Alameda Antônio Brennand, s/n - Várzea</li>
-          <li>Recife - PE, 50741-904</li>
-          <li>Telefone: (81) 2121-0365</li>
-          <li>Email: contato@institutoricardobrennand.org.br</li>
-        </ul>
-      </div>
+    </footer>
 
-      <div class="footer-col">
-        <h4>Links Importantes</h4>
-        <ul class="footer-list">
-          <li><a href="#">Política de Privacidade</a></li>
-          <li><a href="#">Termos de Uso</a></li>
-          <li><a href="#">Acessibilidade</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Apoio</h4>
-        <div class="support-chips">
-          <span class="chip chip--ghost">Prefeitura do Recife</span>
-          <span class="chip chip--ghost">Recentro</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-copy">
-      © 2024 Prefeitura do Recife. Todos os direitos reservados.
-    </div>
-  </footer>
+  <script th:src="@{/js/status-parque.js}"></script>
 </body>
 </html>

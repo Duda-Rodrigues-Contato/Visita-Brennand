@@ -1,11 +1,11 @@
-/* Layout base do mockup */
+
 :root{
   --bg:#f0f2f5;
   --card:#fff;
   --text:#1c1c1e;
   --muted:#666;
   --border:#e5e5e5;
-  --accent:#2e7d32;     /* verde do status ABERTO */
+  --accent:#2e7d32;    
   --accent-contrast:#fff;
   --nav:#0f172a;
   --footer:#111827;
@@ -21,7 +21,7 @@ body{
   margin:0;
 }
 
-/* Topbar */
+
 .topbar{
   position:sticky;
   top:0;
@@ -77,7 +77,7 @@ body{
 }
 .nav-link:hover{color:#111827}
 
-/* Conteúdo */
+
 .main-container{
   max-width:1200px;
   margin:2rem auto;
@@ -98,13 +98,12 @@ body{
   padding:1.25rem;
 }
 
-/* Títulos de seção */
+
 .section-title{
   margin:0 0 1rem 0;
   font-size:1rem;
 }
 
-/* Status card */
 .status-card__panel{
   border:1px solid var(--border);
   border-radius:10px;
@@ -137,7 +136,7 @@ body{
   color:#4b5563;
 }
 
-/* Botões */
+
 .btn{
   display:inline-block;
   padding:.75rem 1.25rem;
@@ -164,7 +163,7 @@ body{
 .btn-secondary:hover{filter:brightness(0.96)}
 .btn-full{width:100%}
 
-/* Mural de avisos */
+
 .mural-card{padding:1rem 1rem 1.25rem}
 
 .notice-list{
@@ -202,7 +201,7 @@ body{
   color:#9ca3af;
 }
 
-/* Rodapé */
+
 .site-footer{
   background:var(--footer);
   color:var(--footer-text);
@@ -257,7 +256,7 @@ body{
   text-align:center;
 }
 
-/* Responsivo */
+
 @media (max-width: 1024px){
   .topbar{grid-template-columns:1fr 1fr; row-gap:.5rem}
   .topbar__nav{grid-column:1 / -1; justify-self:center}
@@ -266,4 +265,19 @@ body{
 
 @media (max-width: 840px){
   .layout{grid-template-columns:1fr}
+}
+
+.status-pill--aberto {
+  background-color: #2e7d32; 
+  color: #fff;
+}
+
+.status-pill--fechado {
+  background-color: #c62828;
+  color: #fff;
+}
+
+.status-pill--manutencao {
+  background-color: #f9a825;
+  color: #000;
 }

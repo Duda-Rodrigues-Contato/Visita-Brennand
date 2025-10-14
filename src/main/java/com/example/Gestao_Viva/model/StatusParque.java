@@ -1,5 +1,6 @@
 package com.example.Gestao_Viva.model;
 
+import com.example.Gestao_Viva.model.enums.EstadoParque; 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
@@ -7,11 +8,7 @@ import java.time.LocalDateTime;
 @Table(name = "status_parque")
 public class StatusParque {
 
-    public enum Estado {
-        ABERTO,
-        FECHADO,
-        MANUTENCAO
-    }
+   
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,7 +16,7 @@ public class StatusParque {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, length = 30)
-    private Estado estado;
+    private EstadoParque estado; 
 
     @Column(length = 500)
     private String motivo;
@@ -29,7 +26,8 @@ public class StatusParque {
 
     public StatusParque() {}
 
-    public StatusParque(Estado estado, String motivo) {
+
+    public StatusParque(EstadoParque estado, String motivo) {
         this.estado = estado;
         this.motivo = motivo;
     }
@@ -40,10 +38,11 @@ public class StatusParque {
         this.ultimaAtualizacao = LocalDateTime.now();
     }
 
-    // Getters e Setters
+
     public Long getId() { return id; }
-    public Estado getEstado() { return estado; }
-    public void setEstado(Estado estado) { this.estado = estado; }
+    public void setId(Long id) { this.id = id; }
+    public EstadoParque getEstado() { return estado; }
+    public void setEstado(EstadoParque estado) { this.estado = estado; }
     public String getMotivo() { return motivo; }
     public void setMotivo(String motivo) { this.motivo = motivo; }
     public LocalDateTime getUltimaAtualizacao() { return ultimaAtualizacao; }

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin - Atualizar Status do Parque</title>
+    <link rel="stylesheet" th:href="@{/style.css}">
+</head>
+<body>
+    <div class="container">
+        <h1>Painel de Administração</h1>
+
+        <fieldset>
+            <legend>Status Atual do Parque</legend>
+            <p>
+                <strong>Estado:</strong>
+                <span th:text="${statusAtual.estado}">ABERTO</span>
+            </p>
+            <p>
+                <strong>Motivo:</strong>
+                <span th:text="${statusAtual.motivo}">O parque está a operar normalmente.</span>
+            </p>
+            <p>
+                <small>Última atualização: <span th:text="${#temporals.format(statusAtual.ultimaAtualizacao, 'dd/MM/yyyy HH:mm')}"></span></small>
+            </p>
+        </fieldset>
+
+        <form th:action="@{/admin/status}" th:object="${statusUpdateDTO}" method="post">
+            <fieldset>
+                <legend>Atualizar Novo Status</legend>
+
+                <div th:if="${param.sucesso}" style="color: green; margin-bottom: 15px;">
+                    Status do parque atualizado com sucesso!
+                </div>
+
+                <label for="estado">Novo Estado *</label>
+                <select id="estado" th:field="*{estado}" required>
+                    <option value="" disabled selected>Selecione o novo estado</option>
+                    <option th:each="e : ${todosOsEstados}"
+                            th:value="${e}"
+                            th:text="${e}">
+                    </option>
+                </select>
+                <small class="error-message" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></small>
+
+                <label for="motivo">Motivo (Obrigatório se o parque for fechado)</label>
+                <textarea id="motivo" th:field="*{motivo}" rows="4" placeholder="Ex: Fechado devido a chuvas fortes e maré alta."></textarea>
+
+                <div class="form-actions">
+                    <button type="submit" class="submit-btn">Atualizar Status</button>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+</body>
+</html>
