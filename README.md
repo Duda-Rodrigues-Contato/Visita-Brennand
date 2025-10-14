@@ -102,7 +102,9 @@ Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 **Ambiente de Versionamento de código atualizado semanalmente:**
 **Protótipo de Histórias:**
 **BugTracker no Jira:**
-<img width="1590" height="543" alt="image" src="https://github.com/user-attachments/assets/e3d5cddb-ec7c-46b8-a2b1-855a6098634d" />
+<img width="1156" height="872" alt="image" src="https://github.com/user-attachments/assets/0d218a92-8e67-4e14-8af6-e7864f65eb8d" />
 
 
 ---
+
+## 1️⃣ Entrega 3 (23/10/2025):
