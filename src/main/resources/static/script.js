@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
     
-  
+    
     const dataVisitaInput = document.getElementById('dataVisita');
     const horarioChegadaSelect = document.getElementById('horarioChegada');
     const dateError = document.getElementById('date-error');
@@ -10,11 +10,9 @@ document.addEventListener('DOMContentLoaded', function() {
         horarioChegadaSelect.innerHTML = '<option value="" disabled selected>Selecione um horário</option>';
         let horaAtual = new Date(`1970-01-01T${inicio}:00`);
         const horaFim = new Date(`1970-01-01T${fim}:00`);
-
         while (horaAtual <= horaFim) {
             const horaFormatada = horaAtual.toTimeString().substring(0, 5);
-            const option = new Option(horaFormatada, horaFormatada);
-            horarioChegadaSelect.add(option);
+            horarioChegadaSelect.add(new Option(horaFormatada, horaFormatada));
             horaAtual.setMinutes(horaAtual.getMinutes() + intervalo);
         }
     }
@@ -22,27 +20,21 @@ document.addEventListener('DOMContentLoaded', function() {
     function atualizarHorariosDisponiveis() {
         const dataSelecionada = dataVisitaInput.value;
         if (!dataSelecionada) return;
-
         const diaDaSemana = new Date(dataSelecionada + 'T00:00:00').getUTCDay();
-        
         horarioChegadaSelect.disabled = false;
         submitButton.disabled = false;
         dateError.textContent = '';
-
         switch (diaDaSemana) {
-            case 1: 
+            case 1:
                 horarioChegadaSelect.innerHTML = '<option value="" disabled selected>Fechado às Segundas</option>';
                 horarioChegadaSelect.disabled = true;
                 submitButton.disabled = true;
                 dateError.textContent = 'O parque não abre às segundas-feiras. Por favor, escolha outra data.';
                 break;
-            case 0: 
-            case 6: 
-                gerarHorarios('09:00', '17:30', 30);
-                break;
-            default: 
-                gerarHorarios('10:00', '16:30', 30);
-                break;
+            case 0: case 6:
+                gerarHorarios('09:00', '17:30', 30); break;
+            default:
+                gerarHorarios('10:00', '16:30', 30); break;
         }
     }
 
@@ -56,33 +48,30 @@ document.addEventListener('DOMContentLoaded', function() {
             const tabType = tab.dataset.tab;
             tabs.forEach(t => t.classList.remove('active'));
             tab.classList.add('active');
-            
-            document.querySelectorAll('.form-section').forEach(section => {
-                section.classList.add('hidden');
-            });
+            document.querySelectorAll('.form-section').forEach(section => section.classList.add('hidden'));
             document.getElementById(`${tabType}-form-section`).classList.remove('hidden');
-
-            const legend = document.getElementById('detalhes-legend');
-            if(tabType === 'individual') {
-                legend.textContent = '2. Detalhes da Visita';
-            } else {
-                legend.textContent = '4. Detalhes da Visita';
-            }
+            document.getElementById('detalhes-legend').textContent = (tabType === 'individual') ? '2. Detalhes da Visita' : '4. Detalhes da Visita';
         });
     });
 
-
+    
     const form = document.getElementById('formAgendamento');
     form.addEventListener('submit', function(event) {
         const activeTab = document.querySelector('.tab-link.active').dataset.tab;
         
         if (activeTab === 'individual') {
-            document.querySelector('[name="nomeInstituicao"]').value = 'Visita Individual';
-            document.querySelector('[name="tipoInstituicao"]').value = 'OUTRO';
-            document.querySelector('[name="numeroVisitantes"]').value = 1;
+            
+            document.getElementById('nomeInstituicao').value = 'Visita Individual';
+            document.getElementById('tipoInstituicao').value = 'OUTRO';
+            document.getElementById('numeroVisitantes').value = 1;
+
+            document.getElementById('nomeResponsavel').value = document.getElementById('nomeResponsavelInd').value;
+            document.getElementById('emailResponsavel').value = document.getElementById('emailResponsavelInd').value;
+            document.getElementById('telefoneResponsavel').value = document.getElementById('telefoneResponsavelInd').value;
+            document.getElementById('cnpj').value = document.getElementById('cnpjInd').value;
         }
 
-     
+       
         const membrosHiddenContainer = document.getElementById('membrosHiddenContainer');
         const listaMembrosUI = document.getElementById('listaMembros');
         if (membrosHiddenContainer && listaMembrosUI) {
@@ -98,7 +87,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-  
+    
     IMask(document.getElementById('telefoneResponsavel'), { mask: '(00) 00000-0000' });
     IMask(document.getElementById('telefoneResponsavelInd'), { mask: '(00) 00000-0000' });
     IMask(document.getElementById('cnpj'), { mask: '00.000.000/0000-00' });
@@ -108,7 +97,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnAddMembro = document.getElementById('btnAddMembro');
     const nomeMembroInput = document.getElementById('nomeMembro');
     const listaMembrosUI = document.getElementById('listaMembros');
-
     if(btnAddMembro) {
         btnAddMembro.addEventListener('click', function() {
             const nome = nomeMembroInput.value.trim();
@@ -116,18 +104,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 const li = document.createElement('li');
                 li.textContent = nome;
                 li.dataset.nome = nome; 
-                
                 const removeBtn = document.createElement('button');
                 removeBtn.textContent = 'x';
                 removeBtn.type = 'button';
                 removeBtn.className = 'remove-btn';
-                removeBtn.onclick = function() {
-                    li.remove();
-                };
-                
+                removeBtn.onclick = function() { li.remove(); };
                 li.appendChild(removeBtn);
                 listaMembrosUI.appendChild(li);
-                
                 nomeMembroInput.value = '';
                 nomeMembroInput.focus();
             }
