@@ -1,10 +1,10 @@
 document.addEventListener('DOMContentLoaded', function() {
-    
-    
+
+    // --- SEÇÃO DE HORÁRIOS E DATAS ---
     const dataVisitaInput = document.getElementById('dataVisita');
     const horarioChegadaSelect = document.getElementById('horarioChegada');
     const dateError = document.getElementById('date-error');
-    const submitButton = document.querySelector('.submit-btn');
+    const submitBtn = document.querySelector('.submit-btn');
 
     function gerarHorarios(inicio, fim, intervalo) {
         horarioChegadaSelect.innerHTML = '<option value="" disabled selected>Selecione um horário</option>';
@@ -22,26 +22,31 @@ document.addEventListener('DOMContentLoaded', function() {
         if (!dataSelecionada) return;
         const diaDaSemana = new Date(dataSelecionada + 'T00:00:00').getUTCDay();
         horarioChegadaSelect.disabled = false;
-        submitButton.disabled = false;
+        submitBtn.disabled = false;
         dateError.textContent = '';
         switch (diaDaSemana) {
-            case 1:
+            case 1: // Segunda-feira
                 horarioChegadaSelect.innerHTML = '<option value="" disabled selected>Fechado às Segundas</option>';
                 horarioChegadaSelect.disabled = true;
-                submitButton.disabled = true;
+                submitBtn.disabled = true;
                 dateError.textContent = 'O parque não abre às segundas-feiras. Por favor, escolha outra data.';
                 break;
-            case 0: case 6:
-                gerarHorarios('09:00', '17:30', 30); break;
-            default:
-                gerarHorarios('10:00', '16:30', 30); break;
+            case 0: // Domingo
+            case 6: // Sábado
+                gerarHorarios('09:00', '17:30', 30);
+                break;
+            default: // Terça a Sexta
+                gerarHorarios('10:00', '16:30', 30);
+                break;
         }
     }
 
-    dataVisitaInput.addEventListener('change', atualizarHorariosDisponiveis);
-    atualizarHorariosDisponiveis();
+    if (dataVisitaInput) {
+        dataVisitaInput.addEventListener('change', atualizarHorariosDisponiveis);
+        atualizarHorariosDisponiveis(); // Executa ao carregar a página
+    }
 
-   
+    // --- SEÇÃO DE ABAS (TABS) ---
     const tabs = document.querySelectorAll('.tab-link');
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
@@ -54,66 +59,98 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    
-    const form = document.getElementById('formAgendamento');
-    form.addEventListener('submit', function(event) {
-        const activeTab = document.querySelector('.tab-link.active').dataset.tab;
-        
-        if (activeTab === 'individual') {
-            
-            document.getElementById('nomeInstituicao').value = 'Visita Individual';
-            document.getElementById('tipoInstituicao').value = 'OUTRO';
-            document.getElementById('numeroVisitantes').value = 1;
-
-            document.getElementById('nomeResponsavel').value = document.getElementById('nomeResponsavelInd').value;
-            document.getElementById('emailResponsavel').value = document.getElementById('emailResponsavelInd').value;
-            document.getElementById('telefoneResponsavel').value = document.getElementById('telefoneResponsavelInd').value;
-            document.getElementById('cnpj').value = document.getElementById('cnpjInd').value;
-        }
-
-       
-        const membrosHiddenContainer = document.getElementById('membrosHiddenContainer');
-        const listaMembrosUI = document.getElementById('listaMembros');
-        if (membrosHiddenContainer && listaMembrosUI) {
-            const membros = Array.from(listaMembrosUI.querySelectorAll('li')).map(li => li.dataset.nome);
-            membrosHiddenContainer.innerHTML = '';
-            membros.forEach((nome, index) => {
-                const hiddenInput = document.createElement('input');
-                hiddenInput.type = 'hidden';
-                hiddenInput.name = `membros[${index}]`;
-                hiddenInput.value = nome;
-                membrosHiddenContainer.appendChild(hiddenInput);
-            });
-        }
-    });
-
-    
+    // --- SEÇÃO DE MÁSCARAS (IMask) ---
     IMask(document.getElementById('telefoneResponsavel'), { mask: '(00) 00000-0000' });
     IMask(document.getElementById('telefoneResponsavelInd'), { mask: '(00) 00000-0000' });
     IMask(document.getElementById('cnpj'), { mask: '00.000.000/0000-00' });
     IMask(document.getElementById('cnpjInd'), { mask: '000.000.000-00' });
 
-    
+
+    // --- SEÇÃO DE ADICIONAR MEMBROS (VERSÃO CORRIGIDA E ROBUSTA) ---
     const btnAddMembro = document.getElementById('btnAddMembro');
     const nomeMembroInput = document.getElementById('nomeMembro');
-    const listaMembrosUI = document.getElementById('listaMembros');
-    if(btnAddMembro) {
-        btnAddMembro.addEventListener('click', function() {
-            const nome = nomeMembroInput.value.trim();
-            if (nome) {
-                const li = document.createElement('li');
-                li.textContent = nome;
-                li.dataset.nome = nome; 
-                const removeBtn = document.createElement('button');
-                removeBtn.textContent = 'x';
-                removeBtn.type = 'button';
-                removeBtn.className = 'remove-btn';
-                removeBtn.onclick = function() { li.remove(); };
-                li.appendChild(removeBtn);
-                listaMembrosUI.appendChild(li);
-                nomeMembroInput.value = '';
-                nomeMembroInput.focus();
+    const listaMembrosUL = document.getElementById('listaMembros');
+    const contadorMembrosSpan = document.getElementById('contadorMembros');
+    const membrosHiddenContainer = document.getElementById('membrosHiddenContainer');
+    const numeroVisitantesInput = document.getElementById('numeroVisitantes');
+
+    let membros = []; // Array para guardar os nomes, evitando bugs
+
+    function renderizarLista() {
+        listaMembrosUL.innerHTML = ''; // Limpa a lista visual
+        membrosHiddenContainer.innerHTML = ''; // Limpa os inputs hidden
+
+        membros.forEach((nome, index) => {
+            // Cria o item da lista (li)
+            const li = document.createElement('li');
+            li.textContent = nome;
+
+            // Cria o botão de remover
+            const removeButton = document.createElement('button');
+            removeButton.textContent = 'x';
+            removeButton.type = 'button';
+            removeButton.className = 'remove-membro-btn';
+            removeButton.addEventListener('click', () => removerMembro(nome));
+            li.appendChild(removeButton);
+            listaMembrosUL.appendChild(li);
+
+            // Cria o input hidden para enviar o nome no formulário
+            const hiddenInput = document.createElement('input');
+            hiddenInput.type = 'hidden';
+            hiddenInput.name = `membros[${index}]`;
+            hiddenInput.value = nome;
+            membrosHiddenContainer.appendChild(hiddenInput);
+        });
+
+        // Atualiza o contador e o número total de visitantes
+        contadorMembrosSpan.textContent = `(${membros.length})`;
+        numeroVisitantesInput.value = membros.length + 1; // +1 para contar o responsável
+    }
+
+    function adicionarMembro() {
+        const nome = nomeMembroInput.value.trim();
+        if (nome === '') return; // Não adiciona se estiver vazio
+        if (membros.includes(nome)) { // Impede nomes repetidos
+            alert('Este membro já foi adicionado.');
+            return;
+        }
+        membros.push(nome);
+        renderizarLista();
+        nomeMembroInput.value = '';
+        nomeMembroInput.focus();
+    }
+
+    function removerMembro(nomeParaRemover) {
+        membros = membros.filter(nome => nome !== nomeParaRemover);
+        renderizarLista();
+    }
+
+    if (btnAddMembro) {
+        btnAddMembro.addEventListener('click', adicionarMembro);
+        nomeMembroInput.addEventListener('keypress', event => {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                adicionarMembro();
             }
         });
     }
+
+
+    // --- SEÇÃO DE ENVIO DO FORMULÁRIO (SUBMIT) ---
+    const form = document.getElementById('formAgendamento');
+    form.addEventListener('submit', function(event) {
+        const activeTab = document.querySelector('.tab-link.active').dataset.tab;
+        
+        if (activeTab === 'individual') {
+            // Preenche os dados da visita individual nos campos principais
+            document.getElementById('nomeInstituicao').value = 'Visita Individual';
+            document.getElementById('tipoInstituicao').value = 'OUTRO';
+            document.getElementById('numeroVisitantes').value = 1;
+        }
+        
+        // Se a lista de membros estiver vazia, garante que o número de visitantes é 1 (o responsável)
+        if (membros.length === 0 && activeTab === 'grupo') {
+            numeroVisitantesInput.value = 1;
+        }
+    });
 });

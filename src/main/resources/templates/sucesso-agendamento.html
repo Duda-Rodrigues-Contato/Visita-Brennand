@@ -1,15 +1,58 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Agendamento Realizado</title>
     <link rel="stylesheet" th:href="@{/style.css}">
+
+    <style>
+        :root {
+            --vermelho-destaque: #ab1a0a;
+            --verde-principal: #00967d;
+            --verde-hover: #007a63;
+            --fundo-claro: #f1f1f1;
+            --branco: #ffffff;
+            --texto-secundario: #6c757d;
+        }
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--fundo-claro);
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 650px;
+            background-color: var(--branco); 
+        }
+        h1 {
+            color: var(--vermelho-destaque);
+            font-size: 2rem; 
+        }
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        .submit-btn {
+            display: inline-block; 
+            width: auto; 
+            padding: 14px 30px;
+            text-decoration: none;
+            margin-top: 1.5rem; 
+        }
+
+        .submit-btn:hover {
+            background-color: var(--verde-hover);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Agendamento Realizado com Sucesso!</h1>
         <p>Sua visita foi pré-cadastrada. Em breve, você receberá um e-mail de confirmação com mais detalhes.</p>
-        <a href="/agendamento" class="submit-btn">Realizar Novo Agendamento</a>
+        <a href="/agendamento" class="submit-btn">REALIZAR NOVO AGENDAMENTO</a>
     </div>
 </body>
 </html>
