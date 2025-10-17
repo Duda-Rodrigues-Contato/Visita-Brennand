@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Obrigado por Avaliar!</title>
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            max-width: 650px;
+        }
+
+        h1 {
+            color: var( --vermelho-destaque);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: var(--texto-secundario-escuro);
+            margin-bottom: 2.5rem;
+        }
+
+        .btn-voltar {
+            display: inline-block;
+            width: auto;
+            background-color: var(--verde-principal);
+            padding: 14px 30px;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-voltar:hover {
+            background-color: var(--verde-hover);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Obrigado!</h1>
+        <p>Sua avaliação foi enviada com sucesso e é fundamental para a melhoria contínua de nossos serviços.</p>
+        
+        <a th:href="@{/}" class="submit-btn btn-voltar">VOLTAR À PÁGINA INICIAL</a>
+    </div>
+</body>
+</html>

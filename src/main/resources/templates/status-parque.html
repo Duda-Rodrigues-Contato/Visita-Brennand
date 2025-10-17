@@ -1,49 +1,92 @@
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Status do Parque e Avisos</title>
-  <link rel="stylesheet" th:href="@{/css/status-parque.css}" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão Viva - Parque de Esculturas</title>
+    <link rel="stylesheet" th:href="@{/css/status-parque.css}" />
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-  <header class="topbar">
-    <div class="topbar__brand">
-      <div class="chip">PR</div>
-      <div>
-        <div class="brand-small">Prefeitura do Recife</div>
-        <div class="brand-strong">Gestão Viva</div>
-      </div>
-    </div>
-    <h1 class="page-title">Status do Parque e Avisos</h1>
-    <nav class="topbar__nav">
-      <a href="/status-parque" class="nav-link">Início</a>
-      <a href="/agendamento" class="nav-link">Agendamento</a>
-      <a href="/dashboard" class="nav-link">Dashboard</a>
-      <a href="#" class="nav-link">Contato</a>
-    </nav>
-  </header>
 
-  <main class="main-container">
-    <div class="layout">
-      <section class="card status-card">
-        <h2 class="section-title">Situação Atual do Parque</h2>
-        <div class="status-card__panel">
-          <div id="status-pill" class="status-pill">CARREGANDO...</div>
-          <div id="status-updated" class="status-updated"></div>
-          <p id="status-text" class="status-text"></p>
-          <a class="btn btn-primary" href="/agendamento">Agende sua Visita</a>
+    <header class="header">
+        <div class="header__container">
+            <a href="/status-parque" class="brand">
+                <img th:src="@{../img/1.png}" alt="Logo Gestão Viva" class="brand__logo" />
+                <span>Gestão Viva</span>
+            </a>
+            <nav class="nav">
+                <a href="/status-parque" class="nav-link active">Início</a>
+                <a href="/agendamento" class="nav-link">Agendamento</a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+            </nav>
         </div>
-      </section>
+    </header>
 
-      <aside class="card mural-card">
-        </aside>
-    </div>
-  </main>
+    <main>
+        <section class="hero">
+            <div class="hero__content">
+                <h1 class="hero__title">Parque de Esculturas Francisco Brennand</h1>
+                <p class="hero__subtitle">Consulte o status de funcionamento e planeje sua visita.</p>
+                <div id="status-pill" class="status-pill">CARREGANDO...</div>
+                <div id="status-updated" class="status-updated"></div>
+                <p id="status-text" class="status-text"></p>
+            </div>
+        </section>
 
-  <footer class="site-footer">
+        <section class="content-section avisos">
+            <h2 class="section-title">Mural de Avisos</h2>
+            <div class="avisos-grid">
+                <div class="aviso-card">
+                    <h3>Manutenção Programada</h3>
+                    <p class="aviso-data">15 de Outubro de 2025</p>
+                    <p>Informamos que a ala norte do parque estará fechada para manutenção na próxima semana para melhorias na passarela.</p>
+                </div>
+                <div class="aviso-card">
+                    <h3>Exposição "Novas Formas"</h3>
+                    <p class="aviso-data">10 de Outubro de 2025</p>
+                    <p>Venha conferir a nova exposição de artistas locais, disponível até o final do mês no salão principal.</p>
+                </div>
+                <div class="aviso-card">
+                    <h3>Horário de Feriado</h3>
+                    <p class="aviso-data">01 de Outubro de 2025</p>
+                    <p>No próximo feriado, o parque funcionará em horário especial, das 9h às 16h. Programe-se!</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="content-section cta">
+            <h2 class="section-title">Pronto para Visitar?</h2>
+            <p>Agende sua visita de forma rápida e fácil. Garanta seu lugar e evite filas.</p>
+            <a href="/agendamento" class="btn btn-primary">Agendar minha Visita</a>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__container">
+            <div class="footer__col">
+                <div class="brand">Gestão Viva</div>
+                <p>Gerenciando o fluxo de visitantes no Parque de Esculturas Francisco Brennand.</p>
+            </div>
+            <div class="footer__col">
+                <h3>Navegação</h3>
+                <ul>
+                    <li><a href="/status-parque">Início</a></li>
+                    <li><a href="/agendamento">Agendamento</a></li>
+                    <li><a href="/dashboard">Dashboard</a></li>
+                </ul>
+            </div>
+            <div class="footer__col">
+                <h3>Contato</h3>
+                <p>Prefeitura do Recife<br>Recife, PE</p>
+            </div>
+        </div>
+        <div class="footer__bottom">
+            <p>© 2025 Gestão Viva. Todos os direitos reservados.</p>
+        </div>
     </footer>
-
-  <script th:src="@{/js/status-parque.js}"></script>
+        
+    <script th:src="@{/js/status-parque.js}"></script>
 </body>
 </html>

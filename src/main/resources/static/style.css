@@ -7,7 +7,7 @@
     --laranja-principal: #ffa200;
     --laranja-hover: #ff5900;
     --fundo-claro: #ffffff;
-    --fundo-secundario-claro: #f8f9fa;
+
     --texto-escuro: #343a40;
     --texto-secundario-escuro: #6c757d;
     --borda-clara: #ced4da;
@@ -69,7 +69,53 @@ h1 {
     background: var(--laranja-principal);
     color: var(--fundo-claro);
 }
+/* === ESTILOS PARA O CABEÇALHO PADRÃO DAS PÁGINAS === */
 
+.page-header {
+    width: 100%;
+    background-color: var(--fundo-secundario-claro);
+    padding: 1rem 0;
+    border-bottom: 1px solid #e0e0e0;
+    margin-bottom: 40px; /* Cria um espaço entre o cabeçalho e o formulário */
+}
+
+.header-container {
+    max-width: 900px; /* Mesma largura do .container do formulário */
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Adiciona padding lateral para telas menores */
+}
+
+.brand-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--vermelho-destaque);
+}
+
+.back-link {
+    text-decoration: none;
+    color: var(--verde-principal);
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.back-link:hover {
+    color: var(--verde-hover);
+}
+
+/* Ajuste no body para remover o padding do topo, que agora é controlado pelo header */
+body {
+    background-color: #f1f1f1;
+    color: var(--texto-escuro);
+    margin: 0;
+    padding: 0 20px 40px 20px; /* Remove o padding-top */
+    display: flex;
+    flex-direction: column; /* Organiza o header e o container verticalmente */
+    align-items: center;
+    min-height: 100vh;
+}
 form {
     display: flex;
     flex-direction: column;
@@ -80,14 +126,14 @@ fieldset {
     border: 1px solid var(--vermelho-destaque);
     border-radius: 0;
     padding: 25px;
-    background-color: var(--fundo-secundario-claro);
+    
 }
 
 legend {
     color: var(--vermelho-destaque);
     font-weight: 600;
     padding: 0 10px;
-    background-color: var(--fundo-secundario-claro);
+
 }
 
 label {
@@ -278,4 +324,11 @@ select:focus {
     .membro-input-group {
         flex-direction: column;
     }
+}
+/* Adicione este código em qualquer lugar do seu style.css */
+
+#grupo-form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* O mesmo espaçamento do formulário */
 }

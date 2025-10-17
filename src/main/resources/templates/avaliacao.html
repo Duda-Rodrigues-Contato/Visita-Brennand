@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Avaliação da Visita</title>
+    <link rel="stylesheet" th:href="@{/style.css}" />
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/avaliacao-visita.css}" />
+</head>
+<body>
+    <div class="container">
+        <h1>Conte-nos sobre sua visita!</h1>
+        <p class="subtitle">Sua opinião é muito importante para nós e nos ajuda a melhorar a experiência.</p>
+
+        <form th:action="@{/avaliacao}" th:object="${avaliacaoDTO}" method="post" id="formAvaliacao" class="form-avaliacao">
+
+            <input type="hidden" th:field="*{visitaId}" />
+
+            <fieldset>
+                <legend>Avaliação Geral</legend>
+                <label>Qual sua satisfação geral com a visita ao Parque de Esculturas? *</label>
+                <div class="star-rating">
+                    <input type="radio" id="geral-star5" th:field="*{avaliacaoGeral}" value="5" required /><label for="geral-star5">★</label>
+                    <input type="radio" id="geral-star4" th:field="*{avaliacaoGeral}" value="4" /><label for="geral-star4">★</label>
+                    <input type="radio" id="geral-star3" th:field="*{avaliacaoGeral}" value="3" /><label for="geral-star3">★</label>
+                    <input type="radio" id="geral-star2" th:field="*{avaliacaoGeral}" value="2" /><label for="geral-star2">★</label>
+                    <input type="radio" id="geral-star1" th:field="*{avaliacaoGeral}" value="1" /><label for="geral-star1">★</label>
+                </div>
+                <small class="error-message" id="geral-error"></small>
+            </fieldset>
+
+            <fieldset>
+                <legend>Detalhes da Experiência (Opcional)</legend>
+                <div class="rating-group">
+                    <label>Qualidade da Recepção/Atendimento</label>
+                    <div class="star-rating">
+                        <input type="radio" id="recepcao-star5" th:field="*{qualidadeRecepcao}" value="5" /><label for="recepcao-star5">★</label>
+                        <input type="radio" id="recepcao-star4" th:field="*{qualidadeRecepcao}" value="4" /><label for="recepcao-star4">★</label>
+                        <input type="radio" id="recepcao-star3" th:field="*{qualidadeRecepcao}" value="3" /><label for="recepcao-star3">★</label>
+                        <input type="radio" id="recepcao-star2" th:field="*{qualidadeRecepcao}" value="2" /><label for="recepcao-star2">★</label>
+                        <input type="radio" id="recepcao-star1" th:field="*{qualidadeRecepcao}" value="1" /><label for="recepcao-star1">★</label>
+                    </div>
+                </div>
+                <div class="rating-group">
+                    <label>Limpeza e Organização do Parque</label>
+                    <div class="star-rating">
+                        <input type="radio" id="limpeza-star5" th:field="*{limpezaOrganizacao}" value="5" /><label for="limpeza-star5">★</label>
+                        <input type="radio" id="limpeza-star4" th:field="*{limpezaOrganizacao}" value="4" /><label for="limpeza-star4">★</label>
+                        <input type="radio" id="limpeza-star3" th:field="*{limpezaOrganizacao}" value="3" /><label for="limpeza-star3">★</label>
+                        <input type="radio" id="limpeza-star2" th:field="*{limpezaOrganizacao}" value="2" /><label for="limpeza-star2">★</label>
+                        <input type="radio" id="limpeza-star1" th:field="*{limpezaOrganizacao}" value="1" /><label for="limpeza-star1">★</label>
+                    </div>
+                </div>
+                <div class="rating-group">
+                    <label>Acessibilidade (Rampas, Sinalização, etc.)</label>
+                    <div class="star-rating">
+                        <input type="radio" id="acessibilidade-star5" th:field="*{acessibilidade}" value="5" /><label for="acessibilidade-star5">★</label>
+                        <input type="radio" id="acessibilidade-star4" th:field="*{acessibilidade}" value="4" /><label for="acessibilidade-star4">★</label>
+                        <input type="radio" id="acessibilidade-star3" th:field="*{acessibilidade}" value="3" /><label for="acessibilidade-star3">★</label>
+                        <input type="radio" id="acessibilidade-star2" th:field="*{acessibilidade}" value="2" /><label for="acessibilidade-star2">★</label>
+                        <input type="radio" id="acessibilidade-star1" th:field="*{acessibilidade}" value="1" /><label for="acessibilidade-star1">★</label>
+                    </div>
+                </div>
+                <div class="rating-group">
+                    <label>Conservação das Esculturas</label>
+                    <div class="star-rating">
+                        <input type="radio" id="esculturas-star5" th:field="*{conservacaoEsculturas}" value="5" /><label for="esculturas-star5">★</label>
+                        <input type="radio" id="esculturas-star4" th:field="*{conservacaoEsculturas}" value="4" /><label for="esculturas-star4">★</label>
+                        <input type="radio" id="esculturas-star3" th:field="*{conservacaoEsculturas}" value="3" /><label for="esculturas-star3">★</label>
+                        <input type="radio" id="esculturas-star2" th:field="*{conservacaoEsculturas}" value="2" /><label for="esculturas-star2">★</label>
+                        <input type="radio" id="esculturas-star1" th:field="*{conservacaoEsculturas}" value="1" /><label for="esculturas-star1">★</label>
+                    </div>
+                </div>
+                <div class="rating-group">
+                    <label>Sinalização e Informações no Parque</label>
+                    <div class="star-rating">
+                        <input type="radio" id="sinalizacao-star5" th:field="*{sinalizacaoInformacoes}" value="5" /><label for="sinalizacao-star5">★</label>
+                        <input type="radio" id="sinalizacao-star4" th:field="*{sinalizacaoInformacoes}" value="4" /><label for="sinalizacao-star4">★</label>
+                        <input type="radio" id="sinalizacao-star3" th:field="*{sinalizacaoInformacoes}" value="3" /><label for="sinalizacao-star3">★</label>
+                        <input type="radio" id="sinalizacao-star2" th:field="*{sinalizacaoInformacoes}" value="2" /><label for="sinalizacao-star2">★</label>
+                        <input type="radio" id="sinalizacao-star1" th:field="*{sinalizacaoInformacoes}" value="1" /><label for="sinalizacao-star1">★</label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Recomendação (Opcional)</legend>
+                <label>Você recomendaria o Parque de Esculturas a um amigo ou familiar?</label>
+                <div class="recommend-scale">
+                    <div th:each="i : ${#numbers.sequence(0, 10)}" class="scale-item">
+                        <input type="radio" th:id="${'rec-' + i}" th:field="*{recomendacao}" th:value="${i}" />
+                        <label th:for="${'rec-' + i}" th:text="${i}"></label>
+                    </div>
+                </div>
+                <div class="scale-labels">
+                    <span>De jeito nenhum</span>
+                    <span>Com certeza</span>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>Comentários e Sugestões (Opcional)</legend>
+                <textarea id="comentariosSugestoes" th:field="*{comentariosSugestoes}" rows="5" placeholder="Sua mensagem..."></textarea>
+            </fieldset>
+
+            <fieldset>
+                <legend>Sobre sua Visita (Opcional)</legend>
+                <label>Qual seu perfil de visita?</label>
+                <div class="radio-options-grid">
+                    <label class="radio-option">
+                        <input type="radio" th:field="*{perfilVisita}" value="FAMILIA" /> Em família
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" th:field="*{perfilVisita}" value="AMIGOS" /> Com amigos
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" th:field="*{perfilVisita}" value="GRUPO_ESCOLAR" /> Grupo escolar
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" th:field="*{perfilVisita}" value="SOZINHO" /> Sozinho
+                    </label>
+                    <label class="radio-option">
+                        <input type="radio" th:field="*{perfilVisita}" value="OUTRO" /> Outro
+                    </label>
+                </div>
+            </fieldset>
+
+            <div class="form-actions">
+                <button type="submit" class="submit-btn">ENVIAR AVALIAÇÃO</button>
+            </div>
+        </form>
+    </div>
+
+    <script th:src="@{/js/avaliacao-visita.js}"></script>
+</body>
+</html>

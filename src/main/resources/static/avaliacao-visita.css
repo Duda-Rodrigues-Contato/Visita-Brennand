@@ -1,0 +1,111 @@
+.form-avaliacao {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.subtitle {
+    text-align: center;
+    color: var(--texto-secundario-escuro);
+    margin-top: -20px;
+    margin-bottom: 30px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda-clara);
+    background-color: var(--fundo-claro);
+    color: var(--texto-escuro);
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    border-radius: 0;
+    transition: 0.3s;
+    resize: none;
+}
+
+textarea:focus {
+    outline: none;
+    border-color: var(--laranja-principal);
+    box-shadow: 0 0 8px rgba(255, 162, 0, 0.4);
+}
+
+.rating-group {
+    margin-bottom: 25px;
+}
+.rating-group:last-child {
+    margin-bottom: 5px;
+}
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+}
+.star-rating input[type="radio"] { display: none; }
+.star-rating label {
+    font-size: 2.2rem;
+    color: #ccc;
+    font-weight: normal;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+    margin: 0;
+}
+.star-rating label:hover { transform: scale(1.2); }
+.star-rating input[type="radio"]:checked ~ label {
+    color: var(--laranja-principal);
+    font-weight: 900;
+}
+
+.recommend-scale {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 15px;
+}
+.recommend-scale .scale-item input[type="radio"] { display: none; }
+.recommend-scale .scale-item label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--borda-clara);
+    border-radius: 50%;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    margin: 0;
+}
+/* CORRIGIDO: Agora a seleção é LARANJA */
+.recommend-scale input[type="radio"]:checked + label {
+    background-color: var(--laranja-principal);
+    color: var(--fundo-claro);
+    border-color: var(--laranja-principal);
+}
+.scale-labels { display: flex; justify-content: space-between; font-size: 0.85rem; color: var(--texto-secundario-escuro); padding: 5px 5px 0 5px; }
+
+.radio-options-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    margin-top: 10px;
+}
+@media (min-width: 600px) {
+    .radio-options-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+.radio-option { display: flex; align-items: center; padding: 10px; border: 1px solid var(--borda-clara); border-radius: 4px; cursor: pointer; transition: background-color 0.2s ease, border-color 0.2s ease; font-weight: 500; color: var(--texto-escuro); }
+.radio-option:hover { border-color: var(--laranja-principal); }
+.radio-option input[type="radio"] { appearance: none; width: 20px; height: 20px; border: 2px solid var(--borda-clara); border-radius: 50%; margin-right: 10px; position: relative; cursor: pointer; transition: all 0.2s ease; flex-shrink: 0; }
+.radio-option input[type="radio"]:checked { border-color: var(--laranja-principal); background-color: var(--laranja-principal); }
+.radio-option input[type="radio"]:checked::after { content: ''; width: 10px; height: 10px; background-color: var(--fundo-claro); border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); display: block; }
+
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

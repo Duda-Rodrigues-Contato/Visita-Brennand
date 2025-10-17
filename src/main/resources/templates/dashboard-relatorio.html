@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão Viva - Relatório</title>
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
     <link rel="stylesheet" th:href="@{/css/dashboard-relatorio.css}">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
     <div class="main-container">
         <header class="header">
-            <h1>Gestão Viva</h1>
-            <a href="#" class="back-link">← Voltar ao Início</a>
-        </header>
+    <h1>Gestão Viva</h1>
+    <a th:href="@{/status-parque}" class="back-link">← Voltar ao Início</a>
+</header>
 
         <main>
             <section class="card filter-card">
@@ -38,15 +39,15 @@
             <section class="metrics-grid">
                  <div class="card metric-card">
                     <h3>Total de Visitas no Período</h3>
-                    <p class="metric-value" th:text="${totalVisitas}">1125</p>
+                    <p class="metric-value" th:text="${totalVisitas}">0</p>
                 </div>
                 <div class="card metric-card">
                     <h3>Visitas Concluídas</h3>
-                    <p class="metric-value" th:text="${visitasConcluidas}">1000</p>
+                    <p class="metric-value" th:text="${visitasConcluidas}">0</p>
                 </div>
                  <div class="card metric-card">
                     <h3>Média Diária de Visitantes</h3>
-                    <p class="metric-value">30</p>
+                    <p class="metric-value" th:text="${mediaVisitantes}">0</p>
                 </div>
             </section>
 
@@ -77,7 +78,9 @@
                                 <td th:text="${visita.nomeInstituicao}">Escola Municipal ...</td>
                                 <td th:text="${visita.nomeResponsavel}">Maria Soares</td>
                                 <td th:text="${visita.numeroVisitantes}">45</td>
-                                <td th:text="${visita.status}">Concluído</td>
+                                <td>
+                                    <span class="status" th:classappend="${'status-' + #strings.toLowerCase(visita.status)}" th:text="${visita.status}">STATUS</span>
+                                </td>
                                 <td th:text="${visita.incluiPcd ? 'Sim' : 'Não'}">Sim</td>
                             </tr>
                             <tr th:if="${paginaDeVisitas.empty}">
@@ -89,19 +92,26 @@
                 <div class="pagination" th:if="${paginaDeVisitas.totalPages > 1}">
                     <a th:if="${!paginaDeVisitas.first}"
                        th:href="@{/dashboard(dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, page=${paginaDeVisitas.number - 1})}"
-                       class="btn">Anterior</a>
+                       class="btn btn-secondary">Anterior</a>
                     <span class="page-info">
                         Página <span th:text="${paginaDeVisitas.number + 1}">1</span> de <span th:text="${paginaDeVisitas.totalPages}">3</span>
                     </span>
                     <a th:if="${!paginaDeVisitas.last}"
                        th:href="@{/dashboard(dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, page=${paginaDeVisitas.number + 1})}"
-                       class="btn">Próximo</a>
+                       class="btn btn-secondary">Próximo</a>
                 </div>
             </section>
         </main>
-    </div>
+</div>
 
-    <script th:src="@{/js/dashboard-chart.js}"></script>
-     <script th:src="@{/js/dashboard-chart.js}"></script>
+<script th:inline="javascript">
+    /*<![CDATA[*/
+
+    const labelsDoGrafico = /*[[${chartLabels}]]*/ [];
+    const dadosDoGrafico = /*[[${chartData}]]*/ [];
+    /*]]>*/
+</script>
+
+<script th:src="@{/js/dashboard-chart.js}"></script>
 </body>
 </html>
