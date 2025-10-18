@@ -12,8 +12,7 @@
   <body>
     <header class="page-header">
         <div class="header-container">
-            <div class="brand-title">Gestão Viva</div>
-            <a th:href="@{/status-parque}" class="back-link">← Voltar ao Início</a>
+            <img th:src="@{/img/2.png}" alt="Logo do Parque">
         </div>
     </header>
     <div class="container">
@@ -230,6 +229,7 @@
 
         <div class="form-actions">
           <button type="submit" class="submit-btn">AGENDAR VISITA</button>
+          <a th:href="@{/status-parque}" class="cancel-btn">CANCELAR</a>
         </div>
       </form>
     </div>

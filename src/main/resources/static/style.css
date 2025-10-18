@@ -1,17 +1,19 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+/* --- VARIÁVEIS DE COR (RAIZ) --- */
 :root {
     --vermelho-destaque: #ab1a0a;
     --verde-principal: #00967d;
     --verde-hover: #007a63;
     --laranja-principal: #ffa200;
-    --laranja-hover: #ff5900;
+    --laranja-hover: #e69100; /* Laranja um pouco mais escuro para hover */
+    --fundo-pagina: #f4f7f6; /* Um cinza muito claro, quase branco */
     --fundo-claro: #ffffff;
-
-    --texto-escuro: #343a40;
-    --texto-secundario-escuro: #6c757d;
-    --borda-clara: #ced4da;
-    --erro: #ff6b6b;
+    --borda-suave: #e9ecef;
+    --texto-escuro: #212529;
+    --texto-secundario: #6c757d;
+    --erro: #e74c3c;
+    --azul-foco: #80bdff;
 }
 
 * {
@@ -20,72 +22,32 @@
 }
 
 body {
-    background-color: #f1f1f1;
+    background-color: var(--fundo-pagina);
     color: var(--texto-escuro);
     margin: 0;
     padding: 40px 20px;
     display: flex;
-    justify-content: center;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
 }
 
-.container {
-    background: var(--fundo-claro);
-    border-radius: 0;
-    padding: 40px;
-    width: 100%;
-    max-width: 900px;
-    box-shadow: 0 5px 20px rgba(171, 26, 10, 0.15), 0 0 0 3px rgba(255, 162, 0, 0.1);
-}
-
-h1 {
-    text-align: center;
-    color: var(--vermelho-destaque);
-    margin-bottom: 30px;
-    font-weight: 600;
-}
-
-.form-tabs {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
-    gap: 15px;
-}
-
-.tab-link {
-    background: transparent;
-    border: 2px solid var(--laranja-principal);
-    color: var(--laranja-principal);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.tab-link.active,
-.tab-link:hover {
-    background: var(--laranja-principal);
-    color: var(--fundo-claro);
-}
-/* === ESTILOS PARA O CABEÇALHO PADRÃO DAS PÁGINAS === */
-
+/* --- CABEÇALHO --- */
 .page-header {
     width: 100%;
-    background-color: var(--fundo-secundario-claro);
+    background-color: var(--fundo-claro);
     padding: 1rem 0;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 40px; /* Cria um espaço entre o cabeçalho e o formulário */
+    border-bottom: 1px solid var(--borda-suave);
+    margin-bottom: 40px;
 }
 
 .header-container {
-    max-width: 900px; /* Mesma largura do .container do formulário */
+    max-width: 900px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Adiciona padding lateral para telas menores */
+    padding: 0 20px;
 }
 
 .brand-title {
@@ -94,15 +56,69 @@ h1 {
     color: var(--vermelho-destaque);
 }
 
+.brand-title img {
+    height: 50px;  /* <<< Ajuste este valor como preferir */
+    width: auto;   /* Mantém a proporção correta da imagem */
+    vertical-align: middle; /* Alinha a imagem com o texto "Voltar ao Início" */
+}
+
 .back-link {
     text-decoration: none;
     color: var(--verde-principal);
     font-weight: 500;
-    transition: color 0.3s;
+    transition: color 0.3s ease;
 }
 
 .back-link:hover {
     color: var(--verde-hover);
+}
+
+.container {
+    background: var(--fundo-claro);
+    border-radius: 12px; /* Cantos arredondados */
+    padding: 40px;
+    width: 100%;
+    max-width: 900px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08); /* Sombra mais sutil */
+    border: 1px solid var(--borda-suave);
+}
+
+h1 {
+    text-align: center;
+    color: #ab1a0a;
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.form-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    gap: 15px;
+}
+
+.tab-link {
+    background: transparent;
+    border: 2px solid var(--borda-suave);
+    color: var(--texto-secundario);
+    padding: 12px 24px;
+    border-radius: 8px; /* Cantos arredondados */
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-link:hover {
+    background-color: var(--laranja-principal);
+    border-color: var(--laranja-principal);
+    color: var(--fundo-claro);
+}
+
+.tab-link.active {
+    background-color: var(--laranja-principal);
+    border-color: var(--laranja-principal);
+    color: var(--fundo-claro);
+    box-shadow: 0 4px 15px rgba(255, 162, 0, 0.3);
 }
 
 /* Ajuste no body para remover o padding do topo, que agora é controlado pelo header */
@@ -116,60 +132,75 @@ body {
     align-items: center;
     min-height: 100vh;
 }
+
 form {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+.form-section {
     display: flex;
     flex-direction: column;
     gap: 25px;
 }
 
 fieldset {
-    border: 1px solid var(--vermelho-destaque);
-    border-radius: 0;
-    padding: 25px;
-    
+    border: none; /* Remove a borda antiga */
+    border-top: 1px solid var(--borda-suave); /* Adiciona uma linha divisória sutil */
+    padding: 30px 0 10px 0;
+    margin: 0;
 }
 
 legend {
-    color: var(--vermelho-destaque);
+    color: #ab1a0a;
     font-weight: 600;
-    padding: 0 10px;
-
+    font-size: 1.2rem;
+    padding: 0;
+    margin-bottom: 10px;
 }
 
 label {
     display: block;
-    margin: 10px 0 5px;
+    margin-bottom: 8px;
     color: var(--texto-escuro);
     font-weight: 500;
+    font-size: 0.9rem;
 }
 
-input,
-select,
-button {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--borda-clara);
-    background-color: var(--fundo-claro);
-    color: var(--texto-escuro);
-    transition: 0.3s;
-    font-size: 16px;
-    border-radius: 8px;
-}
-
-input,
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
 select {
-    border-radius: 0;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--borda-suave);
+    background-color: var(--fundo-pagina); /* Fundo sutilmente diferente */
+    color: var(--texto-escuro);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+    border-radius: 8px; /* Cantos arredondados */
 }
 
-input:focus,
+input[type="text"]:hover,
+input[type="email"]:hover,
+input[type="tel"]:hover,
+input[type="date"]:hover,
+select:hover,
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus,
+input[type="date"]:focus,
 select:focus {
     outline: none;
     border-color: var(--laranja-principal);
-    box-shadow: 0 0 8px rgba(255, 162, 0, 0.4);
+    background-color: var(--fundo-claro);
+    box-shadow: 0 0 0 3px rgba(255, 162, 0, 0.3);
 }
 
 ::placeholder {
-    color: var(--texto-secundario-escuro);
+    color: var(--texto-secundario);
 }
 
 .submit-btn {
@@ -177,19 +208,43 @@ select:focus {
     border: none;
     color: var(--fundo-claro);
     font-weight: 600;
-    padding: 14px;
-    border-radius: 10px;
-    font-size: 18px;
+    padding: 15px;
+    border-radius: 8px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
     text-transform: uppercase;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.8px;
 }
 
 .submit-btn:hover {
     background-color: var(--verde-hover);
-    color: var(--fundo-claro);
-    box-shadow: 0 5px 15px rgba(0, 122, 99, 0.4);
+    box-shadow: 0 5px 15px rgba(0, 122, 99, 0.3);
+    transform: translateY(-2px); /* Efeito de elevação */
+}
+
+.cancel-btn {
+    display: inline-block;
+    padding: 15px; /* Mesmo padding do botão principal para ter a mesma altura */
+    background-color: transparent;
+    border: 2px solid var(--texto-secundario); /* Borda com uma cor neutra */
+    color: var(--texto-secundario);
+    border-radius: 8px; /* Mesmo arredondamento do botão principal */
+    text-decoration: none; /* Remove o sublinhado do link */
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background-color: var(--vermelho-destaque); /* Fica vermelho ao passar o mouse */
+    border-color: var(--vermelho-destaque);
+    color: var(--fundo-claro); /* Texto fica branco */
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(171, 26, 10, 0.3);
 }
 
 .error-message {
@@ -202,24 +257,24 @@ select:focus {
 .membro-input-group {
     display: flex;
     gap: 10px;
-    margin: 10px 0;
+    align-items: center;
 }
 
 #btnAddMembro {
     width: auto;
-    padding: 10px 15px;
+    padding: 12px 20px;
     background-color: var(--laranja-principal);
     color: var(--fundo-claro);
     font-weight: 600;
     border: none;
-    border-radius: 10px;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
 }
 
 #btnAddMembro:hover {
     background-color: var(--laranja-hover);
-    color: var(--fundo-claro);
+    transform: scale(1.05);
 }
 
 .checkbox-group {
@@ -235,7 +290,10 @@ select:focus {
 }
 
 .form-actions {
-    text-align: center;
+    display: flex; /* Alinha os botões lado a lado */
+    justify-content: center; /* Centraliza os botões */
+    align-items: center; /* Alinha verticalmente, caso tenham alturas diferentes */
+    gap: 15px; /* Adiciona um espaço entre os botões */
     margin-top: 30px;
 }
 
@@ -243,13 +301,13 @@ select:focus {
     display: none !important;
 }
 
-/* === SEÇÃO DE MEMBROS (VERSÃO CORRIGIDA E FINAL) === */
+/* === SEÇÃO DE MEMBROS === */
 
 #listaMembrosContainer {
     margin-top: 15px;
-    background: var(--fundo-secundario-claro);
+    background: var(--fundo-pagina);
     padding: 15px;
-    border-radius: 0;
+    border-radius: 8px;
     border-left: 4px solid var(--laranja-principal);
 }
 
@@ -267,40 +325,30 @@ select:focus {
     margin: 0;
 }
 
+#listaMembros { list-style: none; padding: 0; margin: 0; }
+
 #listaMembros li {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--fundo-claro);
-    border: 1px solid var(--borda-clara);
-    padding: 8px 15px;
+    border: 1px solid var(--borda-suave);
+    padding: 10px 15px;
     margin-bottom: 8px;
-    border-radius: 0;
-    color: var(--texto-escuro);
-    font-size: 0.95rem;
-}
-
-#listaMembros li:last-child {
-    margin-bottom: 0;
+    border-radius: 6px;
 }
 
 .remove-membro-btn {
-    background-color: var(--vermelho-destaque);
+    background-color: var(--erro);
     color: var(--fundo-claro);
     border: none;
     border-radius: 50%;
     width: 24px;
     height: 24px;
-    font-size: 0.9rem;
     font-weight: 700;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease;
+    transition: all 0.2s ease;
     padding: 0;
-    margin-left: 15px;
 }
 
 .remove-membro-btn:hover {
@@ -309,21 +357,11 @@ select:focus {
 }
 
 @media (max-width: 768px) {
-    .container {
-        padding: 25px;
-    }
-
-    fieldset {
-        padding: 20px;
-    }
-
-    .form-tabs {
-        flex-direction: column;
-    }
-
-    .membro-input-group {
-        flex-direction: column;
-    }
+    body { padding: 20px 10px; }
+    .container { padding: 25px; }
+    fieldset { padding: 20px 0 10px 0; }
+    .form-tabs { flex-direction: column; }
+    .membro-input-group { flex-direction: column; }
 }
 
 #indivual-form-section{ 
