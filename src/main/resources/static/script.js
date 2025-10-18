@@ -1,5 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
 
+    // --- SEÇÃO DE ABAS (TABS) ---
+const tabLinks = document.querySelectorAll('.tab-link');
+const grupoFormSection = document.getElementById('grupo-form-section');
+const individualFormSection = document.getElementById('individual-form-section');
+const detalhesLegend = document.getElementById('detalhes-legend');
+const numeroVisitantesInput = document.getElementById('numeroVisitantes');
+
+tabLinks.forEach(tab => {
+    tab.addEventListener('click', () => {
+        const tabType = tab.dataset.tab;
+
+        // Remove a classe 'active' de todos e adiciona no clicado
+        tabLinks.forEach(link => link.classList.remove('active'));
+        tab.classList.add('active');
+
+        // Lógica explícita para mostrar/esconder
+        if (tabType === 'individual') {
+            grupoFormSection.classList.add('hidden');
+            individualFormSection.classList.remove('hidden');
+            
+            detalhesLegend.textContent = '2. Detalhes da Visita';
+            numeroVisitantesInput.value = 1; // Garante que o número de visitantes seja 1
+        } else { // Se for 'grupo'
+            individualFormSection.classList.add('hidden');
+            grupoFormSection.classList.remove('hidden');
+
+            detalhesLegend.textContent = '4. Detalhes da Visita';
+            // O valor para grupo será atualizado pela função de adicionar membros
+        }
+    });
+});
+
+    // Adiciona o evento de clique para cada aba
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const tabType = tab.dataset.tab;
+            switchTab(tabType);
+        });
+    });
+
+    // ---->> ADIÇÃO IMPORTANTE <<----
+    // Define o estado inicial ao carregar a página para garantir que 'grupo' seja o padrão
+    switchTab('grupo');
+
     // --- SEÇÃO DE HORÁRIOS E DATAS ---
     const dataVisitaInput = document.getElementById('dataVisita');
     const horarioChegadaSelect = document.getElementById('horarioChegada');
@@ -45,20 +89,7 @@ document.addEventListener('DOMContentLoaded', function() {
         dataVisitaInput.addEventListener('change', atualizarHorariosDisponiveis);
         atualizarHorariosDisponiveis(); // Executa ao carregar a página
     }
-
-    // --- SEÇÃO DE ABAS (TABS) ---
-    const tabs = document.querySelectorAll('.tab-link');
-    tabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-            const tabType = tab.dataset.tab;
-            tabs.forEach(t => t.classList.remove('active'));
-            tab.classList.add('active');
-            document.querySelectorAll('.form-section').forEach(section => section.classList.add('hidden'));
-            document.getElementById(`${tabType}-form-section`).classList.remove('hidden');
-            document.getElementById('detalhes-legend').textContent = (tabType === 'individual') ? '2. Detalhes da Visita' : '4. Detalhes da Visita';
-        });
-    });
-
+    
     // --- SEÇÃO DE MÁSCARAS (IMask) ---
     IMask(document.getElementById('telefoneResponsavel'), { mask: '(00) 00000-0000' });
     IMask(document.getElementById('telefoneResponsavelInd'), { mask: '(00) 00000-0000' });
@@ -66,26 +97,23 @@ document.addEventListener('DOMContentLoaded', function() {
     IMask(document.getElementById('cnpjInd'), { mask: '000.000.000-00' });
 
 
-    // --- SEÇÃO DE ADICIONAR MEMBROS (VERSÃO CORRIGIDA E ROBUSTA) ---
+    // --- SEÇÃO DE ADICIONAR MEMBROS ---
     const btnAddMembro = document.getElementById('btnAddMembro');
     const nomeMembroInput = document.getElementById('nomeMembro');
     const listaMembrosUL = document.getElementById('listaMembros');
     const contadorMembrosSpan = document.getElementById('contadorMembros');
     const membrosHiddenContainer = document.getElementById('membrosHiddenContainer');
-    const numeroVisitantesInput = document.getElementById('numeroVisitantes');
-
-    let membros = []; // Array para guardar os nomes, evitando bugs
+    
+    let membros = []; 
 
     function renderizarLista() {
-        listaMembrosUL.innerHTML = ''; // Limpa a lista visual
-        membrosHiddenContainer.innerHTML = ''; // Limpa os inputs hidden
+        listaMembrosUL.innerHTML = ''; 
+        membrosHiddenContainer.innerHTML = '';
 
         membros.forEach((nome, index) => {
-            // Cria o item da lista (li)
             const li = document.createElement('li');
             li.textContent = nome;
 
-            // Cria o botão de remover
             const removeButton = document.createElement('button');
             removeButton.textContent = 'x';
             removeButton.type = 'button';
@@ -94,7 +122,6 @@ document.addEventListener('DOMContentLoaded', function() {
             li.appendChild(removeButton);
             listaMembrosUL.appendChild(li);
 
-            // Cria o input hidden para enviar o nome no formulário
             const hiddenInput = document.createElement('input');
             hiddenInput.type = 'hidden';
             hiddenInput.name = `membros[${index}]`;
@@ -102,15 +129,14 @@ document.addEventListener('DOMContentLoaded', function() {
             membrosHiddenContainer.appendChild(hiddenInput);
         });
 
-        // Atualiza o contador e o número total de visitantes
         contadorMembrosSpan.textContent = `(${membros.length})`;
         numeroVisitantesInput.value = membros.length + 1; // +1 para contar o responsável
     }
 
     function adicionarMembro() {
         const nome = nomeMembroInput.value.trim();
-        if (nome === '') return; // Não adiciona se estiver vazio
-        if (membros.includes(nome)) { // Impede nomes repetidos
+        if (nome === '') return; 
+        if (membros.includes(nome)) {
             alert('Este membro já foi adicionado.');
             return;
         }
@@ -135,20 +161,17 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-
     // --- SEÇÃO DE ENVIO DO FORMULÁRIO (SUBMIT) ---
     const form = document.getElementById('formAgendamento');
     form.addEventListener('submit', function(event) {
         const activeTab = document.querySelector('.tab-link.active').dataset.tab;
         
         if (activeTab === 'individual') {
-            // Preenche os dados da visita individual nos campos principais
             document.getElementById('nomeInstituicao').value = 'Visita Individual';
             document.getElementById('tipoInstituicao').value = 'OUTRO';
             document.getElementById('numeroVisitantes').value = 1;
         }
         
-        // Se a lista de membros estiver vazia, garante que o número de visitantes é 1 (o responsável)
         if (membros.length === 0 && activeTab === 'grupo') {
             numeroVisitantesInput.value = 1;
         }

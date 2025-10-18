@@ -240,7 +240,7 @@ select:focus {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* === SEÇÃO DE MEMBROS (VERSÃO CORRIGIDA E FINAL) === */
@@ -325,10 +325,15 @@ select:focus {
         flex-direction: column;
     }
 }
-/* Adicione este código em qualquer lugar do seu style.css */
 
-#grupo-form-section {
+#indivual-form-section{ 
     display: flex;
     flex-direction: column;
-    gap: 25px; /* O mesmo espaçamento do formulário */
+    gap: 25px;
+}
+
+.form-section {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
