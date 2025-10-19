@@ -10,9 +10,17 @@
   </head>
   
   <body>
-    <header class="page-header">
-        <div class="header-container">
-            <img th:src="@{/img/2.png}" alt="Logo do Parque">
+     <header class="header">
+        <div class="header__container">
+            <a href="/status-parque" class="brand">
+                <img th:src="@{../img/1.png}" alt="Logo Gestão Viva" class="brand__logo" />
+                <span>Gestão Viva</span>
+            </a>
+            <nav class="nav">
+                <a href="/status-parque" class="nav-link">Início</a>
+                <a href="/agendamento" class="nav-link active">Agendamento</a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+            </nav>
         </div>
     </header>
     <div class="container">

@@ -9,12 +9,21 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-    <div class="main-container">
+    
         <header class="header">
-    <h1>Gestão Viva</h1>
-    <a th:href="@{/status-parque}" class="back-link">← Voltar ao Início</a>
-</header>
-
+        <div class="header__container">
+            <a href="/status-parque" class="brand">
+                <img th:src="@{../img/1.png}" alt="Logo Gestão Viva" class="brand__logo" />
+                <span>Gestão Viva</span>
+            </a>
+            <nav class="nav">
+                <a href="/status-parque" class="nav-link">Início</a>
+                <a href="/agendamento" class="nav-link ">Agendamento</a>
+                <a href="/dashboard" class="nav-link active">Dashboard</a>
+            </nav>
+        </div>
+    </header>
+<div class="main-container">
         <main>
             <section class="card filter-card">
                 <h2>Relatório por Período</h2>

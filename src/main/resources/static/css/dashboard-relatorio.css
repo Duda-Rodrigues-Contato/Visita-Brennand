@@ -25,113 +25,53 @@ body {
     margin: 0;
     padding: 0 20px 40px 20px; /* Remove o padding-top */
     display: flex;
+    padding-bottom: 40px;
     flex-direction: column; /* Organiza o header e o container verticalmente */
     align-items: center;
+    
     min-height: 100vh;
 }
-    /* === ESTILOS PARA O CABEÇALHO PADRÃO DAS PÁGINAS === */
-
-.page-header {
+ 
+/* HEADER */
+.header {
+    background-color: var(--branco);
+    padding: 1rem 2rem;
+    box-shadow: 0 5px 20px rgba(171, 26, 10, 0.15), 0 0 0 3px rgba(255, 162, 0, 0.1);
+    position: sticky;
+    top: 0;
     width: 100%;
-    background-color: var(--fundo-secundario-claro);
-    padding: 1rem 0;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 40px; /* Cria um espaço entre o cabeçalho e o formulário */
+    z-index: 1000;
+    
 }
-
-.header-container {
-    max-width: 900px; /* Mesma largura do .container do formulário */
+.header__container {
+    max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Adiciona padding lateral para telas menores */
 }
-
-.brand-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--vermelho-destaque);
-}
-
-.back-link {
-    text-decoration: none;
-    color: var(--verde-principal);
-    font-weight: 500;
-    transition: color 0.3s;
-}
-
-.back-link:hover {
-    color: var(--verde-hover);
-}
-
-/* Ajuste no body para remover o padding do topo, que agora é controlado pelo header */
-
-
-/* === ESTILOS PARA O CABEÇALHO PADRÃO DAS PÁGINAS === */
-
-.page-header {
-    width: 100%;
-    background-color: var(--fundo-secundario-claro);
-    padding: 1rem 0;
-    border-bottom: 1px solid #e0e0e0;
-    margin-bottom: 40px; /* Cria um espaço entre o cabeçalho e o formulário */
-}
-
-.header-container {
-    max-width: 900px; /* Mesma largura do .container do formulário */
-    margin: 0 auto;
+.brand {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 0 20px; /* Adiciona padding lateral para telas menores */
-}
-
-.brand-title {
-    font-size: 1.5rem;
+    gap: 0.75rem;
     font-weight: 700;
+    font-size: 1.5rem;
     color: var(--vermelho-destaque);
-}
-
-.back-link {
     text-decoration: none;
-    color: var(--verde-principal);
-    font-weight: 500;
-    transition: color 0.3s;
 }
-
-.back-link:hover {
-    color: var(--verde-hover);
+.brand__logo {
+    height: 40px;
 }
-
+.nav { display: flex; gap: 2rem; }
+.nav-link { text-decoration: none; color: var(--texto-secundario); font-weight: 500; transition: color 0.3s; }
+.nav-link:hover, .nav-link.active { color: var(--vermelho-destaque); }
 
 .main-container {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 2rem;
 }
 
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.header h1 {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--vermelho-destaque);
-}
-
-.back-link {
-    text-decoration: none;
-    color: var(--verde-principal);
-    font-weight: 600;
-    transition: color 0.3s;
-}
-.back-link:hover {
-    color: var(--verde-hover);
-}
 
 .card {
     background-color: var(--branco);
