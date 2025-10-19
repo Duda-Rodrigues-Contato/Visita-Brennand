@@ -1,6 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // --- SEÇÃO DE ABAS (TABS) ---
     const tabLinks = document.querySelectorAll('.tab-link');
     const grupoFormSection = document.getElementById('grupo-form-section');
     const individualFormSection = document.getElementById('individual-form-section');
@@ -12,11 +11,9 @@ document.addEventListener('DOMContentLoaded', function() {
             tab.addEventListener('click', () => {
                 const tabType = tab.dataset.tab;
 
-                // Remove a classe 'active' de todos e adiciona no clicado
                 tabLinks.forEach(link => link.classList.remove('active'));
                 tab.classList.add('active');
 
-                // Lógica explícita para mostrar/esconder
                 if (tabType === 'individual') {
                     grupoFormSection.classList.add('hidden');
                     individualFormSection.classList.remove('hidden');
@@ -26,17 +23,13 @@ document.addEventListener('DOMContentLoaded', function() {
                     individualFormSection.classList.add('hidden');
                     grupoFormSection.classList.remove('hidden');
                     detalhesLegend.textContent = '4. Detalhes da Visita';
-                    // O valor para grupo será atualizado pela função de adicionar membros
                 }
             });
         });
 
-        // Garante que o estado inicial (ao carregar a página) seja o de grupo
         document.querySelector('.tab-link[data-tab="grupo"]').click();
     }
 
-
-    // --- SEÇÃO DE HORÁRIOS E DATAS ---
     const dataVisitaInput = document.getElementById('dataVisita');
     const horarioChegadaSelect = document.getElementById('horarioChegada');
     const dateError = document.getElementById('date-error');
@@ -68,11 +61,11 @@ document.addEventListener('DOMContentLoaded', function() {
                 submitBtn.disabled = true;
                 dateError.textContent = 'O parque não abre às segundas-feiras. Por favor, escolha outra data.';
                 break;
-            case 0: // Domingo
-            case 6: // Sábado
+            case 0: 
+            case 6: 
                 gerarHorarios('09:00', '17:30', 30);
                 break;
-            default: // Terça a Sexta
+            default: 
                 gerarHorarios('10:00', '16:30', 30);
                 break;
         }
@@ -80,10 +73,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (dataVisitaInput) {
         dataVisitaInput.addEventListener('change', atualizarHorariosDisponiveis);
-        atualizarHorariosDisponiveis(); // Executa ao carregar a página
+        atualizarHorariosDisponiveis(); 
     }
 
-    // --- SEÇÃO DE MÁSCARAS (IMask) ---
     if (typeof IMask !== 'undefined') {
         IMask(document.getElementById('telefoneResponsavel'), { mask: '(00) 00000-0000' });
         IMask(document.getElementById('telefoneResponsavelInd'), { mask: '(00) 00000-0000' });
@@ -91,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function() {
         IMask(document.getElementById('cnpjInd'), { mask: '000.000.000-00' });
     }
 
-    // --- SEÇÃO DE ADICIONAR MEMBROS (VERSÃO CORRIGIDA E ROBUSTA) ---
     const btnAddMembro = document.getElementById('btnAddMembro');
     const nomeMembroInput = document.getElementById('nomeMembro');
     const listaMembrosUL = document.getElementById('listaMembros');
@@ -158,7 +149,6 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- SEÇÃO DE ENVIO DO FORMULÁRIO (SUBMIT) ---
     const form = document.getElementById('formAgendamento');
     if (form) {
         form.addEventListener('submit', function(event) {

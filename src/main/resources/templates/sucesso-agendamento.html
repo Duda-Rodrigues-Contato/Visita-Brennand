@@ -1,51 +1,81 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agendamento Realizado</title>
-    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/style.css}" />
 
     <style>
-        :root {
-            --vermelho-destaque: #ab1a0a;
-            --verde-principal: #00967d;
-            --verde-hover: #007a63;
-            --fundo-claro: #f1f1f1;
-            --branco: #ffffff;
-            --texto-secundario: #6c757d;
-        }
         body {
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: var(--fundo-claro);
+            text-align: center;
+            background-color: var(--fundo-pagina);
             padding: 20px;
         }
+
         .container {
-            text-align: center;
             max-width: 650px;
-            background-color: var(--branco); 
+            width: 100%; 
+            background: var(--fundo-claro); 
+            padding: 40px; 
+            border-radius: 12px; 
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(255, 162, 0, 0.1); 
+            border: 1px solid var(--borda-suave); 
         }
+        
         h1 {
-            color: var(--vermelho-destaque);
-            font-size: 2rem; 
+            color: var(--vermelho-destaque); 
+            font-size: 2.2rem;
+            margin-bottom: 1rem;
         }
+
         p {
             font-size: 1.1rem;
             line-height: 1.6;
+            color: var(--texto-secundario);
+            margin-bottom: 2.5rem;
         }
-        .submit-btn {
-            display: inline-block; 
-            width: auto; 
-            padding: 14px 30px;
-            text-decoration: none;
+
+        .actions-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap; 
             margin-top: 1.5rem; 
         }
 
-        .submit-btn:hover {
+        .actions-container .submit-btn {
+            width: auto;
+            text-decoration: none; 
+            display: inline-block;
+            background-color: var(--verde-principal); 
+        }
+        .actions-container .submit-btn:hover {
             background-color: var(--verde-hover);
+        }
+
+        .btn-link {
+            background-color: transparent;
+            color: var(--texto-secundario);
+            font-weight: 600;
+            text-decoration: none;
+            padding: 15px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 0.8px;
+        }
+
+        .btn-link:hover {
+            background-color: var(--borda-suave);
+            color: var(--texto-escuro);
         }
     </style>
 </head>
@@ -53,7 +83,11 @@
     <div class="container">
         <h1>Agendamento Realizado com Sucesso!</h1>
         <p>Sua visita foi pré-cadastrada. Em breve, você receberá um e-mail de confirmação com mais detalhes.</p>
-        <a href="/agendamento" class="submit-btn">REALIZAR NOVO AGENDAMENTO</a>
+        
+        <div class="actions-container">
+            <a th:href="@{/agendamento}" class="submit-btn">Realizar Novo Agendamento</a>
+            <a th:href="@{/status-parque}" class="btn-link">Voltar à Página Inicial</a>
+        </div>
     </div>
 </body>
 </html>

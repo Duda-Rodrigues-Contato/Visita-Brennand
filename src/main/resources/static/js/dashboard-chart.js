@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     datasets: [{
                         label: 'Nº de Visitantes',
                         data: dataPoints,
-                        backgroundColor: 'rgba(255, 162, 0, 0.6)', // Laranja principal com transparência
+                        backgroundColor: 'rgba(255, 162, 0, 0.6)', 
                     borderColor: 'rgba(255, 162, 0, 1)',
                         borderWidth: 1
                     }]

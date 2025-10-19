@@ -14,36 +14,36 @@
             align-items: center;
             min-height: 100vh;
             text-align: center;
-            background-color: #f1f1f1;
+            background-color: var(--fundo-pagina); 
+            padding: 20px;
         }
 
         .container {
             max-width: 650px;
+            width: 100%;
+            background: var(--fundo-claro);
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(171, 26, 10, 0.15), 0 0 0 3px rgba(255, 162, 0, 0.1);
         }
 
         h1 {
-            color: var( --vermelho-destaque);
+            color: var( --vermelho-destaque); 
             font-size: 2.5rem;
             margin-bottom: 1rem;
         }
 
         p {
             font-size: 1.2rem;
-            color: var(--texto-secundario-escuro);
+            color: var(--texto-secundario);
             margin-bottom: 2.5rem;
         }
 
-        .btn-voltar {
-            display: inline-block;
+        .container .submit-btn {
             width: auto;
-            background-color: var(--verde-principal);
-            padding: 14px 30px;
-            text-decoration: none;
-            transition: background-color 0.3s ease;
-        }
-
-        .btn-voltar:hover {
-            background-color: var(--verde-hover);
+             text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
         }
     </style>
 </head>
@@ -52,7 +52,7 @@
         <h1>Obrigado!</h1>
         <p>Sua avaliação foi enviada com sucesso e é fundamental para a melhoria contínua de nossos serviços.</p>
         
-        <a th:href="@{/}" class="submit-btn btn-voltar">VOLTAR À PÁGINA INICIAL</a>
+        <a th:href="@{/status-parque}" class="submit-btn">VOLTAR À PÁGINA INICIAL</a>
     </div>
 </body>
 </html>
