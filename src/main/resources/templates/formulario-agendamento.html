@@ -78,14 +78,34 @@
               th:errors="*{tipoInstituicao}"
             ></small>
           </fieldset>
-          <fieldset>
-            <legend>2. Informações do Responsável pelo Grupo</legend>
-            <label for="nomeResponsavel">Nome Completo do Responsável *</label>
+        </div>
+
+        <div id="individual-form-section" class="form-section hidden">
+            <fieldset>
+                <legend>1. Suas Informações Pessoais</legend>
+                 <label for="cnpjInd">CPF (Opcional)</label>
+                <input type="text" id="cnpjInd" th:field="*{cnpj}" placeholder="000.000.000-00" />
+                <label for="dataNascimento">Data de Nascimento</label>
+                <input type="date" id="dataNascimento" th:field="*{dataNascimento}" />
+                <label for="sexo">Gênero</label>
+                <select id="sexo" th:field="*{sexo}">
+                  <option value="PREFIRO_NAO_INFORMAR">Prefiro não informar</option>
+                  <option value="FEMININO">Feminino</option>
+                  <option value="MASCULINO">Masculino</option>
+                  <option value="NAO_BINARIO">Não-binário</option>
+                  <option value="OUTRO">Outro</option>
+                </select>
+            </fieldset>
+        </div>
+
+        <fieldset>
+            <legend id="responsavel-legend">2. Informações do Responsável</legend>
+            <label for="nomeResponsavel">Nome Completo *</label>
             <input
               type="text"
               id="nomeResponsavel"
               th:field="*{nomeResponsavel}"
-              placeholder="Ex: Maria da Silva"
+              placeholder="Seu nome completo"
             />
             <small
               class="error-message"
@@ -97,16 +117,14 @@
               type="email"
               id="emailResponsavel"
               th:field="*{emailResponsavel}"
-              placeholder="Ex: contato@colegioexemplo.com"
+              placeholder="seu.email@exemplo.com"
             />
             <small
               class="error-message"
               th:if="${#fields.hasErrors('emailResponsavel')}"
               th:errors="*{emailResponsavel}"
             ></small>
-            <label for="telefoneResponsavel"
-              >Telefone de Contato (WhatsApp) *</label
-            >
+            <label for="telefoneResponsavel">Telefone de Contato (WhatsApp) *</label>
             <input
               type="tel"
               id="telefoneResponsavel"
@@ -118,73 +136,32 @@
               th:if="${#fields.hasErrors('telefoneResponsavel')}"
               th:errors="*{telefoneResponsavel}"
             ></small>
-          </fieldset>
-          <fieldset>
-            <legend>3. Adicionar Membros do Grupo</legend>
-            <label for="nomeMembro"
-              >Adicione os nomes dos membros do grupo</label
-            >
-            <div class="membro-input-group">
-              <input
-                type="text"
-                id="nomeMembro"
-                placeholder="Ex: João da Silva"
-              />
-              <button type="button" id="btnAddMembro">Adicionar Membro</button>
-            </div>
+        </fieldset>
+        
+        <div id="membros-section" class="form-section">
+            <fieldset>
+              <legend>3. Adicionar Membros do Grupo</legend>
+              <label for="nomeMembro"
+                >Adicione os nomes dos membros do grupo</label
+              >
+              <div class="membro-input-group">
+                <input
+                  type="text"
+                  id="nomeMembro"
+                  placeholder="Ex: João da Silva"
+                />
+                <button type="button" id="btnAddMembro">Adicionar Membro</button>
+              </div>
 
-            <div id="listaMembrosContainer">
-              <h4>
-                Membros Adicionados: <span id="contadorMembros">(0)</span>
-              </h4>
-              <ul id="listaMembros"></ul>
-            </div>
+              <div id="listaMembrosContainer">
+                <h4>
+                  Membros Adicionados: <span id="contadorMembros">(0)</span>
+                </h4>
+                <ul id="listaMembros"></ul>
+              </div>
 
-            <div id="membrosHiddenContainer"></div>
-          </fieldset>
-        </div>
-
-        <div id="individual-form-section" class="form-section hidden">
-          <fieldset>
-            <legend>1. Suas Informações</legend>
-            <label for="nomeResponsavelInd">Nome Completo *</label>
-            <input
-              type="text"
-              id="nomeResponsavelInd"
-              th:field="*{nomeResponsavel}"
-              placeholder="Ex: João da Silva"
-              required
-            />
-            <label for="cnpjInd">CPF (Opcional)</label>
-            <input type="text" id="cnpjInd" placeholder="000.000.000-00" />
-            <label for="emailResponsavelInd">E-mail de Contato *</label>
-            <input
-              type="email"
-              id="emailResponsavelInd"
-              th:field="*{emailResponsavel}"
-              placeholder="Ex: joao.silva@email.com"
-              required
-            />
-            <label for="telefoneResponsavelInd"
-              >Telefone de Contato (WhatsApp) *</label
-            >
-            <input
-              type="tel"
-              id="telefoneResponsavelInd"
-              placeholder="00 00000-0000"
-              required
-            />
-            <label for="dataNascimento">Data de Nascimento</label>
-            <input type="date" id="dataNascimento" name="dataNascimento" />
-            <label for="sexo">Gênero</label>
-            <select id="sexo" name="sexo">
-              <option value="PREFIRO_NAO_INFORMAR">Prefiro não informar</option>
-              <option value="FEMININO">Feminino</option>
-              <option value="MASCULINO">Masculino</option>
-              <option value="NAO_BINARIO">Não-binário</option>
-              <option value="OUTRO">Outro</option>
-            </select>
-          </fieldset>
+              <div id="membrosHiddenContainer"></div>
+            </fieldset>
         </div>
 
         <fieldset>

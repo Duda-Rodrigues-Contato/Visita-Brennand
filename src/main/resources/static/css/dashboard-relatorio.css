@@ -232,3 +232,23 @@ th {
 .pagination .btn:hover {
     background-color: #e9ecef;
 }
+
+.comments-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.comments-list li {
+    background-color: var(--cinza-claro);
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--laranja-principal);
+    font-style: italic;
+    color: var(--texto-secundario);
+}
+
+.comments-list li:last-child {
+    margin-bottom: 0;
+}

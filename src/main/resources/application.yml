@@ -1,21 +1,30 @@
 spring:
+    # Configuração da Base de Dados
     datasource:
         url: jdbc:h2:file:./visitabrennanddb
         driver-class-name: org.h2.Driver
         username: teste
         password:
+    # Garante que a inicialização de dados (data.sql) espera pelo Hibernate
+    jpa:
+        defer-datasource-initialization: true
+        database-platform: org.hibernate.dialect.H2Dialect
+        # create-drop: Apaga e recria a base de dados a cada reinício.
+        hibernate:
+            ddl-auto: create-drop
+        show-sql: true
+    # Garante que o data.sql seja sempre executado
+    sql:
+        init:
+            mode: always
     h2:
         console:
             enabled: true
-    jpa:
-        database-platform: org.hibernate.dialect.H2Dialect
-        hibernate:
-            ddl-auto: update
-        show-sql: true
-        defer-datasource-initialization: true
+    # Configuração do Thymeleaf
     thymeleaf:
         cache: false
     
+    # Configuração de E-mail
     mail:
         host: smtp.gmail.com
         port: 587

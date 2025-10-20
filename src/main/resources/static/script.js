@@ -3,10 +3,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const tabLinks = document.querySelectorAll('.tab-link');
     const grupoFormSection = document.getElementById('grupo-form-section');
     const individualFormSection = document.getElementById('individual-form-section');
+    const membrosSection = document.getElementById('membros-section');
+    
+    // Legendas que mudarão de número
+    const responsavelLegend = document.getElementById('responsavel-legend');
     const detalhesLegend = document.getElementById('detalhes-legend');
-    const numeroVisitantesInput = document.getElementById('numeroVisitantes');
 
-    if (tabLinks.length > 0 && grupoFormSection && individualFormSection) {
+    if (tabLinks.length > 0) {
         tabLinks.forEach(tab => {
             tab.addEventListener('click', () => {
                 const tabType = tab.dataset.tab;
@@ -16,17 +19,25 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 if (tabType === 'individual') {
                     grupoFormSection.classList.add('hidden');
+                    membrosSection.classList.add('hidden');
                     individualFormSection.classList.remove('hidden');
-                    detalhesLegend.textContent = '2. Detalhes da Visita';
-                    numeroVisitantesInput.value = 1;
+                    
+                    // Ajusta a numeração das legendas
+                    responsavelLegend.textContent = '2. Suas Informações de Contato';
+                    detalhesLegend.textContent = '3. Detalhes da Visita';
                 } else { // Se for 'grupo'
                     individualFormSection.classList.add('hidden');
                     grupoFormSection.classList.remove('hidden');
+                    membrosSection.classList.remove('hidden');
+                    
+                    // Ajusta a numeração das legendas
+                    responsavelLegend.textContent = '2. Informações do Responsável';
                     detalhesLegend.textContent = '4. Detalhes da Visita';
                 }
             });
         });
-
+        
+        // Ativa a aba de grupo por padrão ao carregar a página
         document.querySelector('.tab-link[data-tab="grupo"]').click();
     }
 
@@ -73,12 +84,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     if (dataVisitaInput) {
         dataVisitaInput.addEventListener('change', atualizarHorariosDisponiveis);
-        atualizarHorariosDisponiveis(); 
+        if(dataVisitaInput.value) {
+            atualizarHorariosDisponiveis();
+        }
     }
 
     if (typeof IMask !== 'undefined') {
         IMask(document.getElementById('telefoneResponsavel'), { mask: '(00) 00000-0000' });
-        IMask(document.getElementById('telefoneResponsavelInd'), { mask: '(00) 00000-0000' });
         IMask(document.getElementById('cnpj'), { mask: '00.000.000/0000-00' });
         IMask(document.getElementById('cnpjInd'), { mask: '000.000.000-00' });
     }
@@ -95,8 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const renderizarLista = () => {
             listaMembrosUL.innerHTML = '';
             membrosHiddenContainer.innerHTML = '';
-            const numeroVisitantesInput = document.getElementById('numeroVisitantes');
-
+            
             membros.forEach((nome, index) => {
                 const li = document.createElement('li');
                 li.textContent = nome;
@@ -117,9 +128,6 @@ document.addEventListener('DOMContentLoaded', function() {
             });
 
             contadorMembrosSpan.textContent = `(${membros.length})`;
-            if (numeroVisitantesInput) {
-                numeroVisitantesInput.value = membros.length + 1;
-            }
         };
 
         const removerMembro = (nomeParaRemover) => {
@@ -154,10 +162,11 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(event) {
             const activeTab = document.querySelector('.tab-link.active').dataset.tab;
             if (activeTab === 'individual') {
+                // Como os campos de instituição não são preenchidos, definimos valores padrão aqui
                 document.getElementById('nomeInstituicao').value = 'Visita Individual';
                 document.getElementById('tipoInstituicao').value = 'OUTRO';
                 document.getElementById('numeroVisitantes').value = 1;
-            } else {
+            } else { // Se for grupo
                 const membrosAdicionados = document.querySelectorAll('#membrosHiddenContainer input').length;
                 document.getElementById('numeroVisitantes').value = membrosAdicionados + 1;
             }
