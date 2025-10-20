@@ -1,10 +1,9 @@
 spring:
-    datasource: 
-       
+    datasource:
         url: jdbc:h2:file:./visitabrennanddb
         driver-class-name: org.h2.Driver
         username: teste
-        password: 
+        password:
     h2:
         console:
             enabled: true
@@ -13,6 +12,18 @@ spring:
         hibernate:
             ddl-auto: update
         show-sql: true
-        defer-datasource-initialization: true 
+        defer-datasource-initialization: true
     thymeleaf:
         cache: false
+    
+    mail:
+        host: smtp.gmail.com
+        port: 587
+        username: gestaovivabrennand@gmail.com
+        password: fqssxafccdhwsxhb
+        properties:
+            mail:
+                smtp:
+                    auth: true
+                    starttls:
+                        enable: true

@@ -2,6 +2,7 @@ package com.example.Gestao_Viva;
 
 import com.example.Gestao_Viva.model.StatusParque;
 import com.example.Gestao_Viva.repository.StatusParqueRepository;
+import com.example.Gestao_Viva.service.EmailService; // Importe o EmailService
 import io.restassured.RestAssured;
 import io.restassured.config.RedirectConfig;
 import org.junit.jupiter.api.BeforeEach;
@@ -9,6 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean; // Importe o @MockBean
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.ActiveProfiles;
 
@@ -20,8 +22,15 @@ import static org.junit.jupiter.api.Assertions.*;
 @ActiveProfiles("test")
 class StatusParqueAdminPostTest {
 
-  @LocalServerPort int port;
-  @Autowired StatusParqueRepository repo;
+  @LocalServerPort
+  int port;
+  
+  @Autowired
+  StatusParqueRepository repo;
+
+  
+  @MockBean
+  private EmailService emailService;
 
   @BeforeEach
   void setup() {

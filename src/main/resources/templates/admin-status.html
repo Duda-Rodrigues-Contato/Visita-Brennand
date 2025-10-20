@@ -8,6 +8,21 @@
     <link rel="stylesheet" th:href="@{/style.css}">
 </head>
 <body>
+    <header class="header">
+        <div class="header__container">
+            <a href="/status-parque" class="brand">
+                <img th:src="@{/img/2.png}" alt="Logo Gestão Viva" class="brand__logo" />
+                <span>Gestão Viva</span>
+            </a>
+            <nav class="nav">
+                <a href="/status-parque" class="nav-link">Início</a>
+                <a href="/agendamento" class="nav-link">Agendamento</a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+                <a href="/admin/status" class="nav-link active">Admin</a>
+            </nav>
+        </div>
+    </header>
+
     <div class="container">
         <h1>Painel de Administração</h1>
 
