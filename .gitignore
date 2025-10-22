@@ -50,3 +50,6 @@ target/site/allure-maven-plugin/
 # Sistema operacional
 .DS_Store
 Thumbs.db
+
+*.mv.db
+*.trace.db
