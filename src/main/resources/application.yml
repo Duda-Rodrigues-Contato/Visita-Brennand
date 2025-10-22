@@ -11,7 +11,7 @@ spring:
         database-platform: org.hibernate.dialect.H2Dialect
         # create-drop: Apaga e recria a base de dados a cada reinício.
         hibernate:
-            ddl-auto: create-drop
+            ddl-auto: validate
         show-sql: true
     # Garante que o data.sql seja sempre executado
     sql:

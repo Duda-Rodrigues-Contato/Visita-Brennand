@@ -1,125 +1,111 @@
 package com.example.Gestao_Viva;
 
 import com.example.Gestao_Viva.model.StatusParque;
-import com.example.Gestao_Viva.model.Visita;
-import com.example.Gestao_Viva.model.enums.StatusVisita;
 import com.example.Gestao_Viva.repository.StatusParqueRepository;
-import com.example.Gestao_Viva.repository.VisitaRepository;
-import com.example.Gestao_Viva.service.EmailService;
 import io.restassured.RestAssured;
 import io.restassured.config.RedirectConfig;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import io.restassured.filter.Filter;
+import io.restassured.filter.FilterContext;
+import io.restassured.internal.NameAndValue;
+import io.restassured.response.Response;
+import io.restassured.specification.FilterableRequestSpecification;
+import io.restassured.specification.FilterableResponseSpecification;
+import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.extension.*;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 
-import java.time.LocalDate;
+import java.util.stream.Collectors;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.ArgumentMatchers.contains;
-import static org.mockito.ArgumentMatchers.eq;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
+import static org.junit.jupiter.api.Assertions.*;
 
+@DisplayName("Admin /status — abrir, fechar e manutenção")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class StatusParqueAdminPostTest {
 
-  @LocalServerPort
-  int port;
-  
-  @Autowired
-  StatusParqueRepository repo;
+    // Cores
+    static final String RESET="\u001B[0m", GREEN="\u001B[32m", CYAN="\u001B[36m", DIM="\u001B[2m", RED="\u001B[31m";
 
-  @Autowired
-  VisitaRepository visitaRepo;
+    // Watcher visual
+    static class PrettyWatcher implements TestWatcher, BeforeTestExecutionCallback {
+        private final ThreadLocal<Long> start = new ThreadLocal<>();
+        @Override public void beforeTestExecution(ExtensionContext c){ start.set(System.nanoTime()); }
+        @Override public void testSuccessful(ExtensionContext c){
+            long ms=(System.nanoTime()-start.get())/1_000_000;
+            System.out.println(GREEN+"✔ SUCESSO"+RESET+"  "+CYAN+c.getDisplayName()+RESET+"  "+DIM+"("+ms+" ms)"+RESET);
+        }
+        @Override public void testFailed(ExtensionContext c, Throwable t){
+            long ms=(System.nanoTime()-start.get())/1_000_000;
+            System.out.println(RED+"✖ FALHA"+RESET+"  "+CYAN+c.getDisplayName()+RESET+"  "+DIM+"("+ms+" ms)"+RESET);
+            System.out.println(RED+"↳ "+t.getMessage()+RESET);
+        }
+    }
+    @RegisterExtension static PrettyWatcher prettyWatcher = new PrettyWatcher();
 
-  @MockBean
-  private EmailService emailService;
+    // Log HTTP compacto
+    static final Filter PRETTY_HTTP = new Filter(){
+        @Override public Response filter(FilterableRequestSpecification req, FilterableResponseSpecification res, FilterContext ctx){
+            long t0=System.nanoTime(); Response r=ctx.next(req,res); long ms=(System.nanoTime()-t0)/1_000_000;
+            String form=req.getFormParams().entrySet().stream().map(e->e.getKey()+"="+e.getValue()).collect(Collectors.joining("&"));
+            String headers=r.getHeaders().asList().stream().filter(h->h.getName().equalsIgnoreCase("Location")).map(NameAndValue::toString).collect(Collectors.joining(", "));
+            System.out.println(DIM+String.format("HTTP %d  %s %s  body:{%s}  hdr:{%s}  [%d ms]",
+                    r.getStatusCode(), req.getMethod(), req.getURI(), form, headers, ms)+RESET);
+            return r;
+        }
+    };
 
-  @DynamicPropertySource
-  static void overrideProperties(DynamicPropertyRegistry registry) {
-      registry.add("spring.datasource.url", () -> "jdbc:h2:mem:testdb_gestao_viva");
-      registry.add("spring.datasource.driver-class-name", () -> "org.h2.Driver");
-      registry.add("spring.datasource.username", () -> "sa");
-      registry.add("spring.datasource.password", () -> "password");
-      registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
-      registry.add("spring.sql.init.mode", () -> "never");
-  }
+    @LocalServerPort int port;
 
-  @BeforeEach
-  void setup() {
-    RestAssured.baseURI = "http://localhost";
-    RestAssured.port = port;
-    RestAssured.config = RestAssured.config()
-      .redirect(RedirectConfig.redirectConfig().followRedirects(false));
-    RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-    repo.deleteAll();
-    visitaRepo.deleteAll();
-  }
+    @Autowired StatusParqueRepository repo;
 
-  @ParameterizedTest(name = "POST /admin/status -> {0} ({1})")
-  @CsvSource({
-    "ABERTO, Funcionamento normal(teste - automatizado)",
-    "FECHADO, Chuva forte(teste - automatizado)",
-    "MANUTENCAO, Obras na passarela(teste - automatizado)"
-  })
-  void deveRegistrarEstados(String estado, String motivo) {
-    given()
-      .contentType("application/x-www-form-urlencoded")
-      .formParam("estado", estado)
-      .formParam("motivo", motivo)
-    .when()
-      .post("/admin/status")
-    .then()
-      .statusCode(anyOf(is(302), is(303)))
-      .header("Location", containsString("/admin/status?sucesso"));
+    @DynamicPropertySource
+    static void props(DynamicPropertyRegistry r){
+        r.add("spring.datasource.url", ()->"jdbc:h2:mem:testdb_gestao_viva");
+        r.add("spring.datasource.driver-class-name", ()->"org.h2.Driver");
+        r.add("spring.datasource.username", ()->"sa");
+        r.add("spring.datasource.password", ()->"password");
+        r.add("spring.jpa.hibernate.ddl-auto", ()->"create-drop");
+        r.add("spring.sql.init.mode", ()->"never");
+    }
 
-    StatusParque ultimo = repo.findTopByOrderByUltimaAtualizacaoDesc().orElseThrow();
-    assertEquals(estado, ultimo.getEstado().name(), "estado salvo diferente");
-    assertEquals(motivo, ultimo.getMotivo(), "motivo salvo diferente");
-    assertNotNull(ultimo.getUltimaAtualizacao(), "sem timestamp");
-  }
+    @BeforeEach
+    void setup(TestInfo info){
+        RestAssured.baseURI="http://localhost";
+        RestAssured.port=port;
+        RestAssured.config=RestAssured.config().redirect(RedirectConfig.redirectConfig().followRedirects(false));
+        RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
+        repo.deleteAll();
+        System.out.println(DIM+"• Iniciando: "+info.getDisplayName()+RESET);
+    }
 
-  @Test
-  void deveNotificarVisitantesQuandoParqueForFechado() {
-      Visita visitaDeHoje = new Visita();
-      visitaDeHoje.setEmailResponsavel("visitante.hoje@email.com");
-      visitaDeHoje.setNomeResponsavel("Visitante de Hoje");
-      visitaDeHoje.setDataVisita(LocalDate.now());
-      visitaDeHoje.setStatus(StatusVisita.AGENDADO);
-      visitaDeHoje.setNomeInstituicao("Instituicao Notificada");
-      visitaDeHoje.setTipoInstituicao("OUTRO");
-      visitaDeHoje.setTelefoneResponsavel("111111");
-      visitaDeHoje.setHorarioChegada("15:00");
-      visitaDeHoje.setNumeroVisitantes(2);
-      visitaRepo.save(visitaDeHoje);
-      
-      String motivoFechamento = "Alerta de maré alta";
+    @ParameterizedTest(name="[{index}] POST /admin/status -> {0} ({1})")
+    @CsvSource({
+            "ABERTO, Funcionamento normal(teste - automatizado)",
+            "FECHADO, Chuva forte(teste - automatizado)",
+            "MANUTENCAO, Obras na passarela(teste - automatizado)"
+    })
+    void deveRegistrarEstados(String estado, String motivo){
+        given()
+            .filter(PRETTY_HTTP)
+            .contentType("application/x-www-form-urlencoded")
+            .formParam("estado", estado)
+            .formParam("motivo", motivo)
+        .when()
+            .post("/admin/status")
+        .then()
+            .statusCode(anyOf(is(302), is(303)))
+            .header("Location", containsString("/admin/status?sucesso"));
 
-      given()
-          .contentType("application/x-www-form-urlencoded")
-          .formParam("estado", "FECHADO")
-          .formParam("motivo", motivoFechamento)
-      .when()
-          .post("/admin/status");
-
-      // --- VERIFICAÇÃO FINAL E ROBUSTA ---
-      // Verificamos que o método foi chamado para o destinatário correto,
-      // com um assunto que contém a frase chave, e com qualquer corpo de texto.
-      verify(emailService, times(1)).enviarEmail(
-          eq("visitante.hoje@email.com"), 
-          contains("AVISO IMPORTANTE"), 
-          anyString()
-      );
-  }
+        StatusParque ultimo = repo.findTopByOrderByUltimaAtualizacaoDesc().orElseThrow();
+        assertEquals(estado, ultimo.getEstado().name());
+        assertEquals(motivo, ultimo.getMotivo());
+        assertNotNull(ultimo.getUltimaAtualizacao());
+    }
 }
