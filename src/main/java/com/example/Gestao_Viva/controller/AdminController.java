@@ -34,7 +34,6 @@ public class AdminController {
     public String exibirPainelStatus(Model model) {
         model.addAttribute("statusAtual", statusParqueService.obterStatusAtual());
         model.addAttribute("todosOsEstados", EstadoParque.values());
-        // Adiciona um DTO vazio para o formulário, caso a página precise
         model.addAttribute("statusUpdateDTO", new com.example.Gestao_Viva.dto.StatusUpdateRequestDTO());
         return "admin-status";
     }

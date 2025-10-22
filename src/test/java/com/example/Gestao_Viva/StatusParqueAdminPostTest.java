@@ -30,10 +30,8 @@ import static org.junit.jupiter.api.Assertions.*;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class StatusParqueAdminPostTest {
 
-    // Cores
     static final String RESET="\u001B[0m", GREEN="\u001B[32m", CYAN="\u001B[36m", DIM="\u001B[2m", RED="\u001B[31m";
 
-    // Watcher visual
     static class PrettyWatcher implements TestWatcher, BeforeTestExecutionCallback {
         private final ThreadLocal<Long> start = new ThreadLocal<>();
         @Override public void beforeTestExecution(ExtensionContext c){ start.set(System.nanoTime()); }
@@ -49,7 +47,6 @@ class StatusParqueAdminPostTest {
     }
     @RegisterExtension static PrettyWatcher prettyWatcher = new PrettyWatcher();
 
-    // Log HTTP compacto
     static final Filter PRETTY_HTTP = new Filter(){
         @Override public Response filter(FilterableRequestSpecification req, FilterableResponseSpecification res, FilterContext ctx){
             long t0=System.nanoTime(); Response r=ctx.next(req,res); long ms=(System.nanoTime()-t0)/1_000_000;

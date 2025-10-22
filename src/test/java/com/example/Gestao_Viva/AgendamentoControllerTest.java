@@ -34,17 +34,13 @@ class AgendamentoControllerTest {
     @Autowired
     VisitaRepository visitaRepo;
 
-    // ADICIONADO: MockBean para desabilitar o bean real do EmailService
-    // e evitar a falha de contexto de conexão/autenticação.
     @MockBean
     private EmailService emailService;
 
     @DynamicPropertySource
     static void overrideProps(DynamicPropertyRegistry registry) {
-        // Isola o banco de dados e adiciona correção de codificação (UTF8)
         registry.add("spring.datasource.url", () -> "jdbc:h2:mem:testdb_agendamento;CHARSET=UTF8");
         
-        // Mantemos spring.mail.host para reforçar a desativação da auto-configuração de e-mail
         registry.add("spring.mail.host", () -> "mockhost"); 
         
         registry.add("spring.jpa.hibernate.ddl-auto", () -> "create-drop");
@@ -58,13 +54,12 @@ class AgendamentoControllerTest {
         RestAssured.config = RestAssured.config()
                 .redirect(RedirectConfig.redirectConfig().followRedirects(false));
         RestAssured.enableLoggingOfRequestAndResponseIfValidationFails();
-        visitaRepo.deleteAll(); // Garante que o banco está limpo para cada teste
+        visitaRepo.deleteAll(); 
     }
 
     @Test
     @DisplayName("SUCESSO: Deve agendar uma nova visita em grupo com sucesso e persistir dados")
     void deveAgendarNovaVisitaEmGrupoComSucesso() {
-        // 1. DADOS DE ENTRADA: Encontra o próximo dia útil (não Segunda-feira)
         LocalDate dataVisita = LocalDate.now().plusDays(1);
         while (dataVisita.getDayOfWeek() == DayOfWeek.MONDAY) {
             dataVisita = dataVisita.plusDays(1);
@@ -72,8 +67,7 @@ class AgendamentoControllerTest {
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         String dataVisitaStr = dataVisita.format(formatter);
-        
-        // Simulação do envio do formulário
+
         given()
             .contentType("application/x-www-form-urlencoded")
             .formParam("nomeInstituicao", "Colégio Teste Integrado")
@@ -86,19 +80,15 @@ class AgendamentoControllerTest {
             .formParam("dataVisita", dataVisitaStr)
             .formParam("horarioChegada", "10:30")
             .formParam("incluiPcd", "true")
-            // Campos de membros simulam a adição via JavaScript (array)
             .formParam("membros[0]", "Aluno A")
             .formParam("membros[1]", "Aluno B")
-            // O total (Responsável + 2 Membros)
             .formParam("numeroVisitantes", "3")
         .when()
             .post("/agendamento")
         .then()
-            // 2. VERIFICAR REDIRECIONAMENTO DE SUCESSO
             .statusCode(is(302)) 
             .header("Location", containsString("/agendamento/sucesso"));
 
-        // 3. VERIFICAR PERSISTÊNCIA NO BANCO
         List<Visita> visitasSalvas = visitaRepo.findAll();
         
         assertFalse(visitasSalvas.isEmpty(), "A visita não foi salva no banco de dados.");
@@ -117,7 +107,6 @@ class AgendamentoControllerTest {
     @Test
     @DisplayName("FALHA: Deve retornar erro de validação para agendamento em uma segunda-feira")
     void deveFalharSeAgendarEmUmaSegundaFeira() {
-        // Encontra a próxima Segunda-feira
         LocalDate proximaSegunda = LocalDate.now();
         while (proximaSegunda.getDayOfWeek() != DayOfWeek.MONDAY) {
             proximaSegunda = proximaSegunda.plusDays(1);
@@ -126,7 +115,6 @@ class AgendamentoControllerTest {
 
         given()
             .contentType("application/x-www-form-urlencoded")
-            // Preenche todos os campos necessários com dados válidos, exceto a data
             .formParam("nomeInstituicao", "Escola Invalida")
             .formParam("tipoInstituicao", "ESCOLA_PRIVADA")
             .formParam("nomeResponsavel", "Responsável Inválido")
@@ -135,16 +123,13 @@ class AgendamentoControllerTest {
             .formParam("origemVisitante", "Recife/PE")
             .formParam("horarioChegada", "10:30")
             .formParam("numeroVisitantes", "2")
-            .formParam("dataVisita", dataSegundaStr) // Data de Segunda-feira (Inválida)
+            .formParam("dataVisita", dataSegundaStr) 
         .when()
             .post("/agendamento")
         .then()
-            // 2. VERIFICAR RETORNO PARA O FORMULÁRIO (Status 200/OK, sem redirecionamento)
             .statusCode(is(200)) 
-            // Verifica se a mensagem de erro da validação foi retornada na página
             .body(containsString("Agendamentos não são permitidos às segundas-feiras."));
 
-        // 3. VERIFICAR QUE NENHUM DADO FOI SALVO
         List<Visita> visitasSalvas = visitaRepo.findAll();
         assertTrue(visitasSalvas.isEmpty(), "Nenhuma visita deveria ter sido salva após falha de validação.");
     }

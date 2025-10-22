@@ -346,7 +346,7 @@ select:focus {
     .form-actions { flex-direction: column-reverse; }
     .submit-btn, .cancel-btn { width: 100%; }
 }
-/* HEADER */
+
 .header {
     background-color: var(--branco);
     padding: 1rem 2rem;

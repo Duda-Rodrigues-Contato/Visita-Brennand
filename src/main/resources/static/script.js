@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const individualFormSection = document.getElementById('individual-form-section');
     const membrosSection = document.getElementById('membros-section');
     
-    // Legendas que mudarão de número
     const responsavelLegend = document.getElementById('responsavel-legend');
     const detalhesLegend = document.getElementById('detalhes-legend');
 
@@ -22,22 +21,19 @@ document.addEventListener('DOMContentLoaded', function() {
                     membrosSection.classList.add('hidden');
                     individualFormSection.classList.remove('hidden');
                     
-                    // Ajusta a numeração das legendas
                     responsavelLegend.textContent = '2. Suas Informações de Contato';
                     detalhesLegend.textContent = '3. Detalhes da Visita';
-                } else { // Se for 'grupo'
+                } else { 
                     individualFormSection.classList.add('hidden');
                     grupoFormSection.classList.remove('hidden');
                     membrosSection.classList.remove('hidden');
                     
-                    // Ajusta a numeração das legendas
                     responsavelLegend.textContent = '2. Informações do Responsável';
                     detalhesLegend.textContent = '4. Detalhes da Visita';
                 }
             });
         });
         
-        // Ativa a aba de grupo por padrão ao carregar a página
         document.querySelector('.tab-link[data-tab="grupo"]').click();
     }
 
@@ -66,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
         submitBtn.disabled = false;
         dateError.textContent = '';
         switch (diaDaSemana) {
-            case 1: // Segunda-feira
+            case 1: 
                 horarioChegadaSelect.innerHTML = '<option value="" disabled selected>Fechado às Segundas</option>';
                 horarioChegadaSelect.disabled = true;
                 submitBtn.disabled = true;
@@ -162,11 +158,10 @@ document.addEventListener('DOMContentLoaded', function() {
         form.addEventListener('submit', function(event) {
             const activeTab = document.querySelector('.tab-link.active').dataset.tab;
             if (activeTab === 'individual') {
-                // Como os campos de instituição não são preenchidos, definimos valores padrão aqui
                 document.getElementById('nomeInstituicao').value = 'Visita Individual';
                 document.getElementById('tipoInstituicao').value = 'OUTRO';
                 document.getElementById('numeroVisitantes').value = 1;
-            } else { // Se for grupo
+            } else { 
                 const membrosAdicionados = document.querySelectorAll('#membrosHiddenContainer input').length;
                 document.getElementById('numeroVisitantes').value = membrosAdicionados + 1;
             }
