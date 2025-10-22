@@ -39,7 +39,7 @@ public class AvaliacaoController {
             avaliacaoService.salvar(avaliacaoDTO);
         } catch (RuntimeException e) {
             model.addAttribute("errorMessage", e.getMessage());
-            return "avaliacao";
+            return "avaliacao-avaliacao";
         }
 
         return "redirect:/avaliacao-agradecimento";
