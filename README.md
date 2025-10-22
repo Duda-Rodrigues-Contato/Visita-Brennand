@@ -1,4 +1,4 @@
-![Logo do Projeto](./assets/logo.jpg)
+![Logo do Projeto](./img/2.png)
 
 # ⛯ Gestão Viva
 
