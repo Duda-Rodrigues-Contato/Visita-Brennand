@@ -44,7 +44,7 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
-![Wireframe Pré-Cadastramento de Grupos Maiores](/img/Pré-Cadastramento%20de%20Grupos%20Maiores.png)
+![Wireframe Pré-Cadastramento de Grupos Maiores](./img/Pré-Cadastramento%20de%20Grupos%20Maiores.png)
 
 
 ### História 2 - DashBoard de Visualização:
@@ -52,7 +52,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
 **Protótipo e ScreenCast:**
 
-![Wireframe DashBoard](/img/wireframe%20-%20dashboard.png)
+![Wireframe DashBoard](./img/wireframe%20-%20dashboard.png)
 
 
 ### História 3 - Mostrar Visitantes Cadastrados:
@@ -62,7 +62,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=dLB7TWmaRHs).
 
-![Wireframe Mostrar Visitantes Cadastrados](/img/Dashboard%20de%20Visualização%20(1).png)
+![Wireframe Mostrar Visitantes Cadastrados](./img/Dashboard%20de%20Visualização%20(1).png)
 
 
 ### História 4 - Controle de Entrada dos Visitantes:
@@ -72,7 +72,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=dLB7TWmaRHs).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=xna3af7nVCw).
 
-![Wireframe Controle de Entrada dos Visitantes](/img/Busca%20de%20Visitantes%20Pré-Cadastrados.png)
+![Wireframe Controle de Entrada dos Visitantes](./img/Busca%20de%20Visitantes%20Pré-Cadastrados.png)
 
 
 ### História 5 - Pesquisa de Satisfação:
@@ -82,7 +82,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=xna3af7nVCw).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
 
-![Wireframe Pesquisa de Satisfação](/img/Pesquisa%20de%20Satisfação.png)
+![Wireframe Pesquisa de Satisfação](./img/Pesquisa%20de%20Satisfação.png)
 
 
 ### História 6 - Notificações de Mudanças Pelo Clima:
@@ -92,22 +92,30 @@ Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 
-![Wireframe Notificações de Mudanças Pelo Clima](/img/Mudança%20Climática.png)
+![Wireframe Notificações de Mudanças Pelo Clima](./img/Mudança%20Climática.png)
 
 
 ### História 7 - Acessibilidade no Parque das Esculturas:
 [Documento](https://docs.google.com/document/d/1f5ztoESUGCJT14r35-CQPm30vOouCAfoKymkx7YnDwo/edit?usp=sharing).
 
 
-## 1️⃣ Entrega 2 (30/09/2025):
+## 2️⃣ Entrega 2 (30/09/2025):
 
 **Ambiente de Versionamento de código atualizado semanalmente:**
 **Protótipo de Histórias:**
 **BugTracker no Jira:**
-<img width="1156" height="872" alt="image" src="https://github.com/user-attachments/assets/0d218a92-8e67-4e14-8af6-e7864f65eb8d" />
-
+<img width="1156" height="872" alt="image-bugtracker" src="https://github.com/user-attachments/assets/0d218a92-8e67-4e14-8af6-e7864f65eb8d" />
 
 ---
 
-## 1️⃣ Entrega 3 (23/10/2025):
+## 3️⃣ Entrega 3 (23/10/2025):
 **BugTracker no Jira:**
+<img width="1156" height="872" alt="image-bugtracker" src="./img/bugtracker2.png" />
+
+**Wireframes:**
+### História 5:
+
+
+### História 6:
+
+---
