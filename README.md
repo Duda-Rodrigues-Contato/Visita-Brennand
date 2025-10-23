@@ -1,4 +1,4 @@
-![Logo do Projeto](./img/2.png)
+<img width="1156" height="872" alt="Logo do Projeto" src="./img/2.png"/>
 
 # ⛯ Gestão Viva
 
@@ -44,7 +44,7 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
-![Wireframe Pré-Cadastramento de Grupos Maiores](./img/Pré-Cadastramento%20de%20Grupos%20Maiores.png)
+<img width="1156" height="872" alt="Wireframe Pré-Cadastramento de Grupos Maiores" src="./img/Pré-Cadastramento de Grupos Maiores.png"/>
 
 
 ### História 2 - DashBoard de Visualização:
@@ -52,7 +52,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
 **Protótipo e ScreenCast:**
 
-![Wireframe DashBoard](./img/wireframe%20-%20dashboard.png)
+<img width="1156" height="872" alt="Wireframe DashBoard" src="./img/wireframe - dashboard.png"/>
 
 
 ### História 3 - Mostrar Visitantes Cadastrados:
@@ -62,7 +62,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=dLB7TWmaRHs).
 
-![Wireframe Mostrar Visitantes Cadastrados](./img/Dashboard%20de%20Visualização%20(1).png)
+<img width="1156" height="872" alt="Wireframe Mostrar Visitantes Cadastrados" src="./img/Dashboard de Visualização (1).png"/>
 
 
 ### História 4 - Controle de Entrada dos Visitantes:
@@ -72,7 +72,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=dLB7TWmaRHs).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=xna3af7nVCw).
 
-![Wireframe Controle de Entrada dos Visitantes](./img/Busca%20de%20Visitantes%20Pré-Cadastrados.png)
+<img width="1156" height="872" alt="Wireframe Controle de Entrada dos Visitantes" src="./img/Busca de Visitantes Pré-Cadastrados.png" />
 
 
 ### História 5 - Pesquisa de Satisfação:
@@ -82,7 +82,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=xna3af7nVCw).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
 
-![Wireframe Pesquisa de Satisfação](./img/Pesquisa%20de%20Satisfação.png)
+<img width="1156" height="872" alt="Wireframe Pesquisa de Satisfação" src="./img/Pesquisa de Satisfação.png" />
 
 
 ### História 6 - Notificações de Mudanças Pelo Clima:
