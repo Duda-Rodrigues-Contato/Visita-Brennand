@@ -44,7 +44,7 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
-<img width="1156" height="872" alt="Wireframe Pré-Cadastramento de Grupos Maiores" src="./img/Pré-Cadastramento de Grupos Maiores.png"/>
+<img width="1000" height="872" alt="Wireframe Pré-Cadastramento de Grupos Maiores" src="./img/Pré-Cadastramento de Grupos Maiores.png"/>
 
 
 ### História 2 - DashBoard de Visualização:
