@@ -92,8 +92,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 
-![Wireframe Notificações de Mudanças Pelo Clima](./img/Mudança%20Climática.png)
-
+<img width="1156" height="872" alt="Wireframe Notificações de Mudanças Pelo Clima" src="./img/Mudança Climática.png" />
 
 ### História 7 - Acessibilidade no Parque das Esculturas:
 [Documento](https://docs.google.com/document/d/1f5ztoESUGCJT14r35-CQPm30vOouCAfoKymkx7YnDwo/edit?usp=sharing).
@@ -110,7 +109,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 
 ## 3️⃣ Entrega 3 (23/10/2025):
 **BugTracker no Jira:**
-<img width="1156" height="872" alt="image-bugtracker" src="./img/bugtracker2.png" />
+<img width="1156" height="872" alt="image-bugtracker2" src="./img/bugtracker2.png" />
 
 **Wireframes:**
 ### História 5:
