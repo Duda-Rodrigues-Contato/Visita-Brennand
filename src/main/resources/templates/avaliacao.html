@@ -15,7 +15,7 @@
         <h1>Conte-nos sobre sua visita!</h1>
         <p class="subtitle">Sua opinião é muito importante para nós e nos ajuda a melhorar a experiência.</p>
 
-        <form th:action="@{/avaliacao}" th:object="${avaliacaoDTO}" method="post" id="formAvaliacao" class="form-avaliacao">
+        <form th:action="@{/avaliacao}" th:object="${avaliacaoDTO}" method="post" id="formAvaliacao" class="form-avaliacao" novalidate>
 
             <input type="hidden" th:field="*{visitaId}" />
 
@@ -23,7 +23,7 @@
                 <legend>Avaliação Geral</legend>
                 <label>Qual sua satisfação geral com a visita ao Parque de Esculturas? *</label>
                 <div class="star-rating">
-                    <input type="radio" id="geral-star5" th:field="*{avaliacaoGeral}" value="5" required /><label for="geral-star5">★</label>
+                    <input type="radio" id="geral-star5" th:field="*{avaliacaoGeral}" value="5"  /><label for="geral-star5">★</label>
                     <input type="radio" id="geral-star4" th:field="*{avaliacaoGeral}" value="4" /><label for="geral-star4">★</label>
                     <input type="radio" id="geral-star3" th:field="*{avaliacaoGeral}" value="3" /><label for="geral-star3">★</label>
                     <input type="radio" id="geral-star2" th:field="*{avaliacaoGeral}" value="2" /><label for="geral-star2">★</label>
@@ -134,6 +134,6 @@
         </form>
     </div>
 
-    <script th:src="@{/js/avaliacao-visita.js}"></script>
+    <script th:src="@{/avaliacao-visita.js}"></script>
 </body>
 </html>

@@ -31,6 +31,8 @@ Link para o [Google Sites](https://sites.google.com/cesar.school/recentro/p%C3%A
 
 Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO-anGpi1oldjQ?usp=sharing).
 
+**[Clique aqui para ver a documentação completa dos testes](./TESTES_AUTOMATIZADOS.md)**
+
 ---
 
 ## 1️⃣ Entrega 1 (10/09/2025):

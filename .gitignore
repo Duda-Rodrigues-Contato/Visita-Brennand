@@ -42,14 +42,25 @@ allure-results/
 allure-report/
 target/site/allure-maven-plugin/
 
-# IDEs
+
 .idea/
 .vscode/
 *.iml
 
-# Sistema operacional
+
 .DS_Store
 Thumbs.db
 
 *.mv.db
 *.trace.db
+
+/node_modules/
+
+
+/cypress/videos/
+
+
+/cypress/screenshots/
+
+
+/cypress.env.json
