@@ -19,6 +19,7 @@
             <nav class="nav">
                 <a href="/status-parque" class="nav-link">Início</a>
                 <a href="/agendamento" class="nav-link ">Agendamento</a>
+                <a th:href="@{/dashboard/avaliacoes}" class="nav-link">Avaliações</a>
                 <a href="/dashboard" class="nav-link active">Dashboard</a>
             </nav>
         </div>
@@ -28,6 +29,8 @@
             <section class="card filter-card">
                 <h2>Relatório por Período</h2>
                 <form th:action="@{/dashboard}" method="get" class="filter-form">
+                    <input type="hidden" name="page" th:value="${paginaDeVisitas.number}" />
+                    <input type="hidden" name="sort" th:value="${sort}" />
                     <div class="date-inputs">
                         <div class="form-group">
                             <label for="dataInicio">Data de Início</label>
@@ -38,6 +41,7 @@
                             <input type="date" id="dataFim" name="dataFim" th:value="${#temporals.format(dataFim, 'yyyy-MM-dd')}">
                         </div>
                     </div>
+                    
                     <div class="form-actions">
                         <button type="submit" class="btn btn-primary">Aplicar Filtros</button>
                         <a th:href="@{/dashboard}" class="btn btn-secondary">Limpar Filtros</a>
@@ -67,13 +71,26 @@
                 </div>
             </section>
 
+
             <section class="card">
                 <h2>Detalhes dos Agendamentos no Período</h2>
                 <div class="table-responsive">
                     <table>
                         <thead>
                             <tr>
-                                <th>Data da Visita</th>
+                                <th>
+                                    <a th:href="@{/dashboard(
+                                        dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')},
+                                        dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')},
+                                        size=${size},
+                                        page=0,
+                                        sort=${sort == 'dataVisita,ASC' ? 'dataVisita,desc' : 'dataVisita,asc'}
+                                    )}" style="color: var(--vermelho-destaque); text-decoration: none;">
+                                        Data da Visita
+                                        <span th:if="${sort == 'dataVisita,ASC'}">▲</span>
+                                        <span th:if="${sort == 'dataVisita,DESC'}">▼</span>
+                                    </a>
+                                </th>
                                 <th>Nome do Grupo/Instituição</th>
                                 <th>Responsável</th>
                                 <th>Nº de Visitantes</th>
@@ -98,16 +115,46 @@
                         </tbody>
                     </table>
                 </div>
+                
                 <div class="pagination" th:if="${paginaDeVisitas.totalPages > 1}">
                     <a th:if="${!paginaDeVisitas.first}"
-                       th:href="@{/dashboard(dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, page=${paginaDeVisitas.number - 1})}"
+                       th:href="@{/dashboard(
+                           dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, 
+                           dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, 
+                           page=${paginaDeVisitas.number - 1},
+                           size=${size},
+                           sort=${sort}
+                       )}"
                        class="btn btn-secondary">Anterior</a>
+                    <span th:if="${paginaDeVisitas.first}"></span>
+
                     <span class="page-info">
                         Página <span th:text="${paginaDeVisitas.number + 1}">1</span> de <span th:text="${paginaDeVisitas.totalPages}">3</span>
                     </span>
+                    
                     <a th:if="${!paginaDeVisitas.last}"
-                       th:href="@{/dashboard(dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, page=${paginaDeVisitas.number + 1})}"
+                       th:href="@{/dashboard(
+                           dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, 
+                           dataFim=${#temporals.format(dataFim, 'yyyy-MM-dd')}, 
+                           page=${paginaDeVisitas.number + 1},
+                           size=${size},
+                           sort=${sort}
+                       )}"
                        class="btn btn-secondary">Próximo</a>
+                    <span th:if="${paginaDeVisitas.last}"></span>
+
+                    <form th:action="@{/dashboard}" method="get" class="page-size-form">
+                        <input type="hidden" name="dataInicio" th:value="${#temporals.format(dataInicio, 'yyyy-MM-dd')}">
+                        <input type="hidden" name="dataFim" th:value="${#temporals.format(dataFim, 'yyyy-MM-dd')}">
+                        <input type="hidden" name="sort" th:value="${sort}">
+                        <input type="hidden" name="page" value="0"> <label for="size">Itens por pág:</label>
+                        <select id="size" name="size" onchange="this.form.submit()">
+                            <option value="5" th:selected="${size == 5}">5</option>
+                            <option value="10" th:selected="${size == 10}">10</option>
+                            <option value="20" th:selected="${size == 20}">20</option>
+                            <option value="50" th:selected="${size == 50}">50</option>
+                        </select>
+                    </form>
                 </div>
             </section>
         </main>
@@ -115,7 +162,6 @@
 
 <script th:inline="javascript">
     /*<![CDATA[*/
-
     const labelsDoGrafico = /*[[${chartLabels}]]*/ [];
     const dadosDoGrafico = /*[[${chartData}]]*/ [];
     /*]]>*/

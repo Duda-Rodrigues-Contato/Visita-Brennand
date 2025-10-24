@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão Viva - Avaliações Recebidas</title>
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/css/dashboard-relatorio.css}">
+    <style>
+        .avaliacao-card {
+            background-color: var(--branco);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border-left: 5px solid var(--laranja-principal);
+        }
+        .avaliacao-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--borda-clara);
+            font-size: 0.9rem;
+            color: var(--texto-secundario);
+        }
+        .avaliacao-rating {
+            font-weight: bold;
+            color: var(--laranja-principal);
+        }
+        .avaliacao-comment {
+            margin-top: 1rem;
+            font-style: italic;
+            color: var(--texto-escuro);
+            background-color: var(--cinza-claro);
+            padding: 1rem;
+            border-radius: 4px;
+        }
+        .star-display { color: var(--laranja-principal); }
+        .star-display-empty { color: #ccc; }
+    </style>
+</head>
+<body>
+    
+    <header class="header">
+        <div class="header__container">
+            <a href="/status-parque" class="brand">
+                <img th:src="@{../img/1.png}" alt="Logo Gestão Viva" class="brand__logo" />
+                <span>Gestão Viva</span>
+            </a>
+            <nav class="nav">
+                <a href="/status-parque" class="nav-link">Início</a>
+                <a href="/agendamento" class="nav-link">Agendamento</a>
+                <a href="/dashboard" class="nav-link active">Dashboard</a>
+                 <a href="/dashboard/avaliacoes" class="nav-link" style="font-weight: bold;">Avaliações</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="main-container">
+        <main>
+            <section class="card filter-card">
+                 <h2 style="border: none; margin-bottom: 0;">Avaliações Recebidas</h2>
+            </section>
+
+            <section>
+                <div th:if="${paginaDeAvaliacoes.empty}" class="card empty-message">
+                    Nenhuma avaliação encontrada.
+                </div>
+
+                <div th:each="avaliacao : ${paginaDeAvaliacoes.content}" class="avaliacao-card">
+                    <div class="avaliacao-header">
+                        <span>
+                            Visita de: <strong th:text="${avaliacao.visita?.nomeResponsavel ?: 'Anônimo'}">Nome Responsável</strong>
+                            em <span th:text="${#temporals.format(avaliacao.visita?.dataVisita, 'dd/MM/yyyy')}">dd/MM/yyyy</span>
+                        </span>
+                        <span>
+                            Avaliado em: <span th:text="${#temporals.format(avaliacao.dataAvaliacao, 'dd/MM/yyyy HH:mm')}">dd/MM/yyyy HH:mm</span>
+                        </span>
+                    </div>
+
+                    <div>
+                        <strong>Avaliação Geral:</strong>
+                        <span class="avaliacao-rating">
+                            <span th:each="i : ${#numbers.sequence(1, avaliacao.avaliacaoGeral)}" class="star-display">★</span>
+                            <span th:if="${avaliacao.avaliacaoGeral < 5}" th:each="i : ${#numbers.sequence(avaliacao.avaliacaoGeral + 1, 5)}" class="star-display-empty">☆</span>
+                            (<span th:text="${avaliacao.avaliacaoGeral}">0</span>/5)
+                        </span>
+                    </div>
+
+                    <div th:if="${avaliacao.recomendacao != null}">
+                         <strong>Recomendaria (0-10):</strong> <span th:text="${avaliacao.recomendacao}"></span>
+                    </div>
+                     <div th:if="${avaliacao.perfilVisita != null and !avaliacao.perfilVisita.isEmpty()}">
+                         <strong>Perfil da Visita:</strong> <span th:text="${avaliacao.perfilVisita}"></span>
+                    </div>
+                    
+                    <div th:if="${avaliacao.comentariosSugestoes != null and !avaliacao.comentariosSugestoes.isEmpty()}" class="avaliacao-comment">
+                         " <span th:text="${avaliacao.comentariosSugestoes}">Comentário do usuário...</span> "
+                    </div>
+                     <div th:if="${avaliacao.comentariosSugestoes == null or avaliacao.comentariosSugestoes.isEmpty()}" style="margin-top: 1rem; color: var(--texto-secundario); font-size: 0.9em;">
+                         (Sem comentários adicionais)
+                    </div>
+                </div>
+            </section>
+
+            <div class="pagination" th:if="${paginaDeAvaliacoes.totalPages > 1}">
+                <a th:if="${!paginaDeAvaliacoes.first}"
+                   th:href="@{/dashboard/avaliacoes(page=${paginaDeAvaliacoes.number - 1}, size=${size}, sort=${sort})}"
+                   class="btn btn-secondary">Anterior</a>
+                <span th:if="${paginaDeAvaliacoes.first}"></span>
+
+                <span class="page-info">
+                    Página <span th:text="${paginaDeAvaliacoes.number + 1}">1</span> de <span th:text="${paginaDeAvaliacoes.totalPages}">3</span>
+                </span>
+
+                <a th:if="${!paginaDeAvaliacoes.last}"
+                   th:href="@{/dashboard/avaliacoes(page=${paginaDeAvaliacoes.number + 1}, size=${size}, sort=${sort})}"
+                   class="btn btn-secondary">Próximo</a>
+                <span th:if="${paginaDeAvaliacoes.last}"></span>
+
+                <form th:action="@{/dashboard/avaliacoes}" method="get" class="page-size-form">
+                    <input type="hidden" name="sort" th:value="${sort}">
+                    <input type="hidden" name="page" value="0">
+                    <label for="size">Itens por pág:</label>
+                    <select id="size" name="size" onchange="this.form.submit()">
+                        <option value="5" th:selected="${size == 5}">5</option>
+                        <option value="10" th:selected="${size == 10}">10</option>
+                        <option value="20" th:selected="${size == 20}">20</option>
+                        <option value="50" th:selected="${size == 50}">50</option>
+                    </select>
+                </form>
+            </div>
+
+        </main>
+    </div>
+
+</body>
+</html>
