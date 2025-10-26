@@ -112,9 +112,17 @@ Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 <img width="1156" height="872" alt="image-bugtracker2" src="./img/bugtracker2.png" />
 
 **Wireframes:**
-### História 5:
+### História 5: Pesquisa de Satisfação
+<img width="1889" height="958" alt="image" src="https://github.com/user-attachments/assets/81b2a5d5-7b27-4870-a8d7-6974abb7a4c6" />
+
+### História 6: Notificações de Mudanças Climáticas
+![Imagem do WhatsApp de 2025-10-26 à(s) 14 08 42_a51e9a87](https://github.com/user-attachments/assets/83caf305-b66a-41c6-90ab-69c3fa5add56)
+
+### Testes automatizados: Cypress e Rest Assured
+Rest Assured: <img width="515" height="132" alt="image" src="https://github.com/user-attachments/assets/b11b2fbe-3032-4bd1-a7ce-a12b80e0f3ee" />
+Cypress: 
 
 
-### História 6:
+
 
 ---
