@@ -44,7 +44,7 @@ Link para o [Drive](https://drive.google.com/drive/folders/1U2QRjp5EYA9rwZE-oSNO
 
 Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
-<img width="1000" height="872" alt="Wireframe Pré-Cadastramento de Grupos Maiores" src="./img/Pré-Cadastramento de Grupos Maiores.png"/>
+![Wireframe Pré-Cadastramento de Grupos Maiores](./img/Pré-Cadastramento%20de%20Grupos%20Maiores.png)
 
 
 ### História 2 - DashBoard de Visualização:
@@ -52,7 +52,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
 **Protótipo e ScreenCast:**
 
-<img width="1156" height="872" alt="Wireframe DashBoard" src="./img/wireframe - dashboard.png"/>
+![Wireframe DashBoard](./img/wireframe%20-%20dashboard.png)
 
 
 ### História 3 - Mostrar Visitantes Cadastrados:
@@ -62,7 +62,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=f4ef26sK7CI).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=dLB7TWmaRHs).
 
-<img width="1156" height="872" alt="Wireframe Mostrar Visitantes Cadastrados" src="./img/Dashboard de Visualização (1).png"/>
+![Wireframe Mostrar Visitantes Cadastrados](./img/Dashboard%20de%20Visualização%20(1).png)
 
 
 ### História 4 - Controle de Entrada dos Visitantes:
@@ -72,7 +72,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=dLB7TWmaRHs).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=xna3af7nVCw).
 
-<img width="1156" height="872" alt="Wireframe Controle de Entrada dos Visitantes" src="./img/Busca de Visitantes Pré-Cadastrados.png" />
+![Wireframe Controle de Entrada dos Visitantes](./img/Busca%20de%20Visitantes%20Pré-Cadastrados.png)
 
 
 ### História 5 - Pesquisa de Satisfação:
@@ -82,7 +82,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=xna3af7nVCw).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
 
-<img width="1156" height="872" alt="Wireframe Pesquisa de Satisfação" src="./img/Pesquisa de Satisfação.png" />
+![Wireframe Pesquisa de Satisfação](./img/Pesquisa%20de%20Satisfação.png)
 
 
 ### História 6 - Notificações de Mudanças Pelo Clima:
@@ -92,7 +92,7 @@ Link para o [Screencast](https://www.youtube.com/watch?v=hhRS00EjV1c).
 
 Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 
-<img width="1156" height="872" alt="Wireframe Notificações de Mudanças Pelo Clima" src="./img/Mudança Climática.png" />
+![Wireframe Notificações de Mudanças Pelo Clima](./img/Mudança%20Climática.png)
 
 ### História 7 - Acessibilidade no Parque das Esculturas:
 [Documento](https://docs.google.com/document/d/1f5ztoESUGCJT14r35-CQPm30vOouCAfoKymkx7YnDwo/edit?usp=sharing).
