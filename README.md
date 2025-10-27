@@ -120,7 +120,9 @@ Link para o [Screencast](https://www.youtube.com/watch?v=zK_en4-oZKM)
 
 ### Testes automatizados: Cypress e Rest Assured
 Rest Assured: <img width="515" height="132" alt="image" src="https://github.com/user-attachments/assets/b11b2fbe-3032-4bd1-a7ce-a12b80e0f3ee" />
-Cypress: 
+Cypress: <img width="1916" height="840" alt="image" src="https://github.com/user-attachments/assets/732abf30-2a1d-467f-a890-bd704acf4800" /> <img width="1916" height="841" alt="image" src="https://github.com/user-attachments/assets/c4dfd362-2407-439d-9e8b-5539ed34d326" />
+
+
 
 
 
