@@ -1,4 +1,4 @@
-<img width="1156" height="872" alt="Logo do Projeto" src="./img/2.png"/>
+![Logo do Projeto](./img/2.png)
 
 # ⛯ Gestão Viva
 
