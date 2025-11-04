@@ -1,0 +1,168 @@
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 24px;
+    border-bottom: 1px solid var(--borda-clara);
+    background-color: var(--fundo-claro);
+}
+
+.logo-header {
+    flex: 1; 
+}
+
+.logo-header img {
+    height: 40px; 
+    width: auto;
+    display: block; 
+}
+
+/* --- Botão QR Code --- */
+.qr-scan-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* --- Divisor "OU" --- */
+.divider {
+    text-align: center;
+    margin: 24px 0;
+    color: #aaa;
+    font-weight: 500;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background-color: var(--borda-clara);
+}
+
+/* --- Barra de Busca --- */
+.search-bar {
+    position: relative;
+    margin-bottom: 30px;
+}
+.search-bar .fa-search {
+    position: absolute;
+    top: 50%;
+    left: 15px;
+    transform: translateY(-50%);
+    color: var(--texto-secundario-escuro);
+}
+.search-bar input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 1px solid var(--borda-clara);
+    border-radius: 4px; 
+    font-size: 16px; 
+    font-family: "Poppins", sans-serif; 
+    background-color: var(--fundo-input); 
+    color: var(--texto-escuro);
+    transition: 0.3s;
+}
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--laranja-principal);
+    box-shadow: 0 0 8px rgba(255, 162, 0, 0.4); 
+}
+
+/* --- Seção de Visitas Agendadas --- */
+.scheduled-visits h2 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.visits-list {
+    border: 1px solid var(--borda-clara);
+    border-radius: 8px;
+    max-height: 400px; 
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #aaa #f1f1f1;
+}
+.visits-list::-webkit-scrollbar { width: 8px; }
+.visits-list::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 8px; }
+.visits-list::-webkit-scrollbar-thumb { background: #aaa; border-radius: 8px; }
+
+.visit-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px;
+    border-bottom: 1px solid var(--borda-clara);
+}
+.visit-item:last-child { border-bottom: none; }
+
+.visit-info h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    margin-bottom: 2px;
+}
+.visit-info p {
+    font-size: 0.9rem;
+    color: var(--texto-secundario-escuro);
+    margin-bottom: 8px;
+}
+.visit-details {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.9rem;
+    color: var(--texto-secundario-escuro);
+    font-weight: 500;
+}
+.visit-details i { margin-right: 4px; }
+
+.visit-actions {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+    flex-shrink: 0;
+    margin-left: 15px;
+}
+
+.status-badge {
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 4px 10px;
+    border-radius: 12px;
+    text-align: center;
+    width: 110px;
+}
+.status-missing { background-color: var(--fundo-vermelho); color: var(--cor-vermelho); }
+.status-waiting { background-color: var(--fundo-amarelo); color: var(--cor-amarelo); }
+.status-done { background-color: var(--fundo-verde); color: var(--cor-verde); }
+
+
+.check-in-btn {
+    background-color: var(--laranja-principal);
+    color: var(--fundo-claro);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: background-color 0.2s;
+    width: 110px;
+}
+.check-in-btn:hover:not(:disabled) {
+    background-color: #e68a00;
+}
+
+.check-in-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
