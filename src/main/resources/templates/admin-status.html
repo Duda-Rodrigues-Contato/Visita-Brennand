@@ -15,10 +15,11 @@
                 <span>Gestão Viva</span>
             </a>
             <nav class="nav">
-                <a href="/status-parque" class="nav-link">Início</a>
-                <a href="/agendamento" class="nav-link">Agendamento</a>
-                <a href="/dashboard" class="nav-link">Dashboard</a>
-                <a href="/admin/status" class="nav-link active">Admin</a>
+                <a th:href="@{/status-parque}" class="nav-link">Início</a>
+      <a th:href="@{/agendamento}" class="nav-link">Agendamento</a>
+      <a th:href="@{/dashboard}" class="nav-link">Dashboard</a>
+      <a th:href="@{/dashboard/avaliacoes}" class="nav-link">Avaliações</a>
+      <a th:href="@{/admin/status}" class="nav-link" style="font-weight: bold; color: #c62828;">Admin</a>
             </nav>
         </div>
     </header>
