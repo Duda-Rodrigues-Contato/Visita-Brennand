@@ -28,6 +28,37 @@ body {
     padding-bottom: 40px;
 }
 
+
+.subtitle {
+    text-align: center;
+    color: var(--texto-secundario-escuro);
+    margin-top: -10px;
+    margin-bottom: 30px;
+}
+
+.btn {
+    width: 100%;
+    background-color: var(--laranja-principal);
+    color: var(--fundo-claro);
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.2s;
+}
+.btn:hover:not(:disabled) {
+    background-color: #e68a00; /* Laranja mais escuro */
+}
+.btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
 .page-header {
     width: 100%;
     background-color: var(--fundo-claro);

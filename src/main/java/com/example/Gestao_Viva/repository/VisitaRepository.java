@@ -33,4 +33,12 @@ public interface VisitaRepository extends JpaRepository<Visita, Long> {
 
     
     List<Visita> findByDataVisitaAndStatus(LocalDate data, StatusVisita status);
+
+    List<Visita> findByDataVisitaAndStatusAndNomeResponsavelContainingIgnoreCaseOrNomeInstituicaoContainingIgnoreCase(
+        LocalDate dataVisita, 
+        StatusVisita status, 
+        String nomeResponsavel, 
+        String nomeInstituicao
+    );
+
 }

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Entrada - Gestão Viva</title>
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/style.css}">
+    <link rel="stylesheet" th:href="@{/css/check-in.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+    <header class="header">
+        <div class="header__container">
+            <a href="/status-parque" class="brand">
+                <img th:src="@{../img/1.png}" alt="Logo Gestão Viva" class="brand__logo" />
+                <span>Gestão Viva</span>
+            </a>
+            <nav class="nav">
+                <a href="/status-parque" class="nav-link">Início</a>
+                <a href="/agendamento" class="nav-link active">Agendamento</a>
+                <a th:href="@{/dashboard/avaliacoes}" class="nav-link">Avaliações</a>
+                <a href="/dashboard" class="nav-link">Dashboard</a>
+            </nav>
+    </header>
+
+    <main class="container">
+        
+        <h1>Controle de Entrada</h1>
+        <p class="subtitle">Faça o check-in de visitantes por QR Code ou busca manual.</p>
+
+        <button class="btn qr-scan-btn">
+            <i class="fas fa-qrcode"></i> ESCANEAR QR CODE
+        </button>
+        
+        <div class="divider">
+            <span>OU</span>
+        </div>
+
+        <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Buscar por nome do grupo ou visitante">
+        </div>
+
+        <section class="scheduled-visits">
+            <h2>Visitas Agendas Hoje</h2>
+            <div class="visits-list">
+                </div>
+        </section>
+    </main>
+
+</body>
+</html>
