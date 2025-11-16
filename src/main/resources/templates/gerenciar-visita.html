@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciar sua Visita</title>
+    <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <style>
+        .container { max-width: 700px; text-align: center; }
+        .visita-detalhes { background-color: var(--fundo-pagina); padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .visita-detalhes p { margin: 10px 0; font-size: 1.1rem; }
+        .visita-detalhes strong { color: var(--vermelho-destaque); }
+        .action-buttons { display: flex; gap: 15px; justify-content: center; }
+        .btn-confirm { background-color: var(--verde-principal); }
+        .btn-confirm:hover { background-color: var(--verde-hover); }
+        .btn-cancel { background-color: var(--vermelho-destaque); color: white; }
+        .btn-cancel:hover { background-color: #c0392b; }
+        .mensagem { padding: 15px; border-radius: 8px; font-weight: 500; font-size: 1.1rem; margin-top: 20px; }
+        .mensagem-erro { background-color: #fdeaea; color: var(--erro); }
+        .mensagem-sucesso { background-color: #e6f5f3; color: var(--verde-principal); }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="header__container">
+            <a href="/status-parque" class="brand">
+                <img th:src="@{/img/1.png}" alt="Logo Gestão Viva" class="brand__logo" />
+                <span>Gestão Viva</span>
+            </a>
+            <nav class="nav">
+                <a th:href="@{/status-parque}" class="nav-link">Início</a>
+                <a th:href="@{/agendamento}" class="nav-link">Agendamento</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        
+        <h1>Gerencie seu Agendamento</h1>
+
+        <div th:if="${erro}" class="mensagem mensagem-erro">
+            <p th:text="${erro}">Erro ao carregar visita.</p>
+        </div>
+
+        <div th:if="${mensagem}" class="mensagem mensagem-sucesso">
+            <p th:text="${mensagem}">Ação concluída com sucesso.</p>
+        </div>
+
+        <div th:if="${visita}">
+            <p class="subtitle">Olá, <strong th:text="${visita.nomeResponsavel}">Visitante</strong>! Por favor, revise os dados e tome uma ação.</p>
+            
+            <div class="visita-detalhes">
+                <p>Data da Visita: <strong th:text="${#temporals.format(visita.dataVisita, 'dd/MM/yyyy')}">dd/MM/yyyy</strong></p>
+                <p>Horário Previsto: <strong th:text="${visita.horarioChegada}">00:00</strong></p>
+                <p>Status Atual: <strong th:text="${visita.status}">AGENDADO</strong></p>
+            </div>
+
+            <div th:if="${visita.status.name() == 'AGENDADO'}" class="action-buttons">
+                
+                <form th:action="@{/gerenciar-visita/confirmar}" method="POST">
+                    <input type="hidden" name="token" th:value="${visita.token}" />
+                    <button type="submit" class="submit-btn btn-confirm">Confirmar Agendamento</button>
+                </form>
+                
+                <form th:action="@{/gerenciar-visita/cancelar}" method="POST">
+                    <input type="hidden" name="token" th:value="${visita.token}" />
+                    <button type="submit" class="submit-btn btn-cancel">Cancelar Visita</button>
+                </form>
+
+            </div>
+            
+            <div th:if="${visita.status.name() == 'CANCELADO' and !mensagem}" class="mensagem mensagem-erro">
+                <p>Esta visita já foi cancelada.</p>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+</html>

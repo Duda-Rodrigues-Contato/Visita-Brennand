@@ -12,4 +12,4 @@ INSERT INTO visitas (nome_instituicao, nome_responsavel, email_responsavel, tipo
 INSERT INTO visitas (nome_instituicao, nome_responsavel, email_responsavel, tipo_instituicao, telefone_responsavel, data_visita, horario_chegada, numero_visitantes, inclui_pcd, status) VALUES ('Grupo de Avaliação', 'Visitante de Teste de Avaliação', 'grq@cesar.school', 'OUTRO', '555555555', '2025-10-21', '11:30', 2, false, 'REALIZADO');
 
 INSERT INTO visitas (nome_instituicao, nome_responsavel, email_responsavel, tipo_instituicao, telefone_responsavel, data_visita, horario_chegada, numero_visitantes, inclui_pcd, status) 
-VALUES ('Grupo de Teste de HOJE', 'Carlos Testador', 'teste@email.com', 'OUTRO', '999999999', '2025-11-16', '14:00', 5, false, 'AGENDADO');
+VALUES ('Grupo de Teste de HOJE', 'Carlos Testador', 'mastheusmelqn@gmail@email.com', 'OUTRO', '999999999', '2025-11-16', '14:00', 5, false, 'AGENDADO');

@@ -4,6 +4,7 @@ import com.example.Gestao_Viva.model.enums.StatusVisita;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID; // 1. IMPORTAR UUID
 
 @Entity
 @Table(name = "visitas")
@@ -47,10 +48,18 @@ public class Visita {
     private LocalDate dataNascimento;
     private String sexo; 
 
+    
+    @Column(unique = true) 
+    private String token;
+
     @PrePersist
     public void prePersist() {
         if (status == null) {
             status = StatusVisita.AGENDADO;
+        }
+        
+        if (token == null) {
+            token = UUID.randomUUID().toString();
         }
     }
 
@@ -87,4 +96,8 @@ public class Visita {
     public void setDataNascimento(LocalDate dataNascimento) { this.dataNascimento = dataNascimento; }
     public String getSexo() { return sexo; }
     public void setSexo(String sexo) { this.sexo = sexo; }
+
+    
+    public String getToken() { return token; }
+    public void setToken(String token) { this.token = token; }
 }
