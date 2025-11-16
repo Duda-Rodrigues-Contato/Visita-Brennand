@@ -12,6 +12,9 @@ public class VisitaManagementService {
 
     @Autowired
     private VisitaRepository visitaRepository;
+    
+    @Autowired
+    private EmailService emailService;
 
     @Transactional(readOnly = true)
     public Visita buscarPorToken(String token) {
@@ -19,7 +22,6 @@ public class VisitaManagementService {
             .orElseThrow(() -> new RuntimeException("Agendamento não encontrado ou token inválido."));
     }
 
-  
     @Transactional
     public Visita confirmarVisita(String token) {
         Visita visita = buscarPorToken(token);
@@ -29,10 +31,32 @@ public class VisitaManagementService {
         }
 
         visita.setStatus(StatusVisita.CONFIRMADO);
-        return visitaRepository.save(visita);
+        Visita visitaSalva = visitaRepository.save(visita);
+
+        enviarEmailTicket(visitaSalva);
+
+        return visitaSalva;
     }
 
-   
+    private void enviarEmailTicket(Visita visita) {
+        String linkTicket = "http://localhost:8080/ticket?token=" + visita.getToken();
+        
+        String assunto = "Sua Visita foi Confirmada! Aqui está o seu Ticket.";
+        String texto = String.format(
+            "Olá %s,\n\n" +
+            "Sua visita ao Parque de Esculturas Francisco Brennand está CONFIRMADA para o dia %s às %s.\n\n" +
+            "Acesse o seu Ticket Digital e QR Code no link abaixo:\n" +
+            "%s\n\n" +
+            "Apresente este código na entrada. Esperamos por si!",
+            visita.getNomeResponsavel(),
+            visita.getDataVisita(),
+            visita.getHorarioChegada(),
+            linkTicket
+        );
+
+        emailService.enviarEmail(visita.getEmailResponsavel(), assunto, texto);
+    }
+
     @Transactional
     public Visita cancelarVisita(String token) {
         Visita visita = buscarPorToken(token);
