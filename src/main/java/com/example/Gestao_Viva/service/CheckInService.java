@@ -31,26 +31,20 @@ public class CheckInService {
         );
     }
 
-    
     public Visita realizarCheckIn(Long visitaId) {
 
-       
         Visita visita = visitaRepository.findById(visitaId)
             .orElseThrow(() -> new RuntimeException("Visita com ID " + visitaId + " não encontrada no sistema."));
 
-       
         if (!visita.getDataVisita().equals(LocalDate.now())) {
             throw new RuntimeException("Check-in não permitido. Visita agendada para outra data.");
         }
 
-        
         if (!visita.getStatus().equals(StatusVisita.AGENDADO)) {
-            
             
             throw new RuntimeException("A visita já está com status: " + visita.getStatus());
         }
 
-        
         visita.setStatus(StatusVisita.REALIZADO);
         return visitaRepository.save(visita);
     }
