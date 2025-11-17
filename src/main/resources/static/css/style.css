@@ -407,4 +407,5 @@ select:focus {
 }
 .nav { display: flex; gap: 2rem; }
 .nav-link { text-decoration: none; color: var(--texto-secundario); font-weight: 500; transition: color 0.3s; }
-.nav-link:hover, .nav-link.active { color: var(--vermelho-destaque); }
+.nav-link:hover
+.nav-link.active { color: var(--vermelho-destaque); }
