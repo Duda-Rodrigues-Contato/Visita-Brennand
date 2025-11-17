@@ -97,7 +97,10 @@ body {
 .cta p { max-width: 600px; margin: 0 auto 2rem auto; font-size: 1.1rem; }
 .btn { padding: 0.8rem 2rem; border-radius: 6px; text-decoration: none; font-weight: 600; cursor: pointer; text-align: center; border: none; transition: all 0.3s ease; }
 .btn-primary { background-color: var(--verde-principal); color: var(--branco); font-size: 1.1rem; }
-.btn-primary:hover { background-color: var(--verde-hover); transform: translateY(-3px); }
+.btn-primary:hover { 
+    background-color: #e68a00; 
+    transform: translateY(-2px); 
+ }
 
 
 .footer { background-color: var(--texto-escuro); color: #ccc; padding: 3rem 2rem 0 2rem; }

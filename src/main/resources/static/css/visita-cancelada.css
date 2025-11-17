@@ -1,0 +1,59 @@
+.container-sucesso {
+    text-align: center;
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 40px;
+    background-color: var(--fundo-claro, #fff);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); /* Sombra mais sutil */
+}
+
+/* Ícone de check */
+.icone-sucesso {
+    font-size: 4rem;
+    color: var(--cor-verde, #28a745); /* Cor verde de sucesso */
+    margin-bottom: 20px;
+}
+
+/* Título principal */
+.container-sucesso h1 {
+    color: var(--cor-verde, #28a745); /* Mesmo verde do ícone */
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* Parágrafo de texto */
+.container-sucesso p {
+    color: var(--texto-secundario-escuro, #555);
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    line-height: 1.6;
+}
+
+/* Contêiner para o botão */
+.actions-container {
+    display: flex;
+    justify-content: center; 
+    gap: 15px;
+}
+
+/* Botão de ação principal */
+.btn-sucesso {
+    display: inline-block;
+    background-color: var(--laranja-principal, #FF9900);
+    color: #fff;
+    padding: 15px 30px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    transition: background-color 0.3s, transform 0.2s;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn-sucesso:hover {
+    background-color: #e68a00; 
+    transform: translateY(-2px); 
+}

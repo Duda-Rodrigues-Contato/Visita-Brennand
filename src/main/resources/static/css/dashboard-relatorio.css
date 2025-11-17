@@ -145,7 +145,7 @@ h2 {
     color: var(--branco);
 }
 .btn-primary:hover {
-    background-color: var(--verde-hover);
+    background-color: #e68a00;
 }
 
 .btn-secondary {
