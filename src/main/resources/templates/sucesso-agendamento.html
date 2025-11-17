@@ -5,79 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Agendamento Realizado</title>
     <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
-    
-
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
-            background-color: var(--fundo-pagina);
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 650px;
-            width: 100%; 
-            background: var(--fundo-claro); 
-            padding: 40px; 
-            border-radius: 12px; 
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08), 0 0 0 3px rgba(255, 162, 0, 0.1); 
-            border: 1px solid var(--borda-suave); 
-        }
-        
-        h1 {
-            color: var(--vermelho-destaque); 
-            font-size: 2.2rem;
-            margin-bottom: 1rem;
-        }
-
-        p {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: var(--texto-secundario);
-            margin-bottom: 2.5rem;
-        }
-
-        .actions-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px;
-            flex-wrap: wrap; 
-            margin-top: 1.5rem; 
-        }
-
-        .actions-container .submit-btn {
-            width: auto;
-            text-decoration: none; 
-            display: inline-block;
-            background-color: var(--verde-principal); 
-        }
-        .actions-container .submit-btn:hover {
-            background-color: var(--verde-hover);
-        }
-
-        .btn-link {
-            background-color: transparent;
-            color: var(--texto-secundario);
-            font-weight: 600;
-            text-decoration: none;
-            padding: 15px 20px;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            font-size: 1rem;
-            letter-spacing: 0.8px;
-        }
-
-        .btn-link:hover {
-            background-color: var(--borda-suave);
-            color: var(--texto-escuro);
-        }
-    </style>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/sucesso-agendamento.css}">
 </head>
 <body>
     <div class="container">
