@@ -1,0 +1,107 @@
+fieldset {
+    border: 1px solid var(--borda-clara);
+    border-radius: 8px;
+    padding: 25px;
+    margin-bottom: 30px;
+    background-color: var(--fundo-claro);
+}
+
+/* Estiliza o <legend> */
+legend {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--texto-escuro);
+    padding: 0 10px; /* Dá um respiro para o texto */
+}
+
+/* --- Card de Status Atual --- */
+/* (Já estilizado pelo 'fieldset' acima) */
+.status-atual-info p {
+    font-size: 1.1rem;
+    color: var(--texto-secundario-escuro);
+    margin: 10px 0;
+}
+
+.status-atual-info strong {
+    color: var(--laranja-principal); /* Destaque laranja */
+    font-weight: 600;
+    margin-right: 5px;
+}
+
+.status-atual-info small {
+    font-size: 0.9rem;
+    color: #777;
+    margin-top: 15px;
+    display: inline-block;
+}
+
+/* --- Formulário de Atualização --- */
+.form-admin label {
+    display: block;
+    font-weight: 600;
+    margin-top: 20px;
+    margin-bottom: 8px;
+    color: var(--texto-secundario-escuro);
+}
+
+/* Estilo unificado para <select> e <textarea> */
+.form-admin select,
+.form-admin textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--borda-clara);
+    background-color: var(--fundo-input, #f8f9fa); /* Fundo cinza claro */
+    color: var(--texto-escuro);
+    font-family: "Poppins", sans-serif;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+}
+
+.form-admin textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* Adiciona a seta no select */
+.form-admin select {
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23666%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-13%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2013l128%20127.9c3.6%203.6%207.8%205.4%2013%205.4s9.4-1.8%2013-5.4L287%2095c3.6-3.6%205.4-7.8%205.4-13%200-5-1.8-9.2-5.4-12.8z%22%2F%3E%3C%2Fsvg%3E');
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px;
+}
+
+/* Foco laranja para os inputs */
+.form-admin select:focus,
+.form-admin textarea:focus {
+    outline: none;
+    border-color: var(--laranja-principal);
+    box-shadow: 0 0 8px rgba(255, 162, 0, 0.648);
+}
+
+.form-actions {
+    text-align: right;
+    margin-top: 30px;
+}
+
+/* --- Mensagens de Alerta --- */
+.mensagem {
+    padding: 15px 20px;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 1rem;
+    margin-bottom: 20px;
+    border: 1px solid;
+}
+.mensagem-sucesso {
+    background-color: var(--fundo-verde, #e6f4ea);
+    color: var(--cor-verde, #28a745);
+    border-color: var(--cor-verde, #28a745);
+}
+.error-message {
+    color: var(--cor-vermelho, #d32f2f);
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-top: 5px;
+}

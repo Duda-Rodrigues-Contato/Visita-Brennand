@@ -6,6 +6,7 @@
     <title>Admin - Atualizar Status do Parque</title>
     <link rel="icon" th:href="@{/img/1.png}" type="image/x-icon" />
     <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
 </head>
 <body>
     <header class="header">
@@ -28,7 +29,11 @@
     <div class="container">
         <h1>Painel de Administração</h1>
 
-        <fieldset>
+        <div th:if="${param.sucesso}" class="mensagem mensagem-sucesso">
+            Status do parque atualizado com sucesso!
+        </div>
+
+        <fieldset class="status-atual-info">
             <legend>Status Atual do Parque</legend>
             <p>
                 <strong>Estado:</strong>
@@ -43,17 +48,12 @@
             </p>
         </fieldset>
 
-        <form th:action="@{/admin/status}" th:object="${statusUpdateDTO}" method="post">
+        <form th:action="@{/admin/status}" th:object="${statusUpdateDTO}" method="post" class="form-admin">
             <fieldset>
                 <legend>Atualizar Novo Status</legend>
-
-                <div th:if="${param.sucesso}" style="color: green; margin-bottom: 15px;">
-                    Status do parque atualizado com sucesso!
-                </div>
-
                 <label for="estado">Novo Estado *</label>
                 <select id="estado" th:field="*{estado}" required>
-                    <option value="" disabled selected>Selecione o novo estado</option>
+                    <option value="" disabled>Selecione o novo estado</option>
                     <option th:each="e : ${todosOsEstados}"
                             th:value="${e}"
                             th:text="${e}">
@@ -63,6 +63,7 @@
 
                 <label for="motivo">Motivo (Obrigatório se o parque for fechado)</label>
                 <textarea id="motivo" th:field="*{motivo}" rows="4" placeholder="Ex: Fechado devido a chuvas fortes e maré alta."></textarea>
+                <small class="error-message" th:if="${#fields.hasErrors('motivo')}" th:errors="*{motivo}"></small>
 
                 <div class="form-actions">
                     <button type="submit" class="submit-btn">Atualizar Status</button>
