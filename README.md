@@ -157,7 +157,7 @@ Link para o [Screencast](https://youtu.be/gVXwWjDIvUY)
 <img width="1919" height="956" alt="image" src="https://github.com/user-attachments/assets/99394617-e9e3-42ea-8495-d0018f4df530" />
 
 **ScreenCast: Gestão Viva Testes Automatizados**
-Link para o [Screencast]()
+Link para o [Screencast](https://youtu.be/E_2GeKvCJ-g)
 
 **BugTracker no Jira atualizado:**
 <img width="671" height="484" alt="image" src="https://github.com/user-attachments/assets/f6c78791-3691-4b92-8744-5a03571403e8" />
