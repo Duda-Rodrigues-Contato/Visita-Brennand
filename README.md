@@ -137,10 +137,10 @@ Link para o [Screencast](https://youtu.be/8UV1_CTin0E)
 <img width="1916" height="840" alt="image" src="https://github.com/user-attachments/assets/732abf30-2a1d-467f-a890-bd704acf4800" /> <img width="1916" height="841" alt="image" src="https://github.com/user-attachments/assets/c4dfd362-2407-439d-9e8b-5539ed34d326" />
 
 ## 3️⃣ Entrega 4 (17/11/2025):
-**ScreenCast: Novas funcionalidades(histórias 4,10,11,12)**
-Link para o [Screencast](https://youtu.be/aKO7nOinNoE)
-Link para o [Screencast](https://youtu.be/VBLlorK0jx0)
-Link para o [Screencast](https://youtu.be/gVXwWjDIvUY)
+**ScreenCast: Novas funcionalidades(histórias 4,10,11,12)**<br>
+Link para o [Screencast](https://youtu.be/aKO7nOinNoE)<br>
+Link para o [Screencast](https://youtu.be/VBLlorK0jx0)<br>
+Link para o [Screencast](https://youtu.be/gVXwWjDIvUY)<br>
 
 ### História 4: Controle de entrada
 <img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/fc7978b1-c31c-4327-9b75-cb032704d51a" />
