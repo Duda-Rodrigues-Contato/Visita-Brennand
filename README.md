@@ -142,13 +142,19 @@ Link para o [Screencast](https://youtu.be/aKO7nOinNoE)
 Link para o [Screencast](https://youtu.be/VBLlorK0jx0)
 Link para o [Screencast](https://youtu.be/gVXwWjDIvUY)
 
-### História 4: 
+### História 4: Controle de entrada
+<img width="1919" height="912" alt="image" src="https://github.com/user-attachments/assets/fc7978b1-c31c-4327-9b75-cb032704d51a" />
 
-### História 10: 
+### História 10: Página do visitante
+<img width="1587" height="429" alt="image" src="https://github.com/user-attachments/assets/82f2dbfd-9055-46ab-85bc-34b0a0ca9861" />
+<img width="1587" height="429" alt="image" src="https://github.com/user-attachments/assets/e193ca46-b517-41f7-9949-34f83edc66f1" />
 
-### História 11: 
+### História 11: Ticket digital
+<img width="1590" height="359" alt="image" src="https://github.com/user-attachments/assets/c10c4a23-f638-4e72-9530-98707e029485" />
+<img width="1919" height="909" alt="image" src="https://github.com/user-attachments/assets/f4555ead-9a68-46e0-85ee-6cd37a931427" />
 
-### História 12: 
+### História 12: Dashboard de avaliação
+<img width="1919" height="956" alt="image" src="https://github.com/user-attachments/assets/99394617-e9e3-42ea-8495-d0018f4df530" />
 
 **ScreenCast: Gestão Viva Testes Automatizados**
 Link para o [Screencast]()
