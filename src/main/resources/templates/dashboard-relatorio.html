@@ -118,7 +118,9 @@
                     </table>
                 </div>
                 
-                <div class="pagination" th:if="${paginaDeVisitas.totalPages > 1}">
+                <div class="pagination">
+                
+                <div th:if="${paginaDeVisitas.totalPages > 1}" style="display: flex; align-items: center; gap: 10px;">
                     <a th:if="${!paginaDeVisitas.first}"
                        th:href="@{/dashboard(
                            dataInicio=${#temporals.format(dataInicio, 'yyyy-MM-dd')}, 
@@ -144,20 +146,25 @@
                        )}"
                        class="btn btn-secondary">Próximo</a>
                     <span th:if="${paginaDeVisitas.last}"></span>
-
-                    <form th:action="@{/dashboard}" method="get" class="page-size-form">
-                        <input type="hidden" name="dataInicio" th:value="${#temporals.format(dataInicio, 'yyyy-MM-dd')}">
-                        <input type="hidden" name="dataFim" th:value="${#temporals.format(dataFim, 'yyyy-MM-dd')}">
-                        <input type="hidden" name="sort" th:value="${sort}">
-                        <input type="hidden" name="page" value="0"> <label for="size">Itens por pág:</label>
-                        <select id="size" name="size" onchange="this.form.submit()">
-                            <option value="5" th:selected="${size == 5}">5</option>
-                            <option value="10" th:selected="${size == 10}">10</option>
-                            <option value="20" th:selected="${size == 20}">20</option>
-                            <option value="50" th:selected="${size == 50}">50</option>
-                        </select>
-                    </form>
                 </div>
+                
+                <div th:if="${paginaDeVisitas.totalPages <= 1}"></div>
+
+                <form th:action="@{/dashboard}" method="get" class="page-size-form">
+                    <input type="hidden" name="dataInicio" th:value="${#temporals.format(dataInicio, 'yyyy-MM-dd')}">
+                    <input type="hidden" name="dataFim" th:value="${#temporals.format(dataFim, 'yyyy-MM-dd')}">
+                    <input type="hidden" name="sort" th:value="${sort}">
+                    <input type="hidden" name="page" value="0"> 
+                    
+                    <label for="size">Itens por pág:</label>
+                    <select id="size" name="size" onchange="this.form.submit()">
+                        <option value="5" th:selected="${size == 5}">5</option>
+                        <option value="10" th:selected="${size == 10}">10</option>
+                        <option value="20" th:selected="${size == 20}">20</option>
+                        <option value="50" th:selected="${size == 50}">50</option>
+                    </select>
+                </form>
+            </div>
             </section>
         </main>
 </div>
