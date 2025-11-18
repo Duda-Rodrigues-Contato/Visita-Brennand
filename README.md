@@ -136,9 +136,25 @@ Link para o [Screencast](https://youtu.be/8UV1_CTin0E)
 
 <img width="1916" height="840" alt="image" src="https://github.com/user-attachments/assets/732abf30-2a1d-467f-a890-bd704acf4800" /> <img width="1916" height="841" alt="image" src="https://github.com/user-attachments/assets/c4dfd362-2407-439d-9e8b-5539ed34d326" />
 
+## 3️⃣ Entrega 4 (17/11/2025):
+**ScreenCast: Novas funcionalidades(histórias 4,10,11,12)**
+Link para o [Screencast](https://youtu.be/aKO7nOinNoE)
+Link para o [Screencast](https://youtu.be/VBLlorK0jx0)
+Link para o [Screencast](https://youtu.be/gVXwWjDIvUY)
 
+### História 4: 
 
+### História 10: 
 
+### História 11: 
+
+### História 12: 
+
+**ScreenCast: Gestão Viva Testes Automatizados**
+Link para o [Screencast]()
+
+**BugTracker no Jira atualizado:**
+<img width="671" height="484" alt="image" src="https://github.com/user-attachments/assets/f6c78791-3691-4b92-8744-5a03571403e8" />
 
 
 ---
